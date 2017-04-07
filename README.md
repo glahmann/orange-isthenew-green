@@ -5,8 +5,8 @@ Team Members:
 Zira Cook ([godziraaa](https://github.com/godziraaa))  
 Garrett Lahmann ([glahmann](https://github.com/glahmann))  
 Donald Muffler ([dmuffler](https://github.com/dmuffler))  
-Isaac Sailor ([isaacsailor](https://github.com/isaacsailor))  
-Yaro Salo ([ysalo](https://github.com/ysalo))
-
+Isaac Seemann ([isaacsailor](https://github.com/isaacsailor))  
+Yaro Salo ([ysalo](https://github.com/ysalo))  
 :(
 (:
+
