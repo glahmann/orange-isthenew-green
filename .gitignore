@@ -63,6 +63,7 @@ fabric.properties
 
 
 .metadata
+.metadata/*
 bin/
 tmp/
 *.tmp
