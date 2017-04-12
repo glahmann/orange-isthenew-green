@@ -1,3 +1,7 @@
+/*
+ * Assignment-1: Simple GUI that takes user email and name. 
+ */
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
@@ -28,12 +32,12 @@ public class Gui extends JFrame {
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
 	
 	/**
-	 * 
+	 * Menu bar that contains File.
 	 */
 	private final JMenuBar myMenu;
 	
 	/**
-	 * 
+	 * Constructor for Gui.
 	 */
 	public Gui() {
 		setPreferredSize(new Dimension(500, 500));
@@ -41,7 +45,7 @@ public class Gui extends JFrame {
 	}
 	
 	/**
-	 * 
+	 * Creates the Gui and its components.
 	 */
 	public final void start() {
 		buildFileMenu();
@@ -54,7 +58,7 @@ public class Gui extends JFrame {
 	}
 	
 	/**
-	 * 
+	 * Builds the file menu.
 	 */
 	private final void buildFileMenu() {
 		final JMenu fileMenu = new JMenu("File");
@@ -62,8 +66,7 @@ public class Gui extends JFrame {
 		
 		final Action aboutAction = new AboutPane();
 		final JMenuItem aboutMenu = new JMenuItem(aboutAction);
-		//aboutMenu.setMnemonic('A');
-		fileMenu.add(aboutMenu);
+		fileMenu.add(aboutMenu);		
 		
 		myMenu.add(fileMenu);
 	}

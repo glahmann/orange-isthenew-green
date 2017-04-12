@@ -1,11 +1,12 @@
-/**
- * 
+/*
+ * Assignment-1: Simple GUI that takes user email and name. 
  */
 
 /**
  *
  */
 public class User {
+	
 	/** The name of the user. */
 	private String myName;
 	
