@@ -6,6 +6,7 @@
  *
  */
 public class User {
+	/** The name of the user. */
 	private String myName;
 	private String myEmail;
 	
