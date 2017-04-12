@@ -3,7 +3,10 @@
  */
 
 /**
- *
+ * Represents a user that has a name and an email.
+ * 
+ * @author Yaro Salo
+ * @version April 12, 2017
  */
 public class User {
 	
@@ -33,7 +36,6 @@ public class User {
 	}
 
 	/**
-
 	 * Gets the email of the user. 
 	 * @return the email of the user.
 	 */

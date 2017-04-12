@@ -5,7 +5,10 @@
 import java.awt.EventQueue;
 
 /**
- * Main entry point for the simple Gui.
+ * Start the GUI application.
+ * 
+ * @author Yaro Salo
+ * @version April 12, 2017
  */
 public final class Main {
 
@@ -13,11 +16,11 @@ public final class Main {
      * Private constructor, to prevent instantiation of this class.
      */
     private Main() {
-        throw new IllegalStateException();
+        throw new IllegalStateException("Utility Class Instantiation.");
     }
     
     /**
-     * The main method, invokes the SnapShop GUI. Command line arguments are
+     * The main method, invokes the Gui. Command line arguments are
      * ignored.
      * 
      * @param theArgs Command line arguments.
