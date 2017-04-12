@@ -1,6 +1,5 @@
 import java.awt.EventQueue;
 
-import gui.SnapShopGUI;
 
 /**
  * 
