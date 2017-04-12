@@ -1,10 +1,5 @@
 import java.awt.EventQueue;
 
-
-/**
- * 
- */
-
 /**
  *
  */
@@ -32,5 +27,4 @@ public final class Main {
             }
         });
     }
-
 }
