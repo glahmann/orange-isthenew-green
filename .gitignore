@@ -61,7 +61,8 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-
+.org
+.org/*
 .metadata
 .metadata/*
 bin/
