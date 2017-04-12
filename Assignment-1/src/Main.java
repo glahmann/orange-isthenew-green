@@ -1,3 +1,7 @@
+import java.awt.EventQueue;
+
+import gui.SnapShopGUI;
+
 /**
  * 
  */
@@ -5,14 +9,29 @@
 /**
  *
  */
-public class Main {
+public final class Main {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+    /**
+     * Private constructor, to prevent instantiation of this class.
+     */
+    private Main() {
+        throw new IllegalStateException();
+    
+    }
+    
+    /**
+     * The main method, invokes the SnapShop GUI. Command line arguments are
+     * ignored.
+     * 
+     * @param theArgs Command line arguments.
+     */
+    public static void main(final String[] theArgs) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Gui().start();
+            }
+        });
+    }
 
 }
