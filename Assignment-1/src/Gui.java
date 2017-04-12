@@ -61,6 +61,10 @@ public class Gui extends JFrame {
 		
 		myMenu.add(fileMenu);
 	}
+	
+	/**
+	 * Centers the frame on the screen.
+	 */
     private void setCentered() {
         
         setLocation(SCREEN_WIDTH / 2 - getWidth() / 2, 
