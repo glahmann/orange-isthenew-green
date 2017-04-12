@@ -1,7 +1,11 @@
+/*
+ * Assignment-1: Simple GUI that takes user email and name. 
+ */
+
 import java.awt.EventQueue;
 
 /**
- *
+ * Main entry point for the simple Gui.
  */
 public final class Main {
 
@@ -10,7 +14,6 @@ public final class Main {
      */
     private Main() {
         throw new IllegalStateException();
-    
     }
     
     /**
