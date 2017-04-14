@@ -65,7 +65,7 @@ public class SetupPane extends AbstractAction {
 	}
 	
 	/**
-	 * Action listener for showing the about page.
+	 * Action listener for showing the setup page.
 	 */
 	@Override
 	public void actionPerformed(ActionEvent theAction) {
