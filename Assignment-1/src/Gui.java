@@ -64,8 +64,9 @@ public class Gui extends JFrame {
 		final JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic('F');
 		
-		final Action aboutAction = new AboutPane();
+		final Action aboutAction = new AboutPane(this);
 		final JMenuItem aboutMenu = new JMenuItem(aboutAction);
+		aboutMenu.setMnemonic('A');
 		fileMenu.add(aboutMenu);	
 		
 		// Make setup option
