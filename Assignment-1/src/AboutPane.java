@@ -5,6 +5,8 @@
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  * Creates an about pane that displays authors.
@@ -17,11 +19,16 @@ public class AboutPane extends AbstractAction {
 	private static final long serialVersionUID = -3408885330650984421L;
 	
 	/**
+	 * JFrame of the Gui.
+	 */
+	private final JFrame myFrame;
+	
+	/**
 	 * Constructs the button for the about pane.
 	 */
-	public AboutPane() {
+	public AboutPane(final JFrame theFrame) {
 		super("About...");
-		// add mnemonic
+		myFrame = theFrame;
 	}
 	
 	/**
@@ -29,7 +36,9 @@ public class AboutPane extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent theAction) {
-		
+		final String authors = "Zira Cook\nGarrett Lahmann\nDonald Muffler\n" + 
+				"Yaro Salo\nIsaac Seemann";
+		JOptionPane.showMessageDialog(myFrame, authors, "Authors", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 }
