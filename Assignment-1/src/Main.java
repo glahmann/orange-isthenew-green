@@ -26,10 +26,6 @@ public final class Main {
      * @param theArgs Command line arguments.
      */
     public static void main(final String[] theArgs) {
-    	User user = new User("Yaro Salo", "ysalo@uw.edu");    
-		JSONSupport.writeJSON(user, "C:\\Users\\Slavik\\Desktop\\testFile.json");
-		User newUser = JSONSupport.readJSON("C:\\Users\\Slavik\\Desktop\\testFile.json");
-		System.out.println(newUser.getEmail()+ newUser.getName());
     	EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

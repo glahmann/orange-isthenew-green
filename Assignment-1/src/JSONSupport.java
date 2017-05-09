@@ -8,6 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @JsonPropertyOrder({"name", "email"})
 public class JSONSupport {
 	
+	/**
+	 * Object Mapper.
+	 */
 	private static final ObjectMapper MAPPER = new ObjectMapper();
     /**
      * Private constructor, to prevent instantiation of this class.
