@@ -23,11 +23,10 @@ public class JSONSupport {
      * Given a user object and a file path writes the user object to that file.
      * If the file does not exist one is created.
      */
-    public static final void writeJSON(User theUser, String thePath) {
-    	final File file = new File(thePath);
+    public static final void writeJSON(User theUser, File theFile) {
     	try {
 			// Convert object to JSON string and save into a file directly
-			MAPPER.writeValue(file, theUser);
+			MAPPER.writeValue(theFile, theUser);
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -38,14 +37,13 @@ public class JSONSupport {
     }
     
     /**
-     * Given a path to JSON file returns a User object. 
+     * Converts a JSON file into a user object. 
      */
-    public static final User readJSON(String thePath) {
+    public static final User readJSON(File theFile) {
 		User user = null; //initialize variable so it can be returned.
     	try {
-			final File file = new File(thePath);
 			// Convert JSON string from file to Object
-			user = MAPPER.readValue(file, User.class);
+			user = MAPPER.readValue(theFile, User.class);
 			
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();

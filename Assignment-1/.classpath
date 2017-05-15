@@ -7,8 +7,8 @@
 			<attribute name="javadoc_location" value="http://junit-team.github.io/junit/javadoc/latest/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Slavik/Desktop/jackson jars/jackson-annotations-2.9.0.pr3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Slavik/Desktop/jackson jars/jackson-core-2.9.0.pr3.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Slavik/Desktop/jackson jars/jackson-databind-2.9.0.pr3.jar"/>
+	<classpathentry kind="lib" path="jackson jars/jackson-annotations-2.9.0.pr3.jar"/>
+	<classpathentry kind="lib" path="jackson jars/jackson-core-2.9.0.pr3.jar"/>
+	<classpathentry kind="lib" path="jackson jars/jackson-databind-2.9.0.pr3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
