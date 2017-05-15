@@ -26,7 +26,7 @@ public final class Main {
      * @param theArgs Command line arguments.
      */
     public static void main(final String[] theArgs) {
-        EventQueue.invokeLater(new Runnable() {
+    	EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
                 new Gui().start();

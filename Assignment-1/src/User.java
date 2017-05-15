@@ -1,3 +1,6 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 /*
  * Assignment-1: Simple GUI that takes user email and name. 
  */
@@ -22,7 +25,8 @@ public class User {
 	 * @param theName the name of the user.
 	 * @param theEmail the email of the user.
 	 */
-	public User(final String theName, final String theEmail) {
+	@JsonCreator 
+	public User(@JsonProperty("name")final String theName, @JsonProperty("email")final String theEmail) {
 		myName = theName;
 		myEmail = theEmail;
 	}

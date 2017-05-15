@@ -2,5 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/Slavik/.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="http://junit-team.github.io/junit/javadoc/latest/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Slavik/Desktop/jackson jars/jackson-annotations-2.9.0.pr3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Slavik/Desktop/jackson jars/jackson-core-2.9.0.pr3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Slavik/Desktop/jackson jars/jackson-databind-2.9.0.pr3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
