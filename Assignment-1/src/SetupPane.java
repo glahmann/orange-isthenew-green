@@ -35,6 +35,26 @@ public class SetupPane extends AbstractAction {
 	private final JPanel mySetupPanel;
 	
 	/**
+	 * The user name.
+	 */
+	private String myName;
+	
+	/**
+	 * The text field for user name entry.
+	 */
+	private JTextField myNameField;
+	
+	/**
+	 * The user email.
+	 */
+	private String myEmail;
+	
+	/**
+	 * The text field for user email entry.
+	 */
+	private JTextField myEmailField;
+	
+	/**
 	 * Constructs the button for the setup pane.
 	 * 
 	 * @param theFrame	a frame to attach option pane to.
@@ -47,21 +67,21 @@ public class SetupPane extends AbstractAction {
 		GridBagConstraints c = new GridBagConstraints();
 		
 		final JLabel nameLabel = new JLabel("Name:", SwingConstants.CENTER);
-		final JTextField nameField = new JTextField(20);
+		myNameField = new JTextField(20);
 		final JLabel emailLabel = new JLabel("Email:", SwingConstants.CENTER);
-		final JTextField emailField = new JTextField(20);
+		myEmailField = new JTextField(20);
 		c.gridx = 0;
 		c.gridy = 0;
 		mySetupPanel.add(nameLabel, c);
 		c.gridx = 1;
 		c.gridy = 0;
-		mySetupPanel.add(nameField, c);
+		mySetupPanel.add(myNameField, c);
 		c.gridx = 0;
 		c.gridy = 1;
 		mySetupPanel.add(emailLabel, c);
 		c.gridx = 1;
 		c.gridy = 1;
-		mySetupPanel.add(emailField, c);
+		mySetupPanel.add(myEmailField, c);
 	}
 	
 	/**
@@ -71,6 +91,8 @@ public class SetupPane extends AbstractAction {
 	public void actionPerformed(ActionEvent theAction) {
 		JOptionPane.showMessageDialog(myFrame, mySetupPanel, "Setup", 
                 JOptionPane.INFORMATION_MESSAGE);
+		myName = myNameField.getText();
+		myEmail = myEmailField.getText();
 	}
 
 }
