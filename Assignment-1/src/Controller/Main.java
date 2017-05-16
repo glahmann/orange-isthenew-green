@@ -1,8 +1,11 @@
+package Controller;
 /*
  * Assignment-1: Simple GUI that takes user email and name. 
  */
 
 import java.awt.EventQueue;
+
+import view.Gui;
 
 /**
  * Start the GUI application.

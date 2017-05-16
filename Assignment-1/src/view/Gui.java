@@ -1,9 +1,11 @@
-/*
- * Assignment-1: Simple GUI that takes user email and name. 
- */
+package view;
 
+
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.Action;
 import javax.swing.JFrame;
@@ -14,7 +16,7 @@ import javax.swing.JMenuItem;
 /**
  * User Interface for application.
  */
-public class Gui extends JFrame {
+public class Gui extends JFrame implements Observer{
 
     /**
 	 * Generated Serial ID.
@@ -37,10 +39,16 @@ public class Gui extends JFrame {
 	private final JMenuBar myMenu;
 	
 	/**
+	 * Main panel. TODO Change.
+	 */
+	private DisplayPanel myCenterPanel;
+	
+	/**
 	 * Constructor for Gui.
 	 */
 	public Gui() {
 		setPreferredSize(new Dimension(500, 500));
+		myCenterPanel = new DisplayPanel(); 	// TODO Maybe not necessary.
 		myMenu = new JMenuBar();
 	}
 	
@@ -51,6 +59,7 @@ public class Gui extends JFrame {
 		buildFileMenu();
 		
 		setJMenuBar(myMenu);
+		add(myCenterPanel, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setCentered();
@@ -64,16 +73,23 @@ public class Gui extends JFrame {
 		final JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic('F');
 		
-		final Action aboutAction = new AboutPane(this);
-		final JMenuItem aboutMenu = new JMenuItem(aboutAction);
-		aboutMenu.setMnemonic('A');
-		fileMenu.add(aboutMenu);	
+		// Make login option
+		final Action loginAction = new LoginPane(this);
+		final JMenuItem loginMenuItem = new JMenuItem(loginAction);
+		loginMenuItem.setMnemonic('L');
+		fileMenu.add(loginMenuItem);
 		
 		// Make setup option
 		final Action setupAction = new SetupPane(this);
 		final JMenuItem setupMenuItem = new JMenuItem(setupAction);
-		setupMenuItem.setMnemonic('s');
-		fileMenu.add(setupMenuItem);	
+		setupMenuItem.setMnemonic('S');
+		fileMenu.add(setupMenuItem);
+		
+		// Make about option
+		final Action aboutAction = new AboutPane(this);
+		final JMenuItem aboutMenuItem = new JMenuItem(aboutAction);
+		aboutMenuItem.setMnemonic('A');
+		fileMenu.add(aboutMenuItem);	
 		
 		myMenu.add(fileMenu);
 	}
@@ -85,5 +101,19 @@ public class Gui extends JFrame {
         
         setLocation(SCREEN_SIZE.width / 2 - getWidth() / 2, 
         		SCREEN_SIZE.height / 2 - getHeight() / 2);
-    }   
+    }
+
+    // TODO fix badbadbadbad coupling
+    public void updateDisplay(String theEmail) {
+    	myCenterPanel.updatePanel(theEmail);
+    }
+    
+    /**
+     * 
+     */
+	@Override
+	public void update(Observable theO, Object theArg) {
+		// TODO Auto-generated method stub
+		
+	}   
 }

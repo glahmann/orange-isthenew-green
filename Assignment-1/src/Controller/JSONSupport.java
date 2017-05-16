@@ -1,3 +1,4 @@
+package Controller;
 import java.io.File;
 import java.io.IOException;
 
@@ -5,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import Model.User;
 @JsonPropertyOrder({"name", "email"})
 public class JSONSupport {
 	

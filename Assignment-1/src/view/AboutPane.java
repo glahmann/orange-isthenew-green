@@ -1,6 +1,5 @@
-/*
- * Assignment-1: Simple GUI that takes user email and name. 
- */
+package view;
+
 
 import java.awt.event.ActionEvent;
 

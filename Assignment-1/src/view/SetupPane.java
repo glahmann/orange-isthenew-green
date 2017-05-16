@@ -1,6 +1,8 @@
+package view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.JFrame;
@@ -9,6 +11,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import Controller.JSONSupport;
+import Model.User;
 
 /**
  * TODO save name and email
@@ -93,6 +98,13 @@ public class SetupPane extends AbstractAction {
                 JOptionPane.INFORMATION_MESSAGE);
 		myName = myNameField.getText();
 		myEmail = myEmailField.getText();
+		
+		// TODO Move to better location!!!
+		User user = new User(myName, myEmail); 
+		File userFile = new File(myEmail + ".json");
+		JSONSupport.writeJSON(user, userFile);
+				
+//		System.out.println(myName + " " + myEmail);
 	}
 
 }

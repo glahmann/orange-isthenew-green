@@ -1,3 +1,6 @@
+package Model;
+import java.util.Observable;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -11,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Yaro Salo
  * @version April 12, 2017
  */
-public class User {
+public class User extends Observable {
 	
 	/** The name of the user. */
 	private String myName;
