@@ -5,6 +5,13 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+/**
+ * Allows to write a JASON file from a User Object and reverse.
+ * @author Yaro Salo
+ * @version May 15, 2017
+ *
+ */
 @JsonPropertyOrder({"name", "email"})
 public class JSONSupport {
 	
@@ -20,8 +27,7 @@ public class JSONSupport {
     }
     
     /**
-     * Given a user object and a file path writes the user object to that file.
-     * If the file does not exist one is created.
+     * Given a user object and a file writes the user object to that file.
      */
     public static final void writeJSON(User theUser, File theFile) {
     	try {
