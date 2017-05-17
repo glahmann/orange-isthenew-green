@@ -15,6 +15,12 @@ import org.junit.Test;
 import Controller.JSONSupport;
 import Model.User;
 
+/**
+ * Test class for import/export JSON
+ * 
+ * @author Donald Muffler
+ * @version 20170516
+ */
 public class JSONSupportTest {
 
 	/**

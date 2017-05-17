@@ -15,6 +15,11 @@ import javax.swing.JMenuItem;
 
 /**
  * User Interface for application.
+ * 
+ * @author Donald Muffler
+ * @author 
+ * @author
+ * @version 20170516
  */
 public class Gui extends JFrame implements Observer{
 

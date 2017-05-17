@@ -1,4 +1,6 @@
-package Model;
+
+ package Model;
+import java.util.ArrayList;
 import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -22,6 +24,9 @@ public class User extends Observable {
 	/** The email of the user. */
 	private String myEmail;
 	
+	/** List of residences. */
+	private final ArrayList<Residence> myResidences;
+	
 	/**
 	 * Initialize instance fields. 
 	 * 
@@ -32,6 +37,7 @@ public class User extends Observable {
 	public User(@JsonProperty("name")final String theName, @JsonProperty("email")final String theEmail) {
 		myName = theName;
 		myEmail = theEmail;
+		myResidences = new ArrayList<Residence>();
 	}
 	
 	/**
@@ -64,5 +70,21 @@ public class User extends Observable {
 	 */
 	public void setEmail(String theEmail) {
 		myEmail = theEmail;
+	}
+	
+	/**
+	 * Adds a residence to this user.
+	 * @param theResidence the residence to be added.
+	 */
+	public final void addResidence(final Residence theResidence) {
+		
+	}
+	
+	/**
+	 * Removes a residence from this user.
+	 * @param theResidence the residence to be removed.
+	 */
+	public final void removeResidence(final Residence theResidence) {
+		
 	}
 }
