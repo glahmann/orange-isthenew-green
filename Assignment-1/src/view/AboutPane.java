@@ -1,6 +1,5 @@
 package view;
 
-
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
@@ -9,6 +8,10 @@ import javax.swing.JOptionPane;
 
 /**
  * Creates an about pane that displays authors.
+ * 
+ * @author Isaac Seemann
+ * @author Donald Muffler
+ * @version 20170516
  */
 public class AboutPane extends AbstractAction {
 
