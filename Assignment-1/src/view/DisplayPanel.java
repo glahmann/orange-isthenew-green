@@ -14,14 +14,14 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import Controller.JSONSupport;
-import Model.User;
+import controller.JSONSupport;
+import model.User;
 
 /**
  * @author Garrett Lahmann
  *
  */
-public class DisplayPanel extends JPanel implements Observer {
+final public class DisplayPanel extends JPanel implements Observer {
 	
 	/**
 	 * 

@@ -1,12 +1,17 @@
-package Model;
+package model;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @author Donald Muffler
  * @version 20170516
  */
-public class Bill {
+final public class Bill {
+	
+	/**
+	 * Name of the bill.
+	 */
+	final String myName;
 	
 	/**
 	 * Amount of the bill.
@@ -29,10 +34,20 @@ public class Bill {
 	 * @param theBeginDate begin date of the bill.
 	 * @param theEndDate end date of the bill.
 	 */
-	public Bill(final double theAmount, final Date theBeginDate, final Date theEndDate) {
+	public Bill(final String theName, final double theAmount,
+			final Date theBeginDate, final Date theEndDate) {
+		myName = theName;
 		myAmount = theAmount;
 		myBeginDate = theBeginDate;
 		myEndDate = theEndDate;
+	}
+	
+	/**
+	 * Getter for the name of the bill.
+	 * @return the bill's name.
+	 */
+	public final String getName() {
+		return myName;
 	}
 
 	/**

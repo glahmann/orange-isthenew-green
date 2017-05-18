@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 import java.io.File;
 import java.io.IOException;
 
@@ -7,8 +7,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
-import Model.User;
+import model.User;
 
 /**
  * Allows to write a JASON file from a User Object and reverse.
@@ -18,7 +17,7 @@ import Model.User;
  */
 
 @JsonPropertyOrder({"name", "email"})
-public class JSONSupport {
+final public class JSONSupport {
 	
 	/**
 	 * Object Mapper.
@@ -65,5 +64,4 @@ public class JSONSupport {
 		} 
     	return user; 		
     }
-
 }

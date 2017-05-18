@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 import java.util.ArrayList;
 
@@ -7,10 +7,9 @@ import java.util.ArrayList;
  * with this residence.
  * 
  * @author Donald Muffler
- * @author 
  * @version 20170516
  */
-public class Residence {
+final public class Residence {
 	
 	/**
 	 * Name of the residence.
@@ -44,35 +43,11 @@ public class Residence {
 	}
 	
 	/**
-	 * Adds a project to this residence.
-	 * @param theProject the project to be added.
+	 * Getter for the residence's name.
+	 * @return the name of the residence.
 	 */
-	public final void addProject(final Project theProject) {
-		
-	}
-	
-	/**
-	 * Removes a project from this residence.
-	 * @param theProject the project to be removed.
-	 */
-	public final void removeProject(final Project theProject) {
-		
-	}
-	
-	/**
-	 * Adds a bill to this residence.
-	 * @param theBill the bill to be added.
-	 */
-	public final void addBill(final Bill theBill) {
-		
-	}
-	
-	/**
-	 * Removes a bill from this residence.
-	 * @param theBill the bill to be removed.
-	 */
-	public final void removeBill(final Bill theBill) {
-		
+	public final String getName() {
+		return myName;
 	}
 	
 	/**
@@ -82,7 +57,7 @@ public class Residence {
 	public final double getProjectedBill() {
 		return myProjectedBill;
 	}
-	
+
 	/**
 	 * Getter for the list of bills.
 	 * @return the list of bills.
@@ -91,7 +66,7 @@ public class Residence {
 		// returns a deep copy.
 		return null;
 	}
-	
+
 	/**
 	 * Getter for the list of projects.
 	 * @return the list of projects.
@@ -99,5 +74,55 @@ public class Residence {
 	public final ArrayList<Project> getProjects() {
 		// returns a deep copy.
 		return null;
+	}
+
+	/**
+	 * Adds a project to this residence.
+	 * @param theProject the project to be added.
+	 */
+	public final void addProject(final Project theProject) {
+		myProjects.add(theProject);
+	}
+	
+	/**
+	 * Removes a project from this residence.
+	 * @param theProject the project to be removed.
+	 */
+	public final void removeProject(final Project theProject) {
+		int currentIndex = 0;
+		boolean found = false;
+		
+		while(!found && currentIndex < myProjects.size()) {
+			if (myProjects.get(currentIndex).getName().equals(theProject.getName())) {
+				myProjects.remove(currentIndex);
+				found = true;
+			}
+			currentIndex++;
+		}
+	}
+	
+	/**
+	 * Adds a bill to this residence.
+	 * @param theBill the bill to be added.
+	 */
+	public final void addBill(final Bill theBill) {
+		myBills.add(theBill);
+	}
+	
+	/**
+	 * Removes a bill from this residence.
+	 * @param theBill the bill to be removed.
+	 */
+	public final void removeBill(final Bill theBill) {
+		int currentIndex = 0;
+		boolean found = false;
+		
+		while(!found && currentIndex < myProjects.size()) {
+			if (myProjects.get(currentIndex).getName().equals(theBill.getName())) {
+				myProjects.remove(currentIndex);
+				found = true;
+			}
+			currentIndex++;
+		}
 	}
 }

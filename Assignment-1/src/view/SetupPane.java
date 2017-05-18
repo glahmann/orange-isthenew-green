@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-import Controller.JSONSupport;
-import Model.User;
+import controller.JSONSupport;
+import model.User;
 
 /**
  * TODO save name and email
@@ -22,7 +22,7 @@ import Model.User;
  * @author Garrett Lahmann
  * @version 13 April 2017
  */
-public class SetupPane extends AbstractAction {
+final public class SetupPane extends AbstractAction {
 
 	/**
 	 * Generated Serial ID.

@@ -1,4 +1,4 @@
-package Model;
+package model;
 
 /**
  * Enum class for types of housing for easy comparing.
