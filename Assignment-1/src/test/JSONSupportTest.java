@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import static org.junit.Assert.*;
 
@@ -12,8 +12,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import Controller.JSONSupport;
-import Model.User;
+import controller.JSONSupport;
+import model.User;
 
 /**
  * Test class for import/export JSON
@@ -21,7 +21,7 @@ import Model.User;
  * @author Donald Muffler
  * @version 20170516
  */
-public class JSONSupportTest {
+final public class JSONSupportTest {
 
 	/**
 	 * User name for testing.

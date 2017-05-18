@@ -21,7 +21,7 @@ import javax.swing.JMenuItem;
  * @author
  * @version 20170516
  */
-public class Gui extends JFrame implements Observer{
+final public class Gui extends JFrame implements Observer{
 
     /**
 	 * Generated Serial ID.

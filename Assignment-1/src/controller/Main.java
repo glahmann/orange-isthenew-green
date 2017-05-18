@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 /*
  * Assignment-1: Simple GUI that takes user email and name. 
  */

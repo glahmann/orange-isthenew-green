@@ -1,5 +1,5 @@
 
- package Model;
+ package model;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Yaro Salo
  * @version April 12, 2017
  */
-public class User extends Observable {
+final public class User extends Observable {
 	
 	/** The name of the user. */
 	private String myName;
@@ -75,16 +75,27 @@ public class User extends Observable {
 	/**
 	 * Adds a residence to this user.
 	 * @param theResidence the residence to be added.
+	 * @author Donald Muffler
 	 */
 	public final void addResidence(final Residence theResidence) {
-		
+		myResidences.add(theResidence);
 	}
 	
 	/**
-	 * Removes a residence from this user.
-	 * @param theResidence the residence to be removed.
+	 * Removes a project from this residence.
+	 * @param theProject the project to be removed.
+	 * @author Donald Muffler
 	 */
-	public final void removeResidence(final Residence theResidence) {
+	public final void removeResidence(final Project theResidence) {
+		int currentIndex = 0;
+		boolean found = false;
 		
+		while(!found && currentIndex < myResidences.size()) {
+			if (myResidences.get(currentIndex).getName().equals(theResidence.getName())) {
+				myResidences.remove(currentIndex);
+				found = true;
+			}
+			currentIndex++;
+		}
 	}
 }

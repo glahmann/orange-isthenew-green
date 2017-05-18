@@ -1,10 +1,10 @@
-package Test;
+package test;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import Model.User;
+import model.User;
 
 /**
  * Unit Tests for User class
@@ -12,7 +12,7 @@ import Model.User;
  * @author Zira Cook
  * @version 14 April 2017
  */
-public class UserTest {
+final public class UserTest {
 
     /** Constant for initialized user name. */
     private static final String NAME = "Billy Bob";

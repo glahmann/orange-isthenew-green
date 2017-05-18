@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author Donald Muffler
  * @version 20170516
  */
-public class AboutPane extends AbstractAction {
+final public class AboutPane extends AbstractAction {
 
 	/**
 	 * Generated Serial ID.
@@ -37,7 +37,7 @@ public class AboutPane extends AbstractAction {
 	 * Action listener for showing the about page.
 	 */
 	@Override
-	public void actionPerformed(ActionEvent theAction) {
+	public final void actionPerformed(ActionEvent theAction) {
 		final String authors = "Zira Cook\nGarrett Lahmann\nDonald Muffler\n" + 
 				"Yaro Salo\nIsaac Seemann";
 		JOptionPane.showMessageDialog(myFrame, authors, "Authors", JOptionPane.INFORMATION_MESSAGE);

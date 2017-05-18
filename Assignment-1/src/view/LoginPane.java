@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Garrett Lahmann
  * @version 15 May 2017
  */
-public class LoginPane extends AbstractAction {
+final public class LoginPane extends AbstractAction {
 
 	/**
 	 * Generated Serial ID.
