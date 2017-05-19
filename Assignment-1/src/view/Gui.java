@@ -2,16 +2,15 @@ package view;
 
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.Action;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.*;
+
+import net.miginfocom.swing.MigLayout;
 
 /**
  * User Interface for application.
@@ -37,6 +36,11 @@ final public class Gui extends JFrame implements Observer{
      * Dimensions of the screen.
      */
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
+    
+    /**
+     * Size of email text field.
+     */
+    private static final int TEXT_FIELD_SIZE = 15;
 	
 	/**
 	 * Menu bar that contains File.
@@ -61,6 +65,7 @@ final public class Gui extends JFrame implements Observer{
 	 * Creates the Gui and its components.
 	 */
 	public final void start() {
+		login();
 		buildFileMenu();
 		
 		setJMenuBar(myMenu);
@@ -69,6 +74,28 @@ final public class Gui extends JFrame implements Observer{
 		pack();
 		setCentered();
 		setVisible(true);
+	}
+	
+	/**
+	 * Creates the login menu.
+	 */
+	private final void login() {
+		
+		final JPanel loginPanel = new JPanel(new MigLayout());
+		loginPanel.add(new JLabel("Email"));
+		final JTextField emailText = new JTextField(TEXT_FIELD_SIZE);
+		loginPanel.add(emailText);
+		final JButton newUserButton = new JButton("New User?");
+		loginPanel.add(newUserButton, "cell 1 1");
+		
+		newUserButton.setBorderPainted(false);
+		newUserButton.setContentAreaFilled(false);
+		newUserButton.setForeground(Color.BLUE);
+		
+		final Action newUserAction = new SetupPane(this);
+		newUserButton.addActionListener(newUserAction);
+		
+		JOptionPane.showMessageDialog(this, loginPanel);
 	}
 	
 	/**
