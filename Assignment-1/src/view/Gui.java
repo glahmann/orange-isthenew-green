@@ -10,6 +10,7 @@ import java.util.Observer;
 
 import javax.swing.*;
 
+import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -56,8 +57,8 @@ final public class Gui extends JFrame implements Observer{
 	 * Constructor for Gui.
 	 */
 	public Gui() {
-		setPreferredSize(new Dimension(500, 500));
-		myCenterPanel = new DisplayPanel(); 	// TODO Maybe not necessary.
+		setPreferredSize(new Dimension(1000, 1000));
+		//myCenterPanel = new DisplayPanel(); 	// TODO Maybe not necessary.
 		myMenu = new JMenuBar();
 	}
 	
@@ -67,9 +68,10 @@ final public class Gui extends JFrame implements Observer{
 	public final void start() {
 		login();
 		buildFileMenu();
+		homePage();
 		
 		setJMenuBar(myMenu);
-		add(myCenterPanel, BorderLayout.CENTER);
+		//add(myCenterPanel, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setCentered();
@@ -124,6 +126,14 @@ final public class Gui extends JFrame implements Observer{
 		fileMenu.add(aboutMenuItem);	
 		
 		myMenu.add(fileMenu);
+	}
+	
+	/**
+	 * Creates the home page.
+	 */
+	private final void homePage() {
+		final HomePage homePanel = new HomePage();
+		add(homePanel);
 	}
 	
 	/**
