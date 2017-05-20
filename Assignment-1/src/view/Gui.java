@@ -1,9 +1,9 @@
 package view;
 
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.Observable;
 import java.util.Observer;
@@ -37,6 +37,11 @@ final public class Gui extends JFrame implements Observer{
      * Dimensions of the screen.
      */
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
+    
+    /**
+     * Home button size.
+     */
+    private static final Dimension HOME_BUTTON_SIZE = new Dimension(200, 200);
     
     /**
      * Size of email text field.
@@ -132,8 +137,39 @@ final public class Gui extends JFrame implements Observer{
 	 * Creates the home page.
 	 */
 	private final void homePage() {
-		final HomePage homePanel = new HomePage();
+		final JPanel homePanel = new JPanel(new MigLayout(new LC().align("center", "center")));
+		final JPanel homeButtonPanel = new JPanel(new MigLayout(new LC().wrapAfter(3)));
+		final Action homeAction = new HomeActions();
+		
+		homePanel.setBackground(Color.GREEN);
+		homeButtonPanel.setBackground(Color.ORANGE);
+		
+		addHomeButtons("Create Project", homeAction, homeButtonPanel);
+		addHomeButtons("Open Project", homeAction, homeButtonPanel);
+		addHomeButtons("Manage Projects", homeAction, homeButtonPanel);
+		addHomeButtons("Manage Residences", homeAction, homeButtonPanel);
+		addHomeButtons("Change Residence", homeAction, homeButtonPanel);
+		addHomeButtons("Exit/Save", homeAction, homeButtonPanel);
+		
+		homePanel.add(homeButtonPanel);
 		add(homePanel);
+	}
+	
+	/**
+	 * Adds buttons to the home button panel.
+	 * @param theString name of the button.
+	 * @param theAction connects button to action.
+	 * @param thePanel the button panel.
+	 * @return JButton representing the newly created home button.
+	 */
+	private final JButton addHomeButtons(final String theString, final Action theAction, final JPanel thePanel) {
+		
+		final JButton homeButton = new JButton(theString);
+		homeButton.setPreferredSize(HOME_BUTTON_SIZE);
+		homeButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		homeButton.addActionListener(theAction);
+		thePanel.add(homeButton);
+		return homeButton;
 	}
 	
 	/**
