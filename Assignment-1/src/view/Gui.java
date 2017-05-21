@@ -42,6 +42,11 @@ final public class Gui extends JFrame implements Observer{
      * Home button size.
      */
     private static final Dimension HOME_BUTTON_SIZE = new Dimension(200, 200);
+
+	/**
+	 * Initial size for home screen.
+	 */
+	private Dimension myHomeScreenSize;
     
     /**
      * Size of email text field.
@@ -52,6 +57,11 @@ final public class Gui extends JFrame implements Observer{
 	 * Menu bar that contains File.
 	 */
 	private final JMenuBar myMenu;
+
+	/**
+	 * Menu item that displays the current user email.
+	 */
+	private JMenuItem myUserMenuItem;
 	
 	/**
 	 * Main panel. TODO Change.
@@ -62,9 +72,17 @@ final public class Gui extends JFrame implements Observer{
 	 * Constructor for Gui.
 	 */
 	public Gui() {
-		setPreferredSize(new Dimension(1000, 1000));
+		//Set up home screen
+		double screenSizeX = SCREEN_SIZE.getWidth() / 2;
+		double screenSizeY = SCREEN_SIZE.getHeight() / 1.5;
+		myHomeScreenSize = new Dimension((int)screenSizeX, (int)screenSizeY);
+		setPreferredSize(myHomeScreenSize);
 		//myCenterPanel = new DisplayPanel(); 	// TODO Maybe not necessary.
+
+		//Set up menu bar
 		myMenu = new JMenuBar();
+		myUserMenuItem = new JMenuItem("Defualt");
+		myUserMenuItem.setEnabled(false);
 	}
 	
 	/**
@@ -103,6 +121,12 @@ final public class Gui extends JFrame implements Observer{
 		newUserButton.addActionListener(newUserAction);
 		
 		JOptionPane.showMessageDialog(this, loginPanel);
+
+		final String enteredEmail = emailText.getText();
+
+		if(!enteredEmail.equals("") && enteredEmail != null) {
+			myUserMenuItem.setText(enteredEmail);
+		}
 	}
 	
 	/**
@@ -129,8 +153,13 @@ final public class Gui extends JFrame implements Observer{
 		final JMenuItem aboutMenuItem = new JMenuItem(aboutAction);
 		aboutMenuItem.setMnemonic('A');
 		fileMenu.add(aboutMenuItem);	
-		
+
+		final JMenu userMenu = new JMenu("User");
+		userMenu.setMnemonic('U');
+		userMenu.add(myUserMenuItem);
+
 		myMenu.add(fileMenu);
+		myMenu.add(userMenu);
 	}
 	
 	/**
@@ -183,7 +212,10 @@ final public class Gui extends JFrame implements Observer{
 
     // TODO fix badbadbadbad coupling
     public void updateDisplay(String theEmail) {
-    	myCenterPanel.updatePanel(theEmail);
+		//Center panel is never instantiated
+		//myCenterPanel.updatePanel(theEmail);
+
+		myUserMenuItem.setText(theEmail);
     }
     
     /**

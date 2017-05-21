@@ -42,10 +42,13 @@ final public class LoginPane extends AbstractAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent theAction) {
-	     myEmail = JOptionPane.showInputDialog("Enter your email: "); 
-	     // TODO Error checking
-	     
-	     myFrame.updateDisplay(myEmail);
+	     myEmail = JOptionPane.showInputDialog("Enter your email: ");
+
+		//If an email was entered update the user display
+		if (!myEmail.equals("")) {
+			myFrame.updateDisplay(myEmail);
+		}
+
 	}
 
 }
