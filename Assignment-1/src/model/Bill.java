@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -21,12 +22,12 @@ final public class Bill {
 	/**
 	 * Begin date of the bill.
 	 */
-	private final Date myBeginDate;
+	private final Calendar myBeginDate;
 	
 	/**
 	 * End date of the bill.
 	 */
-	private final Date myEndDate;
+	private final Calendar myEndDate;
 
 	/**
 	 * Constructs the bill with an amount and the dates associated.
@@ -35,7 +36,7 @@ final public class Bill {
 	 * @param theEndDate end date of the bill.
 	 */
 	public Bill(final String theName, final double theAmount,
-			final Date theBeginDate, final Date theEndDate) {
+			final Calendar theBeginDate, final Calendar theEndDate) {
 		myName = theName;
 		myAmount = theAmount;
 		myBeginDate = theBeginDate;
