@@ -5,6 +5,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,8 +21,7 @@ import net.miginfocom.swing.MigLayout;
  * User Interface for application.
  * 
  * @author Donald Muffler
- * @author 
- * @author
+ * @author Zira Cook
  * @version 20170516
  */
 final public class Gui extends JFrame implements Observer{
@@ -62,11 +65,18 @@ final public class Gui extends JFrame implements Observer{
 	 * Menu item that displays the current user email.
 	 */
 	private JMenuItem myUserMenuItem;
-	
-	/**
-	 * Main panel. TODO Change.
-	 */
-	private DisplayPanel myCenterPanel;
+
+	private JButton myCreateProjectButton;
+
+	private JButton myOpenProjectButton;
+
+	private JButton myManageProjectButton;
+
+	private JButton myManageResidenceButton;
+
+	private JButton myChangeResidenceButton;
+
+	private JButton myExitSaveButton;
 	
 	/**
 	 * Constructor for Gui.
@@ -124,7 +134,7 @@ final public class Gui extends JFrame implements Observer{
 
 		final String enteredEmail = emailText.getText();
 
-		if(!enteredEmail.equals("") && enteredEmail != null) {
+		if(!enteredEmail.equals("")) {
 			myUserMenuItem.setText(enteredEmail);
 		}
 	}
@@ -169,17 +179,46 @@ final public class Gui extends JFrame implements Observer{
 		final JPanel homePanel = new JPanel(new MigLayout(new LC().align("center", "center")));
 		final JPanel homeButtonPanel = new JPanel(new MigLayout(new LC().wrapAfter(3)));
 		final Action homeAction = new HomeActions();
-		
+
+		List<JButton> buttonList = new ArrayList<>();
+
+		myCreateProjectButton = new JButton("Create Project");
+		buttonList.add(myCreateProjectButton);
+
+		myOpenProjectButton = new JButton("Open Project");
+		buttonList.add(myOpenProjectButton);
+
+		myManageProjectButton = new JButton("Manage Projects");
+		buttonList.add(myManageProjectButton);
+
+		myManageResidenceButton = new JButton("Manage Residences");
+		buttonList.add(myManageResidenceButton);
+
+		myChangeResidenceButton = new JButton("Change Residences");
+		buttonList.add(myChangeResidenceButton);
+
+		myExitSaveButton = new JButton("Exit/Save");
+		buttonList.add(myExitSaveButton);
+
+		for (JButton homeButton: buttonList) {
+			homeButton.setPreferredSize(HOME_BUTTON_SIZE);
+			homeButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+			homeButton.addActionListener(new HomeButtonListener());
+			homeButtonPanel.add(homeButton);
+		}
+
 		homePanel.setBackground(Color.GREEN);
 		homeButtonPanel.setBackground(Color.ORANGE);
-		
+
+		/*
 		addHomeButtons("Create Project", homeAction, homeButtonPanel);
 		addHomeButtons("Open Project", homeAction, homeButtonPanel);
 		addHomeButtons("Manage Projects", homeAction, homeButtonPanel);
 		addHomeButtons("Manage Residences", homeAction, homeButtonPanel);
 		addHomeButtons("Change Residence", homeAction, homeButtonPanel);
 		addHomeButtons("Exit/Save", homeAction, homeButtonPanel);
-		
+		*/
+
 		homePanel.add(homeButtonPanel);
 		add(homePanel);
 	}
@@ -210,11 +249,11 @@ final public class Gui extends JFrame implements Observer{
         		SCREEN_SIZE.height / 2 - getHeight() / 2);
     }
 
-    // TODO fix badbadbadbad coupling
+	/**
+	 * Updates the name of the user, in the User menu item.
+	 * @param theEmail
+     */
     public void updateDisplay(String theEmail) {
-		//Center panel is never instantiated
-		//myCenterPanel.updatePanel(theEmail);
-
 		myUserMenuItem.setText(theEmail);
     }
     
@@ -225,5 +264,82 @@ final public class Gui extends JFrame implements Observer{
 	public void update(Observable theO, Object theArg) {
 		// TODO Auto-generated method stub
 		
-	}   
+	}
+
+	/**
+	 * Assigns behavior to home screen buttons.
+	 */
+	class HomeButtonListener implements ActionListener {
+
+		@Override
+		public void actionPerformed(final ActionEvent theEvent) {
+
+			if (theEvent.getSource() == myCreateProjectButton) {
+				int correct = createProject();
+
+			}
+
+			if (theEvent.getSource() == myOpenProjectButton) {
+
+			}
+
+			if (theEvent.getSource() == myManageProjectButton) {
+
+			}
+
+			if (theEvent.getSource() == myManageResidenceButton) {
+
+			}
+
+			if (theEvent.getSource() == myChangeResidenceButton) {
+
+			}
+
+			if (theEvent.getSource() == myExitSaveButton) {
+				int exit = JOptionPane.showConfirmDialog(Gui.this, "Would you like to exit?", "Leaving so soon?",
+						JOptionPane.YES_NO_OPTION);
+
+				//Close the program if "yes" option is picked
+				if (exit == 0) {
+					System.exit(0);
+				}
+			}
+
+
+		}
+
+		/**
+		 * Creates a new project.
+		 * @return 0 for a successful creation, 1 if there was a user error.
+         */
+		public int createProject() {
+			//Setup for new project screen
+			final JPanel newProjectPanel = new JPanel(new MigLayout());
+			newProjectPanel.add(new JLabel("Project Name: "));
+
+			final JTextField projectNameBox = new JTextField(TEXT_FIELD_SIZE);
+			newProjectPanel.add(projectNameBox);
+			final JButton enterBillButton = new JButton("Enter an Energy Bill?");
+			newProjectPanel.add(enterBillButton, "cell 1 1");
+
+			enterBillButton.setBorderPainted(false);
+			enterBillButton.setContentAreaFilled(false);
+			enterBillButton.setForeground(Color.BLUE);
+
+			//If user wants to enter an energy bill
+			final Action newUserAction = new BillPane(Gui.this);
+			enterBillButton.addActionListener(newUserAction);
+
+			JOptionPane.showMessageDialog(Gui.this, newProjectPanel);
+
+			final String enteredProjectName = projectNameBox.getText();
+
+			if(enteredProjectName.equals("")) {
+				return 1;
+			}
+
+			return 0;
+		}
+	}
+
 }
