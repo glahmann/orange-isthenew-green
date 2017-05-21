@@ -5,8 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
@@ -65,18 +63,6 @@ final public class Gui extends JFrame implements Observer{
 	 * Menu item that displays the current user email.
 	 */
 	private JMenuItem myUserMenuItem;
-
-	private JButton myCreateProjectButton;
-
-	private JButton myOpenProjectButton;
-
-	private JButton myManageProjectButton;
-
-	private JButton myManageResidenceButton;
-
-	private JButton myChangeResidenceButton;
-
-	private JButton myExitSaveButton;
 	
 	/**
 	 * Constructor for Gui.
@@ -180,44 +166,18 @@ final public class Gui extends JFrame implements Observer{
 		final JPanel homeButtonPanel = new JPanel(new MigLayout(new LC().wrapAfter(3)));
 		final Action homeAction = new HomeActions();
 
-		List<JButton> buttonList = new ArrayList<>();
-
-		myCreateProjectButton = new JButton("Create Project");
-		buttonList.add(myCreateProjectButton);
-
-		myOpenProjectButton = new JButton("Open Project");
-		buttonList.add(myOpenProjectButton);
-
-		myManageProjectButton = new JButton("Manage Projects");
-		buttonList.add(myManageProjectButton);
-
-		myManageResidenceButton = new JButton("Manage Residences");
-		buttonList.add(myManageResidenceButton);
-
-		myChangeResidenceButton = new JButton("Change Residences");
-		buttonList.add(myChangeResidenceButton);
-
-		myExitSaveButton = new JButton("Exit/Save");
-		buttonList.add(myExitSaveButton);
-
-		for (JButton homeButton: buttonList) {
-			homeButton.setPreferredSize(HOME_BUTTON_SIZE);
-			homeButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-			homeButton.addActionListener(new HomeButtonListener());
-			homeButtonPanel.add(homeButton);
-		}
-
-		homePanel.setBackground(Color.GREEN);
+		Color homeScreenColor = new Color(0, 150, 0);
+		homePanel.setBackground(homeScreenColor);
 		homeButtonPanel.setBackground(Color.ORANGE);
 
-		/*
+
 		addHomeButtons("Create Project", homeAction, homeButtonPanel);
 		addHomeButtons("Open Project", homeAction, homeButtonPanel);
 		addHomeButtons("Manage Projects", homeAction, homeButtonPanel);
 		addHomeButtons("Manage Residences", homeAction, homeButtonPanel);
 		addHomeButtons("Change Residence", homeAction, homeButtonPanel);
-		addHomeButtons("Exit/Save", homeAction, homeButtonPanel);
-		*/
+		addHomeButtons("Save/Exit", homeAction, homeButtonPanel);
+
 
 		homePanel.add(homeButtonPanel);
 		add(homePanel);
@@ -233,6 +193,10 @@ final public class Gui extends JFrame implements Observer{
 	private final JButton addHomeButtons(final String theString, final Action theAction, final JPanel thePanel) {
 		
 		final JButton homeButton = new JButton(theString);
+
+		//Added because for some reason the "Create Project" button decides to be smaller
+		homeButton.setMinimumSize(HOME_BUTTON_SIZE);
+		
 		homeButton.setPreferredSize(HOME_BUTTON_SIZE);
 		homeButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
 		homeButton.addActionListener(theAction);
@@ -266,80 +230,5 @@ final public class Gui extends JFrame implements Observer{
 		
 	}
 
-	/**
-	 * Assigns behavior to home screen buttons.
-	 */
-	class HomeButtonListener implements ActionListener {
-
-		@Override
-		public void actionPerformed(final ActionEvent theEvent) {
-
-			if (theEvent.getSource() == myCreateProjectButton) {
-				int correct = createProject();
-
-			}
-
-			if (theEvent.getSource() == myOpenProjectButton) {
-
-			}
-
-			if (theEvent.getSource() == myManageProjectButton) {
-
-			}
-
-			if (theEvent.getSource() == myManageResidenceButton) {
-
-			}
-
-			if (theEvent.getSource() == myChangeResidenceButton) {
-
-			}
-
-			if (theEvent.getSource() == myExitSaveButton) {
-				int exit = JOptionPane.showConfirmDialog(Gui.this, "Would you like to exit?", "Leaving so soon?",
-						JOptionPane.YES_NO_OPTION);
-
-				//Close the program if "yes" option is picked
-				if (exit == 0) {
-					System.exit(0);
-				}
-			}
-
-
-		}
-
-		/**
-		 * Creates a new project.
-		 * @return 0 for a successful creation, 1 if there was a user error.
-         */
-		public int createProject() {
-			//Setup for new project screen
-			final JPanel newProjectPanel = new JPanel(new MigLayout());
-			newProjectPanel.add(new JLabel("Project Name: "));
-
-			final JTextField projectNameBox = new JTextField(TEXT_FIELD_SIZE);
-			newProjectPanel.add(projectNameBox);
-			final JButton enterBillButton = new JButton("Enter an Energy Bill?");
-			newProjectPanel.add(enterBillButton, "cell 1 1");
-
-			enterBillButton.setBorderPainted(false);
-			enterBillButton.setContentAreaFilled(false);
-			enterBillButton.setForeground(Color.BLUE);
-
-			//If user wants to enter an energy bill
-			final Action newUserAction = new BillPane(Gui.this);
-			enterBillButton.addActionListener(newUserAction);
-
-			JOptionPane.showMessageDialog(Gui.this, newProjectPanel);
-
-			final String enteredProjectName = projectNameBox.getText();
-
-			if(enteredProjectName.equals("")) {
-				return 1;
-			}
-
-			return 0;
-		}
-	}
 
 }

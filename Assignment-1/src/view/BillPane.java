@@ -41,19 +41,19 @@ public class BillPane extends AbstractAction {
         final JTextField enterBillAmmount = new JTextField(TEXT_FIELD_SIZE);
         myBillPanel.add(enterBillAmmount, "cell 1 1");
 
-        myBillPanel.add(new JLabel("Starting Month (MM): "), "cell 0 2");
-        final JTextField enterBeginMonth = new JTextField(TEXT_FIELD_SIZE);
+        myBillPanel.add(new JLabel("Start Month (MM): "), "cell 0 2");
+        final JTextField enterBeginMonth = new JTextField(10);
         myBillPanel.add(enterBeginMonth, "cell 1 2");
-        myBillPanel.add(new JLabel("Starting Year (YYYY): "), "cell 0 3");
-        final JTextField enterBeginYear = new JTextField(TEXT_FIELD_SIZE);
-        myBillPanel.add(enterBeginYear, "cell 1 3");
+        myBillPanel.add(new JLabel("Year (YYYY): "), "cell 2 2");
+        final JTextField enterBeginYear = new JTextField(10);
+        myBillPanel.add(enterBeginYear, "cell 3 2");
 
-        myBillPanel.add(new JLabel("Ending Month (MM): "), "cell 0 4");
-        final JTextField enterEndMonth = new JTextField(TEXT_FIELD_SIZE);
+        myBillPanel.add(new JLabel("End Month (MM): "), "cell 0 4");
+        final JTextField enterEndMonth = new JTextField(10);
         myBillPanel.add(enterEndMonth, "cell 1 4");
-        myBillPanel.add(new JLabel("Starting Year (YYYY): "), "cell 0 5");
-        final JTextField enterEndYear = new JTextField(TEXT_FIELD_SIZE);
-        myBillPanel.add(enterEndYear, "cell 1 5");
+        myBillPanel.add(new JLabel("Year (YYYY): "), "cell 2 4");
+        final JTextField enterEndYear = new JTextField(10);
+        myBillPanel.add(enterEndYear, "cell 3 4");
 
         JOptionPane.showMessageDialog(myFrame, myBillPanel);
 
