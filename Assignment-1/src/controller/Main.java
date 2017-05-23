@@ -37,27 +37,12 @@ public final class Main {
      * @author Yaro Salo
      */
     public static void main(final String[] theArgs) {  
-    	User user = new User("Slavik Salo" , "ysalo@uw.edu");
-    	File file = new File("file.json");
-    	Project project = new Project("Super Cool Project");
-    	Item item = new Item("Super Cool Item", 100);
-    	Bill bill = new Bill("Super Cool Bill", 50, new Date(), new Date());
-    	Residence house = new Residence("Super Cool House");
-    	project.addItem(item);
-    	
-    	house.addBill(bill);
-    	house.addProject(project);
-    	user.addResidence(house);
-    	JSONSupport.writeJSON(user, file);
-    	User newUser = JSONSupport.readJSON(file);
-    	System.out.println(newUser.getName() + " " + newUser.getEmail());
-    	
-    	
-//    	EventQueue.invokeLater(new Runnable() {
-//            @Override
-//            public void run() {
-//                new Gui().start();
-//            }
-//        });
+
+    	EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new Gui().start();
+            }
+        });
     }
 }
