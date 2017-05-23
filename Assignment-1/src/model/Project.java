@@ -2,12 +2,17 @@ package model;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
  * Stores items for the user.
  * 
  * @author Donald Muffler
  * @version 20170517
  */
+@JsonPropertyOrder({"Project Name", "Savings", "Cost", "Items"})
 final public class Project {
 	
 	/**
@@ -30,9 +35,6 @@ final public class Project {
 	 */
 	private final ArrayList<Item> myItems;
 
-	/**
-	 * Constructs the project for the user.
-	 */
 	public Project(final String theName) {
 		myName = theName;
 		mySavings = 0;
@@ -41,9 +43,30 @@ final public class Project {
 	}
 	
 	/**
+	 * Copy constructor. Used in JSON deserialization.
+	 * 
+	 * @param theName project name
+	 * @param theSavings savings
+	 * @param theCost cost
+	 * @param theItems items 
+	 * 
+	 * @author Yaro Salo
+	 */
+	@JsonCreator
+	public Project(@JsonProperty("Project Name")final String theName,
+			@JsonProperty("Savings")final double theSavings,
+			@JsonProperty("Cost")final double theCost,
+			@JsonProperty("Items")final ArrayList<Item> theItems) {
+		myName = theName;
+		mySavings = theSavings;
+		myCost = theCost;
+		myItems = theItems;
+	}
+	/**
 	 * Getter for the name of the project.
 	 * @return the project's name.
 	 */
+	@JsonProperty("Project Name")
 	public final String getName() {
 		return myName;
 	}
@@ -52,6 +75,7 @@ final public class Project {
 	 * Getter for the total savings of the project.
 	 * @return the total savings.
 	 */
+	@JsonProperty("Savings")
 	public final double getSavings() {
 		return mySavings;
 	}
@@ -60,6 +84,7 @@ final public class Project {
 	 * Getter for the total cost of the project.
 	 * @return the total cost.
 	 */
+	@JsonProperty("Cost")
 	public final double getCost() {
 		return myCost;
 	}
@@ -67,10 +92,16 @@ final public class Project {
 	/**
 	 * Getter for the lit of items.
 	 * @return the list of items.
+	 * 
+	 * @author Yaro Salo write deep copying
 	 */
+	@JsonProperty("Items")
 	public final ArrayList<Item> getItems() {
-		// returns a deep copy.
-		return null;
+		ArrayList<Item> copyItems = new ArrayList<>();
+		for(Item i: myItems) { //deep copy of items
+			copyItems.add(new Item(i.getName(), i.getCost()));
+		}
+		return copyItems;
 	}
 
 	/**

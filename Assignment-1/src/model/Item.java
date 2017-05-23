@@ -1,11 +1,16 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
  * An item to be included in projects.
  * 
  * @author Donald Muffler
  * @version 20170517
  */
+@JsonPropertyOrder({"Item Name", "Item Cost"})
 public class Item {
 
 	/**
@@ -24,7 +29,9 @@ public class Item {
 	 * @param theName the item's name.
 	 * @param theCost the item's cost.
 	 */
-	public Item(final String theName, final double theCost) {
+	@JsonCreator
+	public Item(@JsonProperty("Item Name")final String theName, 
+			@JsonProperty("Item Cost")final double theCost) {
 		myName = theName;
 		myCost = theCost;
 	}
@@ -33,6 +40,7 @@ public class Item {
 	 * Getter for the item's name.
 	 * @return name of the item.
 	 */
+	@JsonProperty("Item Name")
 	public final String getName() {
 		return myName;
 	}
@@ -41,6 +49,7 @@ public class Item {
 	 * Getter for the cost of the item.
 	 * @return the cost of the item.
 	 */
+	@JsonProperty("Item Cost")
 	public final double getCost() {
 		return myCost;
 	}

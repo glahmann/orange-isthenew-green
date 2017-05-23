@@ -5,6 +5,7 @@ import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /*
  * Assignment-1: Simple GUI that takes user email and name. 
@@ -16,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author Yaro Salo
  * @version April 12, 2017
  */
+@JsonPropertyOrder({"User Name", "User Email", "Residences"})
 final public class User extends Observable {
 	
 	/** The name of the user. */
@@ -25,25 +27,42 @@ final public class User extends Observable {
 	private String myEmail;
 	
 	/** List of residences. */
-	private final ArrayList<Residence> myResidences;
+	@JsonProperty("Residences")private final ArrayList<Residence> myResidences;
 	
 	/**
 	 * Initialize instance fields. 
 	 * 
 	 * @param theName the name of the user.
 	 * @param theEmail the email of the user.
-	 */
-	@JsonCreator 
-	public User(@JsonProperty("name")final String theName, @JsonProperty("email")final String theEmail) {
+	 */ 
+	public User(final String theName, final String theEmail) {
 		myName = theName;
 		myEmail = theEmail;
 		myResidences = new ArrayList<Residence>();
 	}
 	
 	/**
+	 * Copy constructor. Used in JSON deserialization.
+	 * @param theName user name
+	 * @param theEmail user email 
+	 * @param theResidences user residences
+	 * 
+	 * @author Yaro Salo	
+	 */
+	@JsonCreator 
+	public User(@JsonProperty("User Name")final String theName, 
+			@JsonProperty("User Email")final String theEmail,
+			@JsonProperty("Residences") ArrayList<Residence> theResidences) {
+		myName = theName;
+		myEmail = theEmail;
+		myResidences = theResidences;
+	}
+	
+	/**
 	 * Gets the name of the user.
 	 * @return the name of the user.
 	 */
+	@JsonProperty("User Name")
 	public String getName() {
 		return myName;
 	}
@@ -52,6 +71,7 @@ final public class User extends Observable {
 	 * Gets the email of the user. 
 	 * @return the email of the user.
 	 */
+	@JsonProperty("User Email")
 	public String getEmail() {
 		return myEmail;
 	}

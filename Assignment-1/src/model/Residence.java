@@ -2,6 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
  * Class to contain User house information and projects associated
  * with this residence.
@@ -9,6 +14,7 @@ import java.util.ArrayList;
  * @author Donald Muffler
  * @version 20170516
  */
+@JsonPropertyOrder({"Residence Name", "Projected Bill", "Bills", "Projects"})
 final public class Residence {
 	
 	/**
@@ -43,9 +49,30 @@ final public class Residence {
 	}
 	
 	/**
+	 * Copy constructor. Used in JSON deserialization.
+	 * 
+	 * @param theName residence name
+	 * @param theProjectedBill the projected bill
+	 * @param theBills residence bills 
+	 * @param theProjects residence projects
+	 * 
+	 * @author Yaro Salo
+	 */
+	@JsonCreator
+	public Residence(@JsonProperty("Residence Name")final String theName,
+			@JsonProperty("Projected Bill")final double theProjectedBill,
+			@JsonProperty("Bills")ArrayList<Bill> theBills,
+			@JsonProperty("Projects")final ArrayList<Project> theProjects) {
+		myName = theName;
+		myProjectedBill = 0;
+		myBills = theBills;
+		myProjects = theProjects;
+	}
+	/**
 	 * Getter for the residence's name.
 	 * @return the name of the residence.
 	 */
+	@JsonProperty("Residence Name")
 	public final String getName() {
 		return myName;
 	}
@@ -54,6 +81,7 @@ final public class Residence {
 	 * Getter for the projected bill.
 	 * @return the project bill amount.
 	 */
+	@JsonProperty("Projected Bill")
 	public final double getProjectedBill() {
 		return myProjectedBill;
 	}
@@ -61,19 +89,36 @@ final public class Residence {
 	/**
 	 * Getter for the list of bills.
 	 * @return the list of bills.
+	 * 
+	 * @author Yaro Salo write deep copying
 	 */
+	@JsonProperty("Bills")
 	public final ArrayList<Bill> getBills() {
+		ArrayList<Bill> copyBills = new ArrayList<>();
+		for(Bill b: myBills) {
+			copyBills.add(new Bill(b.getName(), b.getAmount(),
+					b.getBeginDate(), b.getEndDate()));
+		}
+		
 		// returns a deep copy.
-		return null;
+		return copyBills;
 	}
 
 	/**
 	 * Getter for the list of projects.
 	 * @return the list of projects.
+	 * 
+	 * @author Yaro Salo write deep copying
 	 */
+	@JsonProperty("Projects")
 	public final ArrayList<Project> getProjects() {
-		// returns a deep copy.
-		return null;
+		 
+		ArrayList<Project> copyProjects = new  ArrayList<>();
+		 for(Project p: myProjects) {   //deep copy
+			 copyProjects.add(new Project(p.getName(),p.getSavings(),
+					 p.getCost(), p.getItems()));
+		 }
+		return copyProjects;
 	}
 
 	/**
