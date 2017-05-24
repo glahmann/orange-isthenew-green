@@ -3,16 +3,12 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.*;
 
-import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -40,11 +36,6 @@ final public class Gui extends JFrame implements Observer{
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
     
     /**
-     * Home button size.
-     */
-    private static final Dimension HOME_BUTTON_SIZE = new Dimension(200, 200);
-
-	/**
 	 * Initial size for home screen.
 	 */
 	private Dimension myHomeScreenSize;
@@ -162,46 +153,7 @@ final public class Gui extends JFrame implements Observer{
 	 * Creates the home page.
 	 */
 	private final void homePage() {
-		final JPanel homePanel = new JPanel(new MigLayout(new LC().align("center", "center")));
-		final JPanel homeButtonPanel = new JPanel(new MigLayout(new LC().wrapAfter(3)));
-		final Action homeAction = new HomeActions();
-
-		Color homeScreenColor = new Color(0, 150, 0);
-		homePanel.setBackground(homeScreenColor);
-		homeButtonPanel.setBackground(Color.ORANGE);
-
-
-		addHomeButtons("Create Project", homeAction, homeButtonPanel);
-		addHomeButtons("Open Project", homeAction, homeButtonPanel);
-		addHomeButtons("Manage Projects", homeAction, homeButtonPanel);
-		addHomeButtons("Manage Residences", homeAction, homeButtonPanel);
-		addHomeButtons("Change Residence", homeAction, homeButtonPanel);
-		addHomeButtons("Save/Exit", homeAction, homeButtonPanel);
-
-
-		homePanel.add(homeButtonPanel);
-		add(homePanel);
-	}
-	
-	/**
-	 * Adds buttons to the home button panel.
-	 * @param theString name of the button.
-	 * @param theAction connects button to action.
-	 * @param thePanel the button panel.
-	 * @return JButton representing the newly created home button.
-	 */
-	private final JButton addHomeButtons(final String theString, final Action theAction, final JPanel thePanel) {
-		
-		final JButton homeButton = new JButton(theString);
-
-		//Added because for some reason the "Create Project" button decides to be smaller
-		homeButton.setMinimumSize(HOME_BUTTON_SIZE);
-		
-		homeButton.setPreferredSize(HOME_BUTTON_SIZE);
-		homeButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		homeButton.addActionListener(theAction);
-		thePanel.add(homeButton);
-		return homeButton;
+		add(HomeScreen.getInstance());
 	}
 	
 	/**
@@ -229,6 +181,4 @@ final public class Gui extends JFrame implements Observer{
 		// TODO Auto-generated method stub
 		
 	}
-
-
 }

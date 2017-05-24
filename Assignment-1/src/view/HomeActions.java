@@ -35,17 +35,11 @@ public final class HomeActions extends AbstractAction {
 			case "Create Project":
 				createProject();
 				break;
-			case "Open Project":
-				// TODO: open project controller
-				break;
 			case "Manage Projects":
 				// TODO: manage projects controller
 				break;
 			case "Manage Residences":
 				// TODO: manage residences controller
-				break;
-			case "Change Residence":
-				// TODO: change residence controller
 				break;
 			case "Save/Exit":
 				int exit = JOptionPane.showConfirmDialog(null, "Would you like to exit?", "Leaving so soon?",

@@ -4,14 +4,6 @@ package controller;
  */
 
 import java.awt.EventQueue;
-import java.io.File;
-import java.util.Date;
-
-import model.Bill;
-import model.Item;
-import model.Project;
-import model.Residence;
-import model.User;
 import view.Gui;
 
 /**

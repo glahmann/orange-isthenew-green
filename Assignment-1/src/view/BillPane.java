@@ -3,7 +3,6 @@ package view;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
@@ -13,7 +12,10 @@ import java.awt.event.ActionEvent;
  */
 public class BillPane extends AbstractAction {
 
-    /** Size of email text field. */
+    /** Serial ID */
+	private static final long serialVersionUID = 6490723052778244792L;
+
+	/** Size of email text field. */
     private static final int TEXT_FIELD_SIZE = 15;
 
     /** GUI Frame. */
