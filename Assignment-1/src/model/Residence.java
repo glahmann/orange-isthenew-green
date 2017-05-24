@@ -97,7 +97,8 @@ final public class Residence {
 		ArrayList<Bill> copyBills = new ArrayList<>();
 		for(Bill b: myBills) {
 			copyBills.add(new Bill(b.getName(), b.getAmount(),
-					b.getBeginDate(), b.getEndDate()));
+					b.getBeginMonth(), b.getBeginYear(),
+					b.getEndMonth(), b.getEndYear()));
 		}
 		
 		// returns a deep copy.

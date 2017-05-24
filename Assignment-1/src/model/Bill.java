@@ -1,8 +1,5 @@
 package model;
 
-import java.util.Calendar;
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -27,29 +24,38 @@ final public class Bill {
 	/**
 	 * Begin date of the bill.
 	 */
-	private final Date myBeginDate;
+	private final int myBeginMonth;
+
+	private final int myBeginYear;
 	
 	/**
 	 * End date of the bill.
 	 */
-	private final Date myEndDate;
+	private final int myEndMonth;
+
+	private final int myEndYear;
 
 	/**
 	 * Constructs the bill with an amount and the dates associated.
 	 * @param theAmount amount of the bill.
-	 * @param theBeginDate begin date of the bill.
-	 * @param theEndDate end date of the bill.
-	 * 
+	 * @param theBeginMonth begin date of the bill.
+	 * @param theBeginYear begin date of the bill.
+	 * @param theEndMonth end date of the bill.
+	 * @param theEndYear end date of the bill.
 	 */
 	@JsonCreator
 	public Bill(@JsonProperty("Bill Name")final String theName, 
 			@JsonProperty("Bill Ammount")final double theAmount,
-			@JsonProperty("Start Date")final Date theBeginDate, 
-			@JsonProperty("End Date")final Date theEndDate) {
+			@JsonProperty("Start Month")final int theBeginMonth,
+			@JsonProperty("Start Year")final int theBeginYear,
+			@JsonProperty("End Month")final int theEndMonth,
+			@JsonProperty("End Year")final int theEndYear){
 		myName = theName;
 		myAmount = theAmount;
-		myBeginDate = theBeginDate;
-		myEndDate = theEndDate;
+		myBeginMonth = theBeginMonth;
+		myBeginYear = theBeginYear;
+		myEndMonth = theEndMonth;
+		myEndYear = theEndYear;
 	}
 	
 	/**
@@ -74,17 +80,35 @@ final public class Bill {
 	 * Getter for the begin date of the bill.
 	 * @return the begin date of the bill.
 	 */
-	@JsonProperty("Start Date")
-	public final Date getBeginDate() {
-		return (Date) myBeginDate.clone();
+	@JsonProperty("Start Month")
+	public final int getBeginMonth() {
+		return myBeginMonth;
 	}
-	
+
+	/**
+	 * Getter for the begin date of the bill.
+	 * @return the begin date of the bill.
+	 */
+	@JsonProperty("Start Year")
+	public final int getBeginYear() {
+		return myBeginYear;
+	}
+
 	/**
 	 * Getter for the end date of the bill.
 	 * @return the end date of the bill.
 	 */
-	@JsonProperty("End Date")
-	public final Date getEndDate() {
-		return (Date) myEndDate.clone();
+	@JsonProperty("End Month")
+	public final int getEndMonth() {
+		return myEndMonth;
+	}
+
+	/**
+	 * Getter for the end date of the bill.
+	 * @return the end date of the bill.
+	 */
+	@JsonProperty("End Year")
+	public final int getEndYear() {
+		return myEndYear;
 	}
 }

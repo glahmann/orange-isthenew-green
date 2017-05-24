@@ -45,7 +45,7 @@ final public class LoginPane extends AbstractAction {
 	     myEmail = JOptionPane.showInputDialog("Enter your email: ");
 
 		//If an email was entered update the user display
-		if (!myEmail.equals("")) {
+		if (myEmail != null) {
 			myFrame.updateDisplay(myEmail);
 		}
 
