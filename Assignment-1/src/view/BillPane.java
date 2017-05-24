@@ -32,14 +32,9 @@ public class BillPane extends AbstractAction {
     public void actionPerformed(final ActionEvent theEvent) {
         myBillPanel = new JPanel(new MigLayout());
 
-
-        myBillPanel.add(new JLabel("Name of Bill: "), "cell 0 0");
-        final JTextField billNameBox = new JTextField(TEXT_FIELD_SIZE);
-        myBillPanel.add(billNameBox, "cell 1 0");
-
-        myBillPanel.add(new JLabel("Total Bill Cost: $"), "cell 0 1");
+        myBillPanel.add(new JLabel("Total Bill Cost: $"), "cell 0 0");
         final JTextField enterBillAmmount = new JTextField(TEXT_FIELD_SIZE);
-        myBillPanel.add(enterBillAmmount, "cell 1 1");
+        myBillPanel.add(enterBillAmmount, "cell 1 0");
 
         myBillPanel.add(new JLabel("Start Month (MM): "), "cell 0 2");
         final JTextField enterBeginMonth = new JTextField(10);
@@ -57,11 +52,11 @@ public class BillPane extends AbstractAction {
 
         JOptionPane.showMessageDialog(myFrame, myBillPanel);
 
-        final String billName = billNameBox.getText();
         final String billCost = enterBillAmmount.getText();
         final String startMonth = enterBeginMonth.getText();
         final String startYear = enterBeginYear.getText();
         final String endMonth = enterEndMonth.getText();
         final String endYear = enterEndYear.getText();
+        final String billName = startMonth+startYear+endMonth+endYear;
     }
 }
