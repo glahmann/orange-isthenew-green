@@ -99,7 +99,7 @@ final public class Project {
 	public final ArrayList<Item> getItems() {
 		ArrayList<Item> copyItems = new ArrayList<>();
 		for(Item i: myItems) { //deep copy of items
-			copyItems.add(new Item(i.getName(), i.getCost()));
+			copyItems.add(new Item(i.getName(), i.getCost(), i.getType()));
 		}
 		return copyItems;
 	}

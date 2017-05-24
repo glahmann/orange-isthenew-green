@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 
 /**
  * TODO save name and email
+ * TODO fix null pointer exception on empty text field when closed
  * Creates a setup pane that asks for name and email.
  * 
  * @author Garrett Lahmann
