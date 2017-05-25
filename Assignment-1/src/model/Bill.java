@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -8,31 +10,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author Donald Muffler
  * @version 20170516
  */
-@JsonPropertyOrder({"Bill Name", "Bill Ammount", "Start Date", "End Date"})
+@JsonPropertyOrder({"Bill Name", "Bill Ammount", "Start Month", 
+	"Start Year", "End Month", "End Year"})
 final public class Bill {
 	
-	/**
-	 * Name of the bill.
-	 */
+	/** Name of the bill. */
 	final String myName;
 	
-	/**
-	 * Amount of the bill.
-	 */
+	/** Amount of the bill. */
 	private final double myAmount;
 	
-	/**
-	 * Begin date of the bill.
-	 */
+	/** Beginning month of the bill. */
 	private final int myBeginMonth;
 
+	/** Beginning year of the bill. */
 	private final int myBeginYear;
 	
-	/**
-	 * End date of the bill.
-	 */
+	/** End month of the bill. */
 	private final int myEndMonth;
 
+	/** End year of the bill. */
 	private final int myEndYear;
 
 	/**
@@ -69,7 +66,7 @@ final public class Bill {
 
 	/**
 	 * Getter for the bill amount.
-	 * @return the amount of the bill.
+	 * @return the amount of the bill. 
 	 */
 	@JsonProperty("Bill Ammount")
 	public final double getAmount() {
@@ -111,4 +108,51 @@ final public class Bill {
 	public final int getEndYear() {
 		return myEndYear;
 	}
+	
+    /**
+     * {@inheritDoc}
+     * 
+     * Returns true if the specified object is equivalent to this Bill, and false 
+     * otherwise. Two Bills are equivalent if the have the same fields.
+     * 
+     * @param theOther is the Object being tested.
+     * @return true if objects are equal and false otherwise.
+     * @author Yaro Salo
+     */
+    @Override
+    public boolean equals(final Object theOther) {
+        
+        boolean returnValue = false;
+        
+        if (this == theOther) { //is the Object being tested this Object?
+            returnValue = true;
+        
+        } else if (theOther != null && this.getClass() == theOther.getClass()) { //is theOther Object a User object? 
+            
+        
+            final Bill otherBill = (Bill) theOther; //theOther can be safely casted. 
+           
+            //if all fields are equal the objects are equal
+            returnValue = Objects.equals(myName, otherBill.myName)
+                       && Objects.equals(myBeginMonth, otherBill.myBeginMonth)
+                       && Objects.equals(myBeginYear, otherBill.myBeginYear)
+                       && Objects.equals(myEndMonth, otherBill.myEndMonth)
+                       && Objects.equals(myEndYear, otherBill.myEndYear);
+        } 
+        
+        return returnValue;
+    }
+    
+    /**
+     * {@inheritDoc}
+     * 
+     * Returns and integer hash code for a Bill.
+     * @return hash code as an integer.
+     * @author Yaro Salo
+     */
+    @Override
+    public int hashCode() {
+        
+        return Objects.hash(myName, myBeginMonth, myBeginYear, myEndMonth, myEndYear);
+    }
 }
