@@ -60,8 +60,8 @@ final public class Gui extends JFrame implements Observer{
 	 */
 	public Gui() {
 		//Set up home screen
-		double screenSizeX = SCREEN_SIZE.getWidth() / 2;
-		double screenSizeY = SCREEN_SIZE.getHeight() / 1.5;
+		double screenSizeX = SCREEN_SIZE.getWidth() * .8;
+		double screenSizeY = SCREEN_SIZE.getHeight() * .75;
 		myHomeScreenSize = new Dimension((int)screenSizeX, (int)screenSizeY);
 		setPreferredSize(myHomeScreenSize);
 		//myCenterPanel = new DisplayPanel(); 	// TODO Maybe not necessary.
