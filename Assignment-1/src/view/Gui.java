@@ -55,7 +55,9 @@ final public class Gui extends JFrame implements Observer{
 	 */
 	public Gui() {
 
+
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		
 
 		//Set up menu bar
 		myMenu = new JMenuBar();

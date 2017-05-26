@@ -1,9 +1,10 @@
 package controller;
 /*
- * Assignment-1: Simple GUI that takes user email and name. 
+ * Starts the GUI application. 
  */
 
 import java.awt.EventQueue;
+
 import view.Gui;
 
 /**
@@ -16,13 +17,14 @@ public final class Main {
 
     /**
      * Private constructor, to prevent instantiation of this class.
+     * @author Yaro Salo
      */
     private Main() {
         throw new IllegalStateException("Utility Class Instantiation.");
     }
     
     /**
-     * The main method, invokes the Gui. Command line arguments are
+     * The main method, invokes the GUI. Command line arguments are
      * ignored.
      * 
      * @param theArgs Command line arguments.

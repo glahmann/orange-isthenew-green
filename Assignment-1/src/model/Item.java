@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -12,7 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  */
 @JsonPropertyOrder({"Item Name", "Item Cost"})
 public class Item {
-
+ 
 	/**
 	 * The name of the item.
 	 */
@@ -53,4 +55,48 @@ public class Item {
 	public final double getCost() {
 		return myCost;
 	}
+	
+    /**
+     * {@inheritDoc}
+     * 
+     * Returns true if the specified object is equivalent to this Item, and false 
+     * otherwise. Two Items are equivalent if the have the same fields.
+     * 
+     * @param theOther is the Object being tested.
+     * @return true if objects are equal and false otherwise.
+     * @author Yaro Salo
+     */
+    @Override
+    public boolean equals(final Object theOther) {
+        
+        boolean returnValue = false;
+        
+        if (this == theOther) { //is the Object being tested this Object?
+            returnValue = true;
+        
+        } else if (theOther != null && this.getClass() == theOther.getClass()) { //is theOther Object a User object? 
+            
+        
+            final Item otherItem = (Item) theOther; //theOther can be safely casted. 
+           
+            //if all fields are equal the objects are equal
+            returnValue = Objects.equals(myName, otherItem.myName)
+                       && Objects.equals(myCost, otherItem.myCost);
+        } 
+        
+        return returnValue;
+    }
+    
+    /**
+     * {@inheritDoc}
+     * 
+     * Returns and integer hash code for an Item.
+     * @return hash code as an integer.
+     * @author Yaro Salo
+     */
+    @Override
+    public int hashCode() {
+        
+        return Objects.hash(myName, myCost);
+    }
 }

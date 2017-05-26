@@ -62,7 +62,7 @@ final public class JSONSupport {
 		} catch (JsonGenerationException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			e.printStackTrace();
+			e.printStackTrace(); 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 

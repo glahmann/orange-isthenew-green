@@ -1,6 +1,7 @@
 
  package model;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -27,7 +28,7 @@ final public class User extends Observable {
 	private String myEmail;
 	
 	/** List of residences. */
-	@JsonProperty("Residences")private final ArrayList<Residence> myResidences;
+	private final ArrayList<Residence> myResidences;
 	
 	/**
 	 * Initialize instance fields. 
@@ -77,6 +78,21 @@ final public class User extends Observable {
 	}
 
 	/**
+	 * Returns the list of residences for a user.
+	 * @return list of residences
+	 * @author Yaro Salo
+	 */
+	@JsonProperty("Residences") 
+	public ArrayList<Residence> getResidences() {
+		
+		ArrayList<Residence> copyRes = new ArrayList<>();
+		for(Residence r: myResidences) {
+			copyRes.add(new Residence(r.getName(), r.getProjectedBill(),
+					r.getBills(), r.getProjects()));	
+		}
+		return copyRes;
+	}
+	/**
 	 * Sets the name of the user. 
 	 * @param theName the name to set to.
 	 */
@@ -108,7 +124,7 @@ final public class User extends Observable {
 	 */
 	public final void removeResidence(final Residence theResidence) {
 		int currentIndex = 0;
-		boolean found = false;
+		boolean found = false; 
 		
 		while(!found && currentIndex < myResidences.size()) {
 			if (myResidences.get(currentIndex).getName().equals(theResidence.getName())) {
@@ -117,5 +133,47 @@ final public class User extends Observable {
 			}
 			currentIndex++;
 		}
-	}
+	} 
+    /**
+     * {@inheritDoc}
+     * 
+     * Returns true if the specified object is equivalent to this User, and false 
+     * otherwise. Two Users are equivalent if the have the same fields.
+     * 
+     * @param theOther is the Object being tested.
+     * @return true if objects are equal and false otherwise.
+     * @author Yaro Salo
+     */
+    @Override
+    public boolean equals(final Object theOther) {
+        
+        boolean returnValue = false;
+        
+        if (this == theOther) { //is the Object being tested this Object?
+            returnValue = true;
+        
+        } else if (theOther != null && this.getClass() == theOther.getClass()) { //is theOther Object a User object? 
+           
+            final User otherUser = (User) theOther; //theOther can be safely casted. 
+          
+            //if all fields are equal the objects are equal
+            returnValue = Objects.equals(myName, otherUser.myName)
+                       && Objects.equals(myEmail, otherUser.myEmail) 
+                       && Objects.equals(myResidences, otherUser.myResidences);
+        }  
+        
+        return returnValue;
+    }  
+    
+    /**
+     * {@inheritDoc} 
+     * 
+     * Returns and integer hash code for a User.
+     * @return hash code as an integer.
+     */
+    @Override
+    public int hashCode() {
+        
+        return Objects.hash(myName, myEmail, myResidences);
+    }
 }

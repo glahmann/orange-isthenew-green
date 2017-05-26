@@ -35,7 +35,7 @@ public class HomeScreen extends JPanel {
 	/**
 	 * Button size.
 	 */
-	private final static Dimension BUTTON_SIZE = new Dimension(500, 250);
+	private final static Dimension BUTTON_SIZE = new Dimension(500, 250); //TODO set based on user screen size?
 	
 	/**
 	 * Button text size.

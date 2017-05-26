@@ -13,6 +13,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.JSONSupport;
+import model.Bill;
+import model.Item;
+import model.Project;
+import model.Residence;
 import model.User;
 
 /**
@@ -38,24 +42,43 @@ final public class JSONSupportTest {
 	 */
 	private User myUser;
 
-    @Before
+	/**
+	 * Set up method for the tests. 
+	 * @author Donald Muffler start method 
+	 * @author Yaro Salo finish method
+	 */
+    @Before 
     public void setUp() {
     	myUser = new User(USER_NAME, USER_EMAIL);
+    	Project project = new Project("Kind of Cool Project");
+    	Item item = new Item("Kind of Cool Item", 100);
+    	Bill bill = new Bill("Kind of Cool Bill", 50, 1, 2017, 2, 2017);
+    	Residence house = new Residence("Kind of Cool House");
+    	project.addItem(item);
+    	
+    	house.addBill(bill);
+    	house.addProject(project);
+    	myUser.addResidence(house);
     }
-	
+    
+    /**
+     * Test import/export feature at the same time.
+     * 
+     * @author Donald Muffler start method 
+     * @author Yaro Salo finish method
+     */
 	@Test
 	public void testPort() {
-		//this method actually tests import and export at the same time.
-		File jSONFile = new File("test");
+		
+		File jSONFile = new File("test.json");
 		JSONSupport.writeJSON(myUser, jSONFile);
 		User testUser = JSONSupport.readJSON(jSONFile);
-		assertEquals("Getting correct name failed.", myUser.getName(), testUser.getName());
-		assertEquals("Getting correct email failed.", myUser.getEmail(), testUser.getEmail());
-	}
+		assertTrue("JSON process failed", myUser.equals(testUser));	
+	} 
 	
 	@After
 	public void cleanup() throws IOException {
-		Path path = Paths.get("test");
+		Path path = Paths.get("test.json");
 		Files.deleteIfExists(path);
 	}
 }
