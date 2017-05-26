@@ -106,7 +106,7 @@ final public class User extends Observable {
 	 * @param theProject the project to be removed.
 	 * @author Donald Muffler
 	 */
-	public final void removeResidence(final Project theResidence) {
+	public final void removeResidence(final Residence theResidence) {
 		int currentIndex = 0;
 		boolean found = false;
 		

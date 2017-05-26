@@ -36,11 +36,6 @@ final public class Gui extends JFrame implements Observer{
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
     
     /**
-	 * Initial size for home screen.
-	 */
-	private Dimension myHomeScreenSize;
-    
-    /**
      * Size of email text field.
      */
     private static final int TEXT_FIELD_SIZE = 15;
@@ -59,12 +54,8 @@ final public class Gui extends JFrame implements Observer{
 	 * Constructor for Gui.
 	 */
 	public Gui() {
-		//Set up home screen
-		double screenSizeX = SCREEN_SIZE.getWidth() / 2;
-		double screenSizeY = SCREEN_SIZE.getHeight() / 1.5;
-		myHomeScreenSize = new Dimension((int)screenSizeX, (int)screenSizeY);
-		setPreferredSize(myHomeScreenSize);
-		//myCenterPanel = new DisplayPanel(); 	// TODO Maybe not necessary.
+
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		//Set up menu bar
 		myMenu = new JMenuBar();
@@ -81,7 +72,6 @@ final public class Gui extends JFrame implements Observer{
 		homePage();
 		
 		setJMenuBar(myMenu);
-		//add(myCenterPanel, BorderLayout.CENTER);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		pack();
 		setCentered();
@@ -154,6 +144,7 @@ final public class Gui extends JFrame implements Observer{
 	 */
 	private final void homePage() {
 		add(HomeScreen.getInstance());
+		//add(ManageResidenceScreen.getResidenceScreen());
 	}
 	
 	/**

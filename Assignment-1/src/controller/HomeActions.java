@@ -1,6 +1,7 @@
-package view;
+package controller;
 
 import net.miginfocom.swing.MigLayout;
+import view.BillPane;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
