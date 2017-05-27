@@ -31,10 +31,11 @@ final public class User extends Observable {
 	private final ArrayList<Residence> myResidences;
 	
 	/**
-	 * Initialize instance fields. 
+	 * Initialize instance fields.
 	 * 
 	 * @param theName the name of the user.
 	 * @param theEmail the email of the user.
+	 * @author Yaro Salo
 	 */ 
 	public User(final String theName, final String theEmail) {
 		myName = theName;
@@ -47,7 +48,6 @@ final public class User extends Observable {
 	 * @param theName user name
 	 * @param theEmail user email 
 	 * @param theResidences user residences
-	 * 
 	 * @author Yaro Salo	
 	 */
 	@JsonCreator 
@@ -62,6 +62,7 @@ final public class User extends Observable {
 	/**
 	 * Gets the name of the user.
 	 * @return the name of the user.
+	 * @author Yaro Salo
 	 */
 	@JsonProperty("User Name")
 	public String getName() {
@@ -71,6 +72,7 @@ final public class User extends Observable {
 	/**
 	 * Gets the email of the user. 
 	 * @return the email of the user.
+	 * @author Yaro Salo
 	 */
 	@JsonProperty("User Email")
 	public String getEmail() {
@@ -95,6 +97,7 @@ final public class User extends Observable {
 	/**
 	 * Sets the name of the user. 
 	 * @param theName the name to set to.
+	 * @author Yaro Salo
 	 */
 	public void setName(String theName) {
 		myName = theName;
@@ -103,6 +106,7 @@ final public class User extends Observable {
 	/**
 	 * Sets the email of the user.
 	 * @param theEmail the email to set to.
+	 * @author Yaro Salo
 	 */
 	public void setEmail(String theEmail) {
 		myEmail = theEmail;
@@ -121,17 +125,11 @@ final public class User extends Observable {
 	 * Removes a project from this residence.
 	 * @param theProject the project to be removed.
 	 * @author Donald Muffler
+	 * @author Yaro Salo
 	 */
 	public final void removeResidence(final Residence theResidence) {
-		int currentIndex = 0;
-		boolean found = false; 
-		
-		while(!found && currentIndex < myResidences.size()) {
-			if (myResidences.get(currentIndex).getName().equals(theResidence.getName())) {
-				myResidences.remove(currentIndex);
-				found = true;
-			}
-			currentIndex++;
+		if(myResidences.contains(theResidence)) {
+			myResidences.remove(theResidence);
 		}
 	} 
     /**
@@ -158,18 +156,19 @@ final public class User extends Observable {
           
             //if all fields are equal the objects are equal
             returnValue = Objects.equals(myName, otherUser.myName)
-                       && Objects.equals(myEmail, otherUser.myEmail) 
+                       && Objects.equals(myEmail, otherUser.myEmail)  
                        && Objects.equals(myResidences, otherUser.myResidences);
         }  
         
         return returnValue;
-    }  
+    }
     
     /**
      * {@inheritDoc} 
      * 
      * Returns and integer hash code for a User.
      * @return hash code as an integer.
+     * @author Yaro Salo
      */
     @Override
     public int hashCode() {

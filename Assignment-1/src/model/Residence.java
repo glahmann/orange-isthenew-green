@@ -33,7 +33,7 @@ final public class Residence {
 	private final ArrayList<Bill> myBills;
 	
 	/**
-	 * List of projects.
+	 * List of projects. 
 	 */
 	private final ArrayList<Project> myProjects;
 
@@ -64,7 +64,7 @@ final public class Residence {
 			@JsonProperty("Bills")ArrayList<Bill> theBills,
 			@JsonProperty("Projects")final ArrayList<Project> theProjects) {
 		myName = theName;
-		myProjectedBill = 0;
+		myProjectedBill = theProjectedBill;
 		myBills = theBills;
 		myProjects = theProjects;
 	}
@@ -129,17 +129,12 @@ final public class Residence {
 	/**
 	 * Removes a project from this residence.
 	 * @param theProject the project to be removed.
+	 * @author Donald Muffler
+	 * @author Yaro Salo
 	 */
 	public final void removeProject(final Project theProject) {
-		int currentIndex = 0;
-		boolean found = false;
-		
-		while(!found && currentIndex < myProjects.size()) {
-			if (myProjects.get(currentIndex).getName().equals(theProject.getName())) {
-				myProjects.remove(currentIndex);
-				found = true;
-			}
-			currentIndex++;
+		if(myProjects.contains(theProject)) {
+			myProjects.remove(theProject);
 		}
 	}
 	
@@ -154,17 +149,12 @@ final public class Residence {
 	/**
 	 * Removes a bill from this residence.
 	 * @param theBill the bill to be removed.
+	 * @author Donald Muffler
+	 * @author Yaro Salo
 	 */
 	public final void removeBill(final Bill theBill) {
-		int currentIndex = 0;
-		boolean found = false;
-		
-		while(!found && currentIndex < myProjects.size()) {
-			if (myProjects.get(currentIndex).getName().equals(theBill.getName())) {
-				myProjects.remove(currentIndex);
-				found = true;
-			}
-			currentIndex++;
+		if(myBills.contains(theBill)) {
+			myBills.remove(theBill);
 		}
 	}
 	

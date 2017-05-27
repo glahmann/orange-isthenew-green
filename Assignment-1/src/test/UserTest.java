@@ -13,7 +13,7 @@ import model.User;
  * Unit Tests for User class
  *
  * @author Zira Cook
- * @version 14 April 2017
+ * @version 14 April 2017 
  */
 final public class UserTest {
 
@@ -31,13 +31,13 @@ final public class UserTest {
 
     @Before
     public void setUp() {
-    	
+    	 
         myUser = new User(NAME, EMAIL);
         myHouse = new Residence("Super Cool House");
         myUser.addResidence(myHouse);
     }
 
-    /**
+    /** 
      * Test the copy constructor. 
      * @author Yaro Salo 
      */
@@ -60,7 +60,7 @@ final public class UserTest {
     /**
      * Test getResidences() and addResidence().
      * @author Yaro Salo
-     */
+     */ 
     @Test
     public void testGetResidences() {
     	final ArrayList<Residence> res = new ArrayList<>();
@@ -92,6 +92,28 @@ final public class UserTest {
         assertEquals("Set name failed", difEmail, myUser.getEmail());
     }
     
+    /**
+     * Test the removeResidence() with an existing residence.
+     * @author Yaro Salo
+     */
+    @Test 
+    public void testRemoveResidences() {
+    	
+    	final User user = new User("Bond", "bond@jamesbond");
+    	final Residence house = new Residence("Bonds Place");
+    	final Residence house2 = new Residence("Not Bonds Place");
+    	
+    	user.addResidence(house);
+    	user.addResidence(myHouse);
+    	
+    	int sizeBefRemove = user.getResidences().size(); //test remove on non existing residence
+    	user.removeResidence(house2);
+    	assertTrue("The number of residences should not change", 
+    			user.getResidences().size() == sizeBefRemove);
+    	 
+    	user.removeResidence(house); //test remove on existing residence
+    	assertFalse("Failed to remove a residence", user.getResidences().contains(house));	
+    }
     
     /**
      * Test equals() with NULL
@@ -156,32 +178,60 @@ final public class UserTest {
         assertTrue(myUser.equals(otherUser));
         
     }
-   
-    /**  
-     * Test not equals() all fields. 
-     * @author Yaro Salo
-     */
-    @Test 
-    public void testEqualsNotAllFields() {
-    	final ArrayList<Residence> list1 = new ArrayList<>();
-    	list1.add(new Residence("Semi Cool House"));
-    	final User otherUser = new User(NAME + "extra", EMAIL + "extra", list1);
-    	assertNotEquals("Names are different", myUser.getName(), otherUser.getName());
-    	assertNotEquals("Emails are different", myUser.getEmail(), otherUser.getEmail());
-    	assertNotEquals("Residences are different", myUser.getResidences(), otherUser.getResidences());
-    }
     
+    /**  
+     * Test not equals() all possible combinations of true/false of the fields. 
+     * @author Yaro Salo
+     */ 
+    @Test 
+    public void testEquals() {
+    	// Order of 1's and 0's: Name Email Residence 
+    	// 1 means the fields are the same 0 means the fields are different. 
+    	// 1 1 1 is tested by other methods.
+    	
+    	//Test  1 1 0
+    	final ArrayList<Residence> list1 = new ArrayList<>();
+     	list1.add(new Residence("Semi Cool House"));
+    	final User otherUser = new User(NAME, EMAIL, list1);
+    	assertFalse("Residences are different", myUser.equals(otherUser));
+    	
+    	//Test 1 0 0 
+    	otherUser.setEmail(EMAIL + "extra");
+    	assertFalse("Residences and email are different", myUser.equals(otherUser));
+    	
+    	//Test 0 1 0 
+    	otherUser.setEmail(EMAIL); //reset email
+    	otherUser.setName(NAME + "extra");
+    	assertFalse("Residences and name are different", myUser.equals(otherUser));
+    	
+    	//Test 0 0 0
+    	otherUser.setEmail(EMAIL + "extra");
+    	assertFalse("All fields are different", myUser.equals(otherUser));
+    	
+    	//Test 0 0 1
+    	list1.remove(0); //reset residence list
+    	list1.add(myHouse);
+    	assertFalse("Name and email are different", myUser.equals(otherUser));
+    	
+    	//Test 0 1 1 
+    	otherUser.setEmail(EMAIL);
+    	assertFalse("Name is different", myUser.equals(otherUser));
+    	
+    	//Test 1 0 1
+    	otherUser.setName(NAME);
+    	otherUser.setEmail(EMAIL + "extra");
+    	assertFalse("Email is different", myUser.equals(otherUser));
+    }
     /**
      * Test hashCode(). 
      * @author Yaro Salo
      */
     @Test 
-    public void testHashCodeBulk() {
+    public void testHashCode() {
     	final ArrayList<Residence> list1 = new ArrayList<>();
     	list1.add(new Residence("Super Cool House"));
     	final User otherUser = new User(NAME, EMAIL, list1);
 
-        //Same items should have the same hash code.
     	assertTrue(myUser.hashCode() == otherUser.hashCode());
     }
 }
