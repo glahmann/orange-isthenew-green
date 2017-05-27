@@ -90,7 +90,7 @@ final public class Project {
 		return myCost;
 	}
 
-	/**
+	/** 
 	 * Getter for the list of items.
 	 * @return the list of items.
 	 * 
@@ -116,17 +116,12 @@ final public class Project {
 	/**
 	 * Removes the item from the project.
 	 * @param theItem the item to remove.
+	 * @author Donald Muffler 
+	 * @author Yaro Salo
 	 */
 	public final void removeItem(final Item theItem) {
-		int currentIndex = 0;
-		boolean found = false;
-		
-		while(!found && currentIndex < myItems.size()) {
-			if (myItems.get(currentIndex).getName().equals(theItem.getName())) {
-				myItems.remove(currentIndex);
-				found = true;
-			}
-			currentIndex++;
+		if(myItems.contains(theItem)) {
+			myItems.remove(theItem);
 		}
 	}
 	
@@ -158,7 +153,7 @@ final public class Project {
      */
     @Override
     public boolean equals(final Object theOther) {
-        
+         
         boolean returnValue = false;
         
         if (this == theOther) { //is the Object being tested this Object?
@@ -170,7 +165,7 @@ final public class Project {
           
             //if all fields are equal the objects are equal
             returnValue = Objects.equals(myName, otherProject.myName)
-                       && Objects.equals(myCost, otherProject.myCost)
+                       && Objects.equals(myCost, otherProject.myCost) 
                        && Objects.equals(myItems, otherProject.myItems);
             
         } 
@@ -179,7 +174,7 @@ final public class Project {
     
     /**
      * {@inheritDoc}
-     * 
+     *
      * Returns and integer hash code for a Project.
      * @return hash code as an integer.
      * @author Yaro Salo
