@@ -25,6 +25,7 @@ import javax.swing.JCheckBox;
  * @version 20170524
  */
 public final class ManageResidenceScreen extends JScrollPane {
+	// TODO: add an updatePanel method and observer which calls updatePanel.
 
 	/**
 	 * Serial ID.
@@ -141,9 +142,10 @@ public final class ManageResidenceScreen extends JScrollPane {
 	private final void buildBottomPanel(final JPanel thePanelHolder) {
 		final JPanel bottomPanel = new JPanel();
 		bottomPanel.setBackground(Color.ORANGE);
-		final Action residenceAction = new ManageResidenceActions();
+		final Action residenceAction = new ManageResidenceActions(null); // TODO: change to connectActionToPanel method or find a better method.
 		bottomPanel.add(populateBottomPanel("Delete", residenceAction));
 		bottomPanel.add(populateBottomPanel("Choose", residenceAction));
+		bottomPanel.add(populateBottomPanel("Create", residenceAction));
 		thePanelHolder.add(bottomPanel, BorderLayout.SOUTH);
 	}
 	
@@ -163,7 +165,7 @@ public final class ManageResidenceScreen extends JScrollPane {
 	 * Singleton getter for this instance. Creates an instance if one does not exist.
 	 * @return Singleton instance for ManageResidenceScreen.
 	 */
-	public static final ManageResidenceScreen getResidenceScreen() {
+	public static final ManageResidenceScreen getInstance() {
 		if (myResidenceScreen == null) {
 			myResidenceScreen = new ManageResidenceScreen();
 		}

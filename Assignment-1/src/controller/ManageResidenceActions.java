@@ -3,6 +3,9 @@ package controller;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.Action;
+
+import model.User;
 
 /**
  * Actions for the manage residence screen.
@@ -17,6 +20,19 @@ public final class ManageResidenceActions extends AbstractAction{
 	 */
 	private static final long serialVersionUID = -2588766063534303043L;
 
+	/**
+	 * User.
+	 */
+	private final User myUser;
+	
+	/**
+	 * 
+	 * @param theAction
+	 */
+	public ManageResidenceActions(final User theUser) {
+		myUser = theUser;
+	}
+	
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
 		
@@ -31,6 +47,9 @@ public final class ManageResidenceActions extends AbstractAction{
 				break;
 			case "Choose":
 				// TODO: choose residence controller
+				break;
+			case "Create":
+				// TODO: create residence controller
 				break;
 		}
 	}

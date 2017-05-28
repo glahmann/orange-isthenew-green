@@ -2,11 +2,16 @@ package controller;
 
 import net.miginfocom.swing.MigLayout;
 import view.BillPane;
+import view.CreateProject;
+import view.Gui;
+import view.ManageResidenceScreen;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 
 import javax.swing.*;
+
+import model.User;
 
 /**
  * Actions for the home page.
@@ -18,14 +23,22 @@ import javax.swing.*;
 public final class HomeActions extends AbstractAction {
 
 	/**
+	 * User data.
+	 */
+	private final User myUser;
+	
+	/**
+	 * Constructor for HomeActions gets User data.
+	 * @param theUser the user data to be changed.
+	 */
+	public HomeActions(final User theUser) {
+		myUser = theUser;
+	}
+	
+	/**
 	 * Serializabe.
 	 */
 	private static final long serialVersionUID = -255517639779622036L;
-
-	/**
-	 * Size for text field.s
-	 */
-	private static final int TEXT_FIELD_SIZE = 15;
 
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
@@ -34,13 +47,19 @@ public final class HomeActions extends AbstractAction {
 		
 		switch(whichButton) {
 			case "Create Project":
-				createProject();
+				final CreateProject project = new CreateProject(this);
+				JOptionPane.showMessageDialog(Gui.getInstance(), project);
+				break;
+			case "Enter an Energy Bill?":
+				final BillPane bill = new BillPane();
+				JOptionPane.showMessageDialog(Gui.getInstance(), bill);
+				// TODO: Add to user.
 				break;
 			case "Manage Projects":
 				// TODO: manage projects controller
 				break;
 			case "Manage Residences":
-				// TODO: manage residences controller
+				Gui.getInstance().displayPanel("Manage Residences");
 				break;
 			case "Save/Exit":
 				int exit = JOptionPane.showConfirmDialog(null, "Would you like to exit?", "Leaving so soon?",
@@ -53,38 +72,4 @@ public final class HomeActions extends AbstractAction {
 				break;
 		}
 	}
-
-	/**
-	 * Creates a new project.
-	 * @return 0 for a successful creation, 1 if there was a user error.
-	 */
-	private int createProject() {
-		//Setup for new project screen
-		final JPanel newProjectPanel = new JPanel(new MigLayout());
-		newProjectPanel.add(new JLabel("Project Name: "));
-
-		final JTextField projectNameBox = new JTextField(TEXT_FIELD_SIZE);
-		newProjectPanel.add(projectNameBox);
-		final JButton enterBillButton = new JButton("Enter an Energy Bill?");
-		newProjectPanel.add(enterBillButton, "cell 1 1");
-
-		enterBillButton.setBorderPainted(false);
-		enterBillButton.setContentAreaFilled(false);
-		enterBillButton.setForeground(Color.BLUE);
-
-		//If user wants to enter an energy bill
-		final Action newUserAction = new BillPane(null);
-		enterBillButton.addActionListener(newUserAction);
-
-		JOptionPane.showMessageDialog(null, newProjectPanel);
-
-		final String enteredProjectName = projectNameBox.getText();
-
-		if(enteredProjectName.equals("")) {
-			return 1;
-		}
-
-		return 0;
-	}
-
 }

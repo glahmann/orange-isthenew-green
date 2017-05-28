@@ -10,29 +10,36 @@ import java.awt.event.ActionEvent;
  * @author Zira Cook
  * @version 5/21/2017
  */
-public class BillPane extends AbstractAction {
+public class BillPane {
 
-    /** Serial ID */
-	private static final long serialVersionUID = 6490723052778244792L;
-
-	/** Size of email text field. */
+    /** Size of email text field. */
     private static final int TEXT_FIELD_SIZE = 15;
-
-    /** GUI Frame. */
-    private final JFrame myFrame;
 
     /** Frame to display bill input.*/
     private JPanel myBillPanel;
+    
+    /** Amount of the bill. */
+    private final int myBillCost;
+    
+    /** Start month of the bill. */
+    private final int myStartMonth;
+    
+    /** end month of the bill. */
+    private final int myEndMonth;
+    
+    /** End year of the bill.*/
+    private final int myEndYear;
+    
+    /** Start year for the bill. */
+    private final int myStartYear;
+    
+    /**
+     * Name fo the bill.
+     */
+    private final String myBillName;
 
-    public BillPane(final JFrame theFrame) {
-        super("Bill...");
-        myFrame = theFrame;
-    }
-
-
-    @Override
-    public void actionPerformed(final ActionEvent theEvent) {
-        myBillPanel = new JPanel(new MigLayout());
+    public BillPane() {
+    	myBillPanel = new JPanel(new MigLayout());
 
         myBillPanel.add(new JLabel("Total Bill Cost: $"), "cell 0 0");
         final JTextField enterBillAmmount = new JTextField(TEXT_FIELD_SIZE);
@@ -51,14 +58,61 @@ public class BillPane extends AbstractAction {
         myBillPanel.add(new JLabel("Year (YYYY): "), "cell 2 4");
         final JTextField enterEndYear = new JTextField(10);
         myBillPanel.add(enterEndYear, "cell 3 4");
+        
+       myBillCost = Integer.parseInt(enterBillAmmount.getText());
+       
+       myStartMonth = Integer.parseInt(enterBeginMonth.getText());
+       myStartYear = Integer.parseInt(enterBeginYear.getText());
+       myEndMonth = Integer.parseInt(enterEndMonth.getText());
+       myEndYear = Integer.parseInt(enterEndYear.getText());
+       myBillName = String.valueOf(myStartMonth+myStartYear+myEndMonth+myEndYear); //TODO: change or remove?
+    }
+    
+    /**
+     * Getter for bill amount.
+     * @return bill amount.
+     */
+    public final int getBillCost() {
+    	return myBillCost;
+    }
+    
+    /**
+     * Getter for start month.
+     * @return start month.
+     */
+    public final int getStartMonth() {
+    	return myStartMonth;
+    }
 
-        JOptionPane.showMessageDialog(myFrame, myBillPanel);
-
-        final String billCost = enterBillAmmount.getText();
-        final String startMonth = enterBeginMonth.getText();
-        final String startYear = enterBeginYear.getText();
-        final String endMonth = enterEndMonth.getText();
-        final String endYear = enterEndYear.getText();
-        final String billName = startMonth+startYear+endMonth+endYear;
+    /**
+     * Getter for end month.
+     * @return end month.
+     */
+    public final int getEndMonth() {
+    	return myEndMonth;
+    }
+    
+    /**
+     * Getter for end year.
+     * @return end year.
+     */
+    public final int getEndYear() {
+    	return myEndYear;
+    }
+    
+    /**
+     * Getter for bill name.
+     * @return bill name.
+     */
+    public final String getBillName() {
+    	return myBillName;
+    }
+    
+    /**
+     * Getter for start year.
+     * @return start year.
+     */
+    public final int getStarYear() {
+    	return myStartYear;
     }
 }
