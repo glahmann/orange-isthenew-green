@@ -28,6 +28,7 @@ public class Item {
 	 * TODO use generic type here?
 	 * The energy value of the item.
 	 */
+	private double myEValue;
 	
 	/**
 	 * The type of the item.
@@ -44,9 +45,11 @@ public class Item {
 	@JsonCreator
 	public Item(@JsonProperty("Item Name")final String theName, 
 			@JsonProperty("Item Cost")final double theCost,
+			@JsonProperty("Item Energy Value")final double theEValue,
 			@JsonProperty("Item Type")final String theType) {
 		myName = theName;
 		myCost = theCost;
+		myEValue = theEValue;
 		myType = theType;
 	}
 	
@@ -66,6 +69,15 @@ public class Item {
 	@JsonProperty("Item Cost")
 	public final double getCost() {
 		return myCost;
+	}
+	
+	/**
+	 * Getter for the cost of the item.
+	 * @return the cost of the item.
+	 */
+	@JsonProperty("Item Energy Value")
+	public final double getEValue() {
+		return myEValue;
 	}
 	
 	/**

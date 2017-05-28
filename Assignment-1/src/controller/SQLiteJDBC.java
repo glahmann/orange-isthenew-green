@@ -14,36 +14,22 @@ import java.util.Scanner;
  */
 public class SQLiteJDBC {
   public static void main(String args[]) {  
-	  Connection c = null;
-	  Statement stmt = null;
-	  try {
-	    Class.forName("org.sqlite.JDBC");
-	    c = DriverManager.getConnection("jdbc:sqlite:item.db");
-	    System.out.println("Opened database successfully");
-	
-	    stmt = c.createStatement();
-	    String sql = "CREATE TABLE COMPANY " +
-	                 "(ID INT PRIMARY KEY     NOT NULL," +
-	                 " NAME           TEXT    NOT NULL, " + 
-	                 " AGE            INT     NOT NULL, " + 
-	                 " ADDRESS        CHAR(50), " + 
-	                 " SALARY         REAL)"; 
-	    stmt.executeUpdate(sql);
-	    stmt.close();
-	    c.close();
-	  } catch ( Exception e ) {
-	    System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-	    System.exit(0);
+	  Scanner console = new Scanner(System.in);
+//	  Connection conn = getConnection();
+	  System.out.println("Add table to database? y/n");
+	  if (console.nextLine().equalsIgnoreCase("y")) {
+		  createTable(/*conn*/);
 	  }
-	  System.out.println("Table created successfully");
 	  
+//	  conn.close();
+	  console.close();
   }
   
   /**
-   * 
+   * Prompts user to add energy items to the database.
    */
-  private void addEntries() {
-	  double cost;
+  private void addEntries(final Scanner theConsole) {
+	  double cost, eValue;
 	  Scanner input = new Scanner(System.in);
 	  String name, type, again = "y";
 	  
@@ -53,6 +39,8 @@ public class SQLiteJDBC {
 		  System.out.println("Enter item name: ");
 		  name = input.nextLine();
 		  System.out.println("Enter item cost: ");
+		  cost = input.nextDouble();
+		  System.out.println("Enter item energy value: ");
 		  cost = input.nextDouble();
 		  System.out.println("Enter item type: ");
 		  type = input.nextLine();
@@ -68,11 +56,38 @@ public class SQLiteJDBC {
   
   /**
    * 
+   * @param theConn an open database connection.
+   */
+  private static void createTable(/*final Connection theConn*/) {
+	  Connection c = null;
+	  Statement stmt = null;
+	  try {
+	    Class.forName("org.sqlite.JDBC");
+	    c = DriverManager.getConnection("jdbc:sqlite:item.db");
+	    System.out.println("Opened database successfully");
+	
+	    stmt = c.createStatement();
+	    String sql = "CREATE TABLE ITEM " +
+	                 "(TYPE TEXT PRIMARY KEY  NOT NULL, " +
+	                 " NAME           TEXT    NOT NULL, " + 
+	                 " COST           REAL    NOT NULL, " + 
+	                 " EVALUE         REAL    NOT NULL)"; 
+	    stmt.executeUpdate(sql);
+	    stmt.close();
+	    c.close();
+	  } catch (Exception theEx) {
+	    System.err.println( theEx.getClass().getName() + ": " + theEx.getMessage() );
+	    System.exit(0);
+	  }
+	  System.out.println("Table created successfully");
+  }
+  
+  /**
+   * Establishes a connection with the item database or creates one if it doesn't exist.
    * 
-   * @author Garrett Lahmann
    * @return an open database connection.
    */
-  public Connection getConnection() {
+  private static Connection getConnection() {
 	    Connection conn = null;
 	    try {
 	      Class.forName("org.sqlite.JDBC");
