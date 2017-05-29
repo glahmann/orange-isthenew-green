@@ -1,19 +1,10 @@
 package view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.io.File;
-
-import javax.swing.AbstractAction;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import controller.JSONSupport;
-import model.User;
 
 /**
  * TODO save name and email
@@ -22,23 +13,18 @@ import model.User;
  * @author Garrett Lahmann
  * @version 13 April 2017
  */
-final public class SetupPane extends AbstractAction {
+final public class SetupPane extends JPanel {
 
-	/**
-	 * Generated Serial ID.
-	 */
-	private static final long serialVersionUID = 3908963322824885539L;
+//	/**
+//	 * The setup panel.
+//	 */
+//	private final JPanel mySetupPanel;
 	
 	/**
-	 * Frame to attach option pane to.
+	 * Serial ID.
 	 */
-	private final JFrame myFrame;
-	
-	/**
-	 * The setup panel.
-	 */
-	private final JPanel mySetupPanel;
-	
+	private static final long serialVersionUID = 6841876535294172703L;
+
 	/**
 	 * The user name.
 	 */
@@ -61,50 +47,48 @@ final public class SetupPane extends AbstractAction {
 	
 	/**
 	 * Constructs the button for the setup pane.
-	 * 
-	 * @param theFrame	a frame to attach option pane to.
 	 */
-	public SetupPane(final JFrame theFrame) {
-		super("Setup...");
-		myFrame = theFrame;
-		mySetupPanel = new JPanel();
-		mySetupPanel.setLayout(new GridBagLayout());
+	public SetupPane() {
+		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		final JLabel nameLabel = new JLabel("Name:", SwingConstants.CENTER);
 		myNameField = new JTextField(20);
+		myName = myNameField.getText();
 		final JLabel emailLabel = new JLabel("Email:", SwingConstants.CENTER);
 		myEmailField = new JTextField(20);
+		myEmail = myEmailField.getText();
 		c.gridx = 0;
 		c.gridy = 0;
-		mySetupPanel.add(nameLabel, c);
+		add(nameLabel, c);
 		c.gridx = 1;
 		c.gridy = 0;
-		mySetupPanel.add(myNameField, c);
+		add(myNameField, c);
 		c.gridx = 0;
 		c.gridy = 1;
-		mySetupPanel.add(emailLabel, c);
+		add(emailLabel, c);
 		c.gridx = 1;
 		c.gridy = 1;
-		mySetupPanel.add(myEmailField, c);
+		add(myEmailField, c);
 	}
 	
 	/**
-	 * Action listener for showing the setup page.
+	 * @author Donald Muffler
+	 * 
+	 * Getter for user name.
+	 * @return user name.
 	 */
-	@Override
-	public void actionPerformed(ActionEvent theAction) {
-		JOptionPane.showMessageDialog(myFrame, mySetupPanel, "Setup", 
-                JOptionPane.INFORMATION_MESSAGE);
-		myName = myNameField.getText();
-		myEmail = myEmailField.getText();
-		
-		// TODO Move to better location!!!
-		User user = new User(myName, myEmail); 
-		File userFile = new File(myEmail + ".json");
-		JSONSupport.writeJSON(user, userFile);
-				
-//		System.out.println(myName + " " + myEmail);
+	public final String getName() {
+		return myName;
 	}
-
+	
+	/**
+	 * @author Donald Muffler
+	 * 
+	 * Getter for user email.
+	 * @return user email.
+	 */
+	public final String getEmail() {
+		return myEmail;
+	}
 }

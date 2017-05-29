@@ -20,7 +20,7 @@ import javax.swing.UIManager;
  * @author Donald Muffler
  * @version 20172505
  */
-public class HomeScreen extends JPanel {
+public final class HomeScreen extends JPanel {
 	
 	/**
 	 * Instance of this class.
@@ -41,6 +41,11 @@ public class HomeScreen extends JPanel {
 	 * Button text size.
 	 */
 	private final static int TEXT_SIZE = 20;
+	
+	/**
+	 * Action for the Home Screen.
+	 */
+	private static Action myAction;
 
 	/**
 	 * Builds the home screen.
@@ -49,15 +54,14 @@ public class HomeScreen extends JPanel {
 		setBackground(Color.GREEN);
 		setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		setLayout(new MigLayout(new LC().align("center", "center")));
-		buildPanel();
 	}
 	
 	/**
 	 * Getter for the home screen.
+	 * PreCondition: initialize
 	 * @return the homescreen.
 	 */
 	public static final HomeScreen getInstance() {
-		
 		if (myScreen == null) {
 			myScreen = new HomeScreen();
 		}
@@ -74,11 +78,10 @@ public class HomeScreen extends JPanel {
 		add(panel);
 		panel.setLayout(new MigLayout("", "[][][][][][][]", "[][][][][][][][][]"));
 
-		final Action homeAction = new HomeActions();
-		panel.add(buildButton("Create Project", homeAction), "cell 1 2,growx");
-		panel.add(buildButton("Manage Projects", homeAction), "cell 5 2,growx");
-		panel.add(buildButton("Manage Residences", homeAction), "cell 1 6");
-		panel.add(buildButton("Save/Exit", homeAction), "cell 5 6,growx");
+		panel.add(buildButton("Create Project"), "cell 1 2,growx");
+		panel.add(buildButton("Manage Projects"), "cell 5 2,growx");
+		panel.add(buildButton("Manage Residences"), "cell 1 6");
+		panel.add(buildButton("Save/Exit"), "cell 5 6,growx");
 
 	}
 	
@@ -88,12 +91,21 @@ public class HomeScreen extends JPanel {
 	 * @param theAction the action tied to the button.
 	 * @return the button.
 	 */
-	private final JButton buildButton(final String theButtonName, final Action theAction) {
+	private final JButton buildButton(final String theButtonName) {
 		final JButton button = new JButton(theButtonName);
 		button.setMinimumSize(BUTTON_SIZE);
 		button.setPreferredSize(BUTTON_SIZE);
 		button.setFont(new Font("Times New Roman", Font.BOLD, TEXT_SIZE));
-		button.addActionListener(theAction);
+		button.addActionListener(myAction);
 		return button;
+	}
+	
+	/**
+	 * Sets the action for the Home Screen.
+	 * @param theAction the action to be set.
+	 */
+	public final void connectPanelToAction(final Action theAction) {
+		myAction = theAction;
+		buildPanel();
 	}
 }
