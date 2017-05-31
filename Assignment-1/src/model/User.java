@@ -1,6 +1,7 @@
 
  package model;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -27,13 +28,14 @@ final public class User extends Observable {
 	private String myEmail;
 	
 	/** List of residences. */
-	@JsonProperty("Residences")private final ArrayList<Residence> myResidences;
+	private final ArrayList<Residence> myResidences;
 	
 	/**
-	 * Initialize instance fields. 
+	 * Initialize instance fields.
 	 * 
 	 * @param theName the name of the user.
 	 * @param theEmail the email of the user.
+	 * @author Yaro Salo
 	 */ 
 	public User(final String theName, final String theEmail) {
 		myName = theName;
@@ -46,7 +48,6 @@ final public class User extends Observable {
 	 * @param theName user name
 	 * @param theEmail user email 
 	 * @param theResidences user residences
-	 * 
 	 * @author Yaro Salo	
 	 */
 	@JsonCreator 
@@ -61,6 +62,7 @@ final public class User extends Observable {
 	/**
 	 * Gets the name of the user.
 	 * @return the name of the user.
+	 * @author Yaro Salo
 	 */
 	@JsonProperty("User Name")
 	public String getName() {
@@ -70,6 +72,7 @@ final public class User extends Observable {
 	/**
 	 * Gets the email of the user. 
 	 * @return the email of the user.
+	 * @author Yaro Salo
 	 */
 	@JsonProperty("User Email")
 	public String getEmail() {
@@ -77,8 +80,24 @@ final public class User extends Observable {
 	}
 
 	/**
+	 * Returns the list of residences for a user.
+	 * @return list of residences
+	 * @author Yaro Salo
+	 */
+	@JsonProperty("Residences") 
+	public ArrayList<Residence> getResidences() {
+		
+		ArrayList<Residence> copyRes = new ArrayList<>();
+		for(Residence r: myResidences) {
+			copyRes.add(new Residence(r.getName(), r.getProjectedBill(),
+					r.getBills(), r.getProjects()));	
+		}
+		return copyRes;
+	}
+	/**
 	 * Sets the name of the user. 
 	 * @param theName the name to set to.
+	 * @author Yaro Salo
 	 */
 	public void setName(String theName) {
 		myName = theName;
@@ -87,6 +106,7 @@ final public class User extends Observable {
 	/**
 	 * Sets the email of the user.
 	 * @param theEmail the email to set to.
+	 * @author Yaro Salo
 	 */
 	public void setEmail(String theEmail) {
 		myEmail = theEmail;
@@ -105,17 +125,54 @@ final public class User extends Observable {
 	 * Removes a project from this residence.
 	 * @param theProject the project to be removed.
 	 * @author Donald Muffler
+	 * @author Yaro Salo
 	 */
-	public final void removeResidence(final Project theResidence) {
-		int currentIndex = 0;
-		boolean found = false;
-		
-		while(!found && currentIndex < myResidences.size()) {
-			if (myResidences.get(currentIndex).getName().equals(theResidence.getName())) {
-				myResidences.remove(currentIndex);
-				found = true;
-			}
-			currentIndex++;
+	public final void removeResidence(final Residence theResidence) {
+		if(myResidences.contains(theResidence)) {
+			myResidences.remove(theResidence);
 		}
-	}
+	} 
+    /**
+     * {@inheritDoc}
+     * 
+     * Returns true if the specified object is equivalent to this User, and false 
+     * otherwise. Two Users are equivalent if the have the same fields.
+     * 
+     * @param theOther is the Object being tested.
+     * @return true if objects are equal and false otherwise.
+     * @author Yaro Salo
+     */
+    @Override
+    public boolean equals(final Object theOther) {
+        
+        boolean returnValue = false;
+        
+        if (this == theOther) { //is the Object being tested this Object?
+            returnValue = true;
+        
+        } else if (theOther != null && this.getClass() == theOther.getClass()) { //is theOther Object a User object? 
+           
+            final User otherUser = (User) theOther; //theOther can be safely casted. 
+          
+            //if all fields are equal the objects are equal
+            returnValue = Objects.equals(myName, otherUser.myName)
+                       && Objects.equals(myEmail, otherUser.myEmail)  
+                       && Objects.equals(myResidences, otherUser.myResidences);
+        }  
+        
+        return returnValue;
+    }
+    
+    /**
+     * {@inheritDoc} 
+     * 
+     * Returns and integer hash code for a User.
+     * @return hash code as an integer.
+     * @author Yaro Salo
+     */
+    @Override
+    public int hashCode() {
+        
+        return Objects.hash(myName, myEmail, myResidences);
+    }
 }

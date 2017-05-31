@@ -3,7 +3,6 @@ package view;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 /**
@@ -11,35 +10,40 @@ import java.awt.event.ActionEvent;
  * @author Zira Cook
  * @version 5/21/2017
  */
-public class BillPane extends AbstractAction {
+public class BillPane {
 
     /** Size of email text field. */
     private static final int TEXT_FIELD_SIZE = 15;
 
-    /** GUI Frame. */
-    private final JFrame myFrame;
-
     /** Frame to display bill input.*/
     private JPanel myBillPanel;
+    
+    /** Amount of the bill. */
+    private final int myBillCost;
+    
+    /** Start month of the bill. */
+    private final int myStartMonth;
+    
+    /** end month of the bill. */
+    private final int myEndMonth;
+    
+    /** End year of the bill.*/
+    private final int myEndYear;
+    
+    /** Start year for the bill. */
+    private final int myStartYear;
+    
+    /**
+     * Name fo the bill.
+     */
+    private final String myBillName;
 
-    public BillPane(final JFrame theFrame) {
-        super("Bill...");
-        myFrame = theFrame;
-    }
+    public BillPane() {
+    	myBillPanel = new JPanel(new MigLayout());
 
-
-    @Override
-    public void actionPerformed(final ActionEvent theEvent) {
-        myBillPanel = new JPanel(new MigLayout());
-
-
-        myBillPanel.add(new JLabel("Name of Bill: "), "cell 0 0");
-        final JTextField billNameBox = new JTextField(TEXT_FIELD_SIZE);
-        myBillPanel.add(billNameBox, "cell 1 0");
-
-        myBillPanel.add(new JLabel("Total Bill Cost: $"), "cell 0 1");
+        myBillPanel.add(new JLabel("Total Bill Cost: $"), "cell 0 0");
         final JTextField enterBillAmmount = new JTextField(TEXT_FIELD_SIZE);
-        myBillPanel.add(enterBillAmmount, "cell 1 1");
+        myBillPanel.add(enterBillAmmount, "cell 1 0");
 
         myBillPanel.add(new JLabel("Start Month (MM): "), "cell 0 2");
         final JTextField enterBeginMonth = new JTextField(10);
@@ -54,14 +58,61 @@ public class BillPane extends AbstractAction {
         myBillPanel.add(new JLabel("Year (YYYY): "), "cell 2 4");
         final JTextField enterEndYear = new JTextField(10);
         myBillPanel.add(enterEndYear, "cell 3 4");
+        
+       myBillCost = Integer.parseInt(enterBillAmmount.getText());
+       
+       myStartMonth = Integer.parseInt(enterBeginMonth.getText());
+       myStartYear = Integer.parseInt(enterBeginYear.getText());
+       myEndMonth = Integer.parseInt(enterEndMonth.getText());
+       myEndYear = Integer.parseInt(enterEndYear.getText());
+       myBillName = String.valueOf(myStartMonth+myStartYear+myEndMonth+myEndYear); //TODO: change or remove?
+    }
+    
+    /**
+     * Getter for bill amount.
+     * @return bill amount.
+     */
+    public final int getBillCost() {
+    	return myBillCost;
+    }
+    
+    /**
+     * Getter for start month.
+     * @return start month.
+     */
+    public final int getStartMonth() {
+    	return myStartMonth;
+    }
 
-        JOptionPane.showMessageDialog(myFrame, myBillPanel);
-
-        final String billName = billNameBox.getText();
-        final String billCost = enterBillAmmount.getText();
-        final String startMonth = enterBeginMonth.getText();
-        final String startYear = enterBeginYear.getText();
-        final String endMonth = enterEndMonth.getText();
-        final String endYear = enterEndYear.getText();
+    /**
+     * Getter for end month.
+     * @return end month.
+     */
+    public final int getEndMonth() {
+    	return myEndMonth;
+    }
+    
+    /**
+     * Getter for end year.
+     * @return end year.
+     */
+    public final int getEndYear() {
+    	return myEndYear;
+    }
+    
+    /**
+     * Getter for bill name.
+     * @return bill name.
+     */
+    public final String getBillName() {
+    	return myBillName;
+    }
+    
+    /**
+     * Getter for start year.
+     * @return start year.
+     */
+    public final int getStarYear() {
+    	return myStartYear;
     }
 }

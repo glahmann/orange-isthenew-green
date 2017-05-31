@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,7 +29,7 @@ final public class Project {
 	/**
 	 * Total cost of the project.
 	 */
-	private double myCost;
+	private double myCost; 
 	
 	/**
 	 * List of items.
@@ -89,8 +90,8 @@ final public class Project {
 		return myCost;
 	}
 
-	/**
-	 * Getter for the lit of items.
+	/** 
+	 * Getter for the list of items.
 	 * @return the list of items.
 	 * 
 	 * @author Yaro Salo write deep copying
@@ -115,17 +116,12 @@ final public class Project {
 	/**
 	 * Removes the item from the project.
 	 * @param theItem the item to remove.
+	 * @author Donald Muffler 
+	 * @author Yaro Salo
 	 */
 	public final void removeItem(final Item theItem) {
-		int currentIndex = 0;
-		boolean found = false;
-		
-		while(!found && currentIndex < myItems.size()) {
-			if (myItems.get(currentIndex).getName().equals(theItem.getName())) {
-				myItems.remove(currentIndex);
-				found = true;
-			}
-			currentIndex++;
+		if(myItems.contains(theItem)) {
+			myItems.remove(theItem);
 		}
 	}
 	
@@ -144,4 +140,48 @@ final public class Project {
 	public final void addToCost(final double theAmount) {
 		myCost += theAmount;
 	}
+	
+    /**
+     * {@inheritDoc}
+     * 
+     * Returns true if the specified object is equivalent to this Projects, and false 
+     * otherwise. Two Projects are equivalent if the have the same fields.
+     * 
+     * @param theOther is the Object being tested.
+     * @return true if objects are equal and false otherwise.
+     * @author Yaro Salo
+     */
+    @Override
+    public boolean equals(final Object theOther) {
+         
+        boolean returnValue = false;
+        
+        if (this == theOther) { //is the Object being tested this Object?
+            returnValue = true;
+        
+        } else if (theOther != null && this.getClass() == theOther.getClass()) { //is theOther Object a User object? 
+
+            final Project otherProject = (Project) theOther; //theOther can be safely casted. 
+          
+            //if all fields are equal the objects are equal
+            returnValue = Objects.equals(myName, otherProject.myName)
+                       && Objects.equals(myCost, otherProject.myCost) 
+                       && Objects.equals(myItems, otherProject.myItems);
+            
+        } 
+        return returnValue;
+    }
+    
+    /**
+     * {@inheritDoc}
+     *
+     * Returns and integer hash code for a Project.
+     * @return hash code as an integer.
+     * @author Yaro Salo
+     */
+    @Override
+    public int hashCode() {
+        
+        return Objects.hash(myName, myCost, myItems);
+    }
 }

@@ -1,9 +1,9 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -26,14 +26,14 @@ final public class Residence {
 	 * The projected amount for the next bill.
 	 */
 	private double myProjectedBill;
-	
+	 
 	/**
 	 * List of previous bills.
 	 */
 	private final ArrayList<Bill> myBills;
 	
 	/**
-	 * List of projects.
+	 * List of projects. 
 	 */
 	private final ArrayList<Project> myProjects;
 
@@ -64,7 +64,7 @@ final public class Residence {
 			@JsonProperty("Bills")ArrayList<Bill> theBills,
 			@JsonProperty("Projects")final ArrayList<Project> theProjects) {
 		myName = theName;
-		myProjectedBill = 0;
+		myProjectedBill = theProjectedBill;
 		myBills = theBills;
 		myProjects = theProjects;
 	}
@@ -87,28 +87,25 @@ final public class Residence {
 	}
 
 	/**
-	 * Getter for the list of bills.
+	 * Returns a list of bills for a residence.
 	 * @return the list of bills.
-	 * 
-	 * @author Yaro Salo write deep copying
+	 * @author Yaro Salo
 	 */
 	@JsonProperty("Bills")
 	public final ArrayList<Bill> getBills() {
 		ArrayList<Bill> copyBills = new ArrayList<>();
 		for(Bill b: myBills) {
 			copyBills.add(new Bill(b.getName(), b.getAmount(),
-					b.getBeginDate(), b.getEndDate()));
+					b.getBeginMonth(), b.getBeginYear(),
+					b.getEndMonth(), b.getEndYear()));
 		}
-		
-		// returns a deep copy.
 		return copyBills;
 	}
 
 	/**
-	 * Getter for the list of projects.
+	 * Returns a list of projects for a residence.
 	 * @return the list of projects.
-	 * 
-	 * @author Yaro Salo write deep copying
+	 * @author Yaro Salo 
 	 */
 	@JsonProperty("Projects")
 	public final ArrayList<Project> getProjects() {
@@ -120,7 +117,7 @@ final public class Residence {
 		 }
 		return copyProjects;
 	}
-
+	
 	/**
 	 * Adds a project to this residence.
 	 * @param theProject the project to be added.
@@ -132,17 +129,12 @@ final public class Residence {
 	/**
 	 * Removes a project from this residence.
 	 * @param theProject the project to be removed.
+	 * @author Donald Muffler
+	 * @author Yaro Salo
 	 */
 	public final void removeProject(final Project theProject) {
-		int currentIndex = 0;
-		boolean found = false;
-		
-		while(!found && currentIndex < myProjects.size()) {
-			if (myProjects.get(currentIndex).getName().equals(theProject.getName())) {
-				myProjects.remove(currentIndex);
-				found = true;
-			}
-			currentIndex++;
+		if(myProjects.contains(theProject)) {
+			myProjects.remove(theProject);
 		}
 	}
 	
@@ -157,17 +149,58 @@ final public class Residence {
 	/**
 	 * Removes a bill from this residence.
 	 * @param theBill the bill to be removed.
+	 * @author Donald Muffler
+	 * @author Yaro Salo
 	 */
 	public final void removeBill(final Bill theBill) {
-		int currentIndex = 0;
-		boolean found = false;
-		
-		while(!found && currentIndex < myProjects.size()) {
-			if (myProjects.get(currentIndex).getName().equals(theBill.getName())) {
-				myProjects.remove(currentIndex);
-				found = true;
-			}
-			currentIndex++;
+		if(myBills.contains(theBill)) {
+			myBills.remove(theBill);
 		}
 	}
+	
+    /**
+     * {@inheritDoc}
+     * 
+     * Returns true if the specified object is equivalent to this Residence, and false 
+     * otherwise. Two Residences are equivalent if the have the same fields.
+     * 
+     * @param theOther is the Object being tested.
+     * @return true if objects are equal and false otherwise.
+     * @author Yaro Salo
+     */
+    @Override
+    public boolean equals(final Object theOther) {
+        
+        boolean returnValue = false;
+        
+        if (this == theOther) { //is the Object being tested this Object?
+            returnValue = true;
+        
+        } else if (theOther != null && this.getClass() == theOther.getClass()) { //is theOther Object a User object? 
+
+        
+            final Residence otherRes = (Residence) theOther; //theOther can be safely casted. 
+           
+            //if all fields are equal the objects are equal
+            returnValue = Objects.equals(myName, otherRes.myName)
+                       && Objects.equals(myProjectedBill, otherRes.myProjectedBill)
+                       && Objects.equals(myBills, otherRes.myBills)
+                       && Objects.equals(myProjects, otherRes.myProjects);
+        } 
+        
+        return returnValue;
+    }
+    
+    /**
+     * {@inheritDoc}
+     * 
+     * Returns and integer hash code for a Residence.
+     * @return hash code as an integer.
+     * @author Yaro Salo
+     */
+    @Override
+    public int hashCode() {
+        
+        return Objects.hash(myName, myProjectedBill, myBills, myProjects);
+    }
 }
