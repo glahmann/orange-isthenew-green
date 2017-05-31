@@ -42,8 +42,8 @@ public class ProjectTest {
     @Before
     public void setUp() {
     	myItems = new ArrayList<>();
-    	final Item item1 = new Item("Super Cool Item", 38.80);
-    	final Item item2 = new Item("Super Lame Item", 40.71);
+    	final Item item1 = new Item("Cool Type", "Super Cool Item", 38.80, 12);
+    	final Item item2 = new Item("Lame Type", "Super Lame Item", 40.71, 12);
     	myItems.add(item1);
     	myItems.add(item2);
     	myProject = new Project(NAME, SAVINGS, COST, myItems);
@@ -103,8 +103,8 @@ public class ProjectTest {
     @Test
     public void testGetItems() {
     	final ArrayList<Item> it = new ArrayList<>();
-    	it.add(new Item("Super Cool Item", 38.80));
-    	it.add(new Item("Super Lame Item", 40.71));
+    	it.add(new Item("Cool Type", "Super Cool Item", 38.80, 12));
+    	it.add(new Item("Lame Type", "Super Lame Item", 40.71, 12));
     	
     	assertTrue("getItems() doesn't return the expected result", myProject.getItems().equals(it));
     }
@@ -125,7 +125,7 @@ public class ProjectTest {
      */ 
     @Test  
     public void testAddItem() {
-    	final Item item = new Item("Kind of Cool Item", 25.15);
+    	final Item item = new Item("Cool Type", "Kind of Cool Item", 25.15, 12);
     	myProject.addItem(item);
     	assertTrue(myProject.getItems().get(2).equals(item));
     }
@@ -137,9 +137,9 @@ public class ProjectTest {
     @Test 
     public void testRemoveItem() {
     	final Project project = new Project("Super Cool Project");
-    	final Item item = new Item("Super Cool Item", 100);
-    	final Item item2 = new Item("Semi Cool Item", 100);
-    	final Item item3 = new Item("Kind of Cool Item", 100);
+    	final Item item = new Item("Cool Type", "Super Cool Item", 100, 11);
+    	final Item item2 = new Item("Semi Cool Type", "Semi Cool Item", 100, 15);
+    	final Item item3 = new Item("Kind of Cool Type", "Kind of Cool Item", 100, 12);
     	project.addItem(item);
     	project.addItem(item2);
     	int sizeBefRemove = project.getItems().size(); //test remove on non existing residence
@@ -158,8 +158,8 @@ public class ProjectTest {
     public void testHashCode() { 
     	
     	final ArrayList<Item> list1 = new ArrayList<>();
-    	final Item item1 = new Item("Super Cool Item", 38.80);
-    	final Item item2 = new Item("Super Lame Item", 40.71);
+    	final Item item1 = new Item("Cool Type", "Super Cool Item", 38.80, 15);
+    	final Item item2 = new Item("Lame Type", "Super Lame Item", 40.71, 16);
     	list1.add(item1);
     	list1.add(item2);
     	final Project otherProject = new Project(NAME,SAVINGS,COST, list1);
