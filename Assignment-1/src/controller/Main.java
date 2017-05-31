@@ -11,10 +11,12 @@ import javax.swing.JPanel;
 import javax.swing.JWindow;
 
 import model.User;
+import view.CustomOptionFrame;
 import view.Gui;
 import view.HomeScreen;
 import view.LoginPane;
 import view.ManageResidenceScreen;
+import view.SetupPane;
 import view.ThisMenuBar;
 
 /**
@@ -57,29 +59,32 @@ public final class Main {
      */
     private final static void start() {
     	final User user = new User(null, null); // TODO: overload constructor.
-    	final MenuActions menuAction = new MenuActions(user);
-    	LoginPane.getInstance().setAction(menuAction);
-    	final ThisMenuBar menu = new ThisMenuBar(menuAction);
-    	Gui.getInstance().setMenu(menu);
     	
-    	// displays login page.
-    	JFrame window = new JFrame();
-    	window.add(LoginPane.getInstance());
-    	window.setLocationRelativeTo(null);
-    	window.pack();
-    	window.setVisible(true);
-    	
-    	// add panels to the frame.
-    	Gui.getInstance().addPanel(HomeScreen.getInstance(), "Home");
-    	Gui.getInstance().addPanel(ManageResidenceScreen.getInstance(), "Manage Residences");
-    	
+    	// add user data to actions.
     	final HomeActions homeAction = new HomeActions(user);
     	final ManageResidenceActions residenceAction = new ManageResidenceActions(user);
     	
-    	// add actions to panels.
+    	// add menu actions to panels.
+    	final MenuActions menuAction = new MenuActions(user);
+    	LoginPane.getInstance().setAction(menuAction);
+    	SetupPane.getInstance().setAction(menuAction);
+    	
+    	// add home actions to panels.
     	HomeScreen.getInstance().connectPanelToAction(homeAction);
     	
+    	// add JMenu to the main frame.
+    	final ThisMenuBar menu = new ThisMenuBar(menuAction);
+    	Gui.getInstance().setMenu(menu);
     	
-    	//Gui.getInstance().displayPanel("Home");
+    	// add panels to the main frame.
+    	Gui.getInstance().addPanel(HomeScreen.getInstance(), "Home");
+    	Gui.getInstance().addPanel(ManageResidenceScreen.getInstance(), "Manage Residences");
+    	
+    	// add panels to the custom dialogue frame.
+    	CustomOptionFrame.getInstance().addPanel(LoginPane.getInstance(), "Login");
+    	CustomOptionFrame.getInstance().addPanel(SetupPane.getInstance(), "Setup");
+    	
+    	// displays login page.
+    	CustomOptionFrame.getInstance().displayPanel("Login");
     }
 }

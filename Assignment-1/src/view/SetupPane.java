@@ -1,9 +1,8 @@
 package view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import javax.swing.Action;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -18,49 +17,39 @@ import javax.swing.SwingConstants;
  */
 final public class SetupPane extends JPanel {
 
-//	/**
-//	 * The setup panel.
-//	 */
-//	private final JPanel mySetupPanel;
+	/**
+	 * The setup panel.
+	 */
+	private static SetupPane mySetupPane = null;
 	
 	/**
 	 * Serial ID.
 	 */
 	private static final long serialVersionUID = 6841876535294172703L;
-
-	/**
-	 * The user name.
-	 */
-	private String myName;
 	
 	/**
 	 * The text field for user name entry.
 	 */
-	private JTextField myNameField;
-	
-	/**
-	 * The user email.
-	 */
-	private String myEmail;
+	private final JTextField myNameField;
 	
 	/**
 	 * The text field for user email entry.
 	 */
-	private JTextField myEmailField;
+	private final JTextField myEmailField;
+	
+	private final JButton myOKButton;
 	
 	/**
 	 * Constructs the button for the setup pane.
 	 */
-	public SetupPane() {
+	private SetupPane() {
 		setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		final JLabel nameLabel = new JLabel("Name:", SwingConstants.CENTER);
 		myNameField = new JTextField(20);
-		myName = myNameField.getText();
 		final JLabel emailLabel = new JLabel("Email:", SwingConstants.CENTER);
 		myEmailField = new JTextField(20);
-		myEmail = myEmailField.getText();
 		c.gridx = 0;
 		c.gridy = 0;
 		add(nameLabel, c);
@@ -73,34 +62,23 @@ final public class SetupPane extends JPanel {
 		c.gridx = 1;
 		c.gridy = 1;
 		add(myEmailField, c);
-		
-		/**
-		 * 
-		 * @author donal
-		 *
-		 */
-		final class SetName implements ActionListener {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myName = myNameField.getText();
-			}
+		c.gridx = 1;
+		c.gridy = 2;
+		myOKButton = new JButton("OK");
+		add(myOKButton, c);
+	}
+	
+	public static final SetupPane getInstance() {
+		if (mySetupPane == null) {
+			mySetupPane = new SetupPane();
 		}
-		myNameField.addActionListener(new SetName());
-		
-		/**
-		 * 
-		 * @author donal
-		 *
-		 */
-		final class SetEmail implements ActionListener {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				myEmail = myEmailField.getText();
-			}
-		}
-		myEmailField.addActionListener(new SetEmail());
+		return mySetupPane;
+	}
+	
+	public final void setAction(final Action theAction) {
+		myNameField.addActionListener(theAction);
+		myEmailField.addActionListener(theAction);
+		myOKButton.addActionListener(theAction);
 	}
 	
 	/**
@@ -109,8 +87,8 @@ final public class SetupPane extends JPanel {
 	 * Getter for user name.
 	 * @return user name.
 	 */
-	public final String getName() {
-		return myName;
+	public final JTextField getNameField() {
+		return myNameField;
 	}
 	
 	/**
@@ -119,7 +97,7 @@ final public class SetupPane extends JPanel {
 	 * Getter for user email.
 	 * @return user email.
 	 */
-	public final String getEmail() {
-		return myEmail;
+	public final JTextField getEmailField() {
+		return myEmailField;
 	}
 }
