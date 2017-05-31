@@ -40,7 +40,6 @@ public final class ManageResidenceActions extends AbstractAction{
 		
 		switch(whichButton) {
 			case "Back":
-				// TODO: back button controller
 				break;
 			case "Delete":
 				// TODO: delete residence controller

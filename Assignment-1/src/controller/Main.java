@@ -74,6 +74,9 @@ public final class Main {
     	HomeScreen.getInstance().connectPanelToAction(homeAction);
     	CreateProject.getInstance().setAction(homeAction);
     	
+    	// add residence action to residence panel
+    	ManageResidenceScreen.getInstance().setAcion(residenceAction);
+    	
     	// add JMenu to the main frame.
     	final ThisMenuBar menu = new ThisMenuBar(menuAction);
     	Gui.getInstance().setMenu(menu);
