@@ -1,6 +1,9 @@
 package view;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -70,6 +73,34 @@ final public class SetupPane extends JPanel {
 		c.gridx = 1;
 		c.gridy = 1;
 		add(myEmailField, c);
+		
+		/**
+		 * 
+		 * @author donal
+		 *
+		 */
+		final class SetName implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myName = myNameField.getText();
+			}
+		}
+		myNameField.addActionListener(new SetName());
+		
+		/**
+		 * 
+		 * @author donal
+		 *
+		 */
+		final class SetEmail implements ActionListener {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				myEmail = myEmailField.getText();
+			}
+		}
+		myEmailField.addActionListener(new SetEmail());
 	}
 	
 	/**
