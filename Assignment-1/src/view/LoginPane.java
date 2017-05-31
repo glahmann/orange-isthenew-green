@@ -1,14 +1,13 @@
 package view;
 
 import java.awt.Color;
-
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -17,55 +16,74 @@ import net.miginfocom.swing.MigLayout;
  * @author Donald Muffler
  * @version 20170528
  */
-public class LoginPane extends JPanel {
+public class LoginPane extends JPanel{
 	
 	/**
-	 * Serial ID.
+	 * 
 	 */
-	private static final long serialVersionUID = 7441787967042276275L;
-
+	private static LoginPane myLoginPane = null;
+	
 	/**
 	  * Size of email text field.
 	  */
-	 private static final int TEXT_FIELD_SIZE = 15;
+	private static final int TEXT_FIELD_SIZE = 15;
+ 	
+	
+ 	private final JButton myLoginButton;
+ 	
+ 	
+ 	private final JButton myNewUserButton;
 
  	/**
- 	 * Action to login or setup a new account.
+ 	 * Email field.
  	 */
- 	private final Action myAction;
+ 	private final JTextField myEmailField;
  
 	/**
 	 * Constructs the login pane.
 	 * @param theAction the action that deals with logging in or setting up an account.
-	 */
-	public LoginPane(final Action theAction) {
-		myAction = theAction;
+	 */	private LoginPane() {
+		myEmailField = new JTextField(TEXT_FIELD_SIZE);
+		myLoginButton = new JButton("Login");
+		myNewUserButton = new JButton("New User?");
 		buildLogin();
 	}
-
-	private final void buildLogin() {
-		
-		setLayout(new MigLayout());
-		add(new JLabel("Email"));
-		final JTextField emailText = new JTextField(TEXT_FIELD_SIZE);
-		add(emailText);
-		final JButton newUserButton = new JButton("New User?");
-		add(newUserButton, "cell 1 1");
-		
-		newUserButton.setBorderPainted(false);
-		newUserButton.setContentAreaFilled(false);
-		newUserButton.setForeground(Color.BLUE);
-		
-		newUserButton.addActionListener(myAction);
-		
-		JOptionPane.showMessageDialog(Gui.getInstance(), this);
-
-		final String enteredEmail = emailText.getText();
-//
-//		if(!enteredEmail.equals("")) {
-//			myUserMenuItem.setText(enteredEmail);
-//		}
+	
+	public static final LoginPane getInstance() {
+		if (myLoginPane == null) {
+			myLoginPane = new LoginPane();
+		}
+		return myLoginPane;
+	}
+	
+	public final void setAction(final Action theAction) {
+		myLoginButton.addActionListener(theAction);
+		myNewUserButton.addActionListener(theAction);
+		myEmailField.addActionListener(theAction);
+	}
+	
+	
+	public final JTextField getEmailField() {
+		return myEmailField;
 	}
 
-}
+	
+	private final void buildLogin() {
+		setLayout(new MigLayout(new LC().align("center", "center")));
+		final JPanel topPanel = new JPanel(new MigLayout());
+		topPanel.add(new JLabel("Email"));
 
+		topPanel.add(myEmailField);
+		add(topPanel, "wrap");
+		
+		final JPanel bottomPanel = new JPanel(new MigLayout());
+		bottomPanel.add(myNewUserButton);
+		
+		myNewUserButton.setBorderPainted(false);
+		myNewUserButton.setContentAreaFilled(false);
+		myNewUserButton.setForeground(Color.BLUE);
+
+		bottomPanel.add(myLoginButton);
+		add(bottomPanel);
+	}
+}

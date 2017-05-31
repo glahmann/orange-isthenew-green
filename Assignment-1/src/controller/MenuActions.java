@@ -8,10 +8,13 @@ import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
+import javax.swing.JWindow;
 
 import model.User;
 import view.AboutPane;
+import view.CustomOptionFrame;
 import view.Gui;
+import view.LoginPane;
 import view.SetupPane;
 
 /**
@@ -48,31 +51,26 @@ public final class MenuActions extends AbstractAction {
 	 */
 	@Override
 	public final void actionPerformed(final ActionEvent theEvent) {
-		
 		final String whichButton = theEvent.getActionCommand();
 		
 		switch(whichButton) {
 			case "New User?":
-				final SetupPane setupFromUser = new SetupPane();
-				JOptionPane.showMessageDialog(Gui.getInstance(), setupFromUser, "Setup", 
-		                JOptionPane.INFORMATION_MESSAGE);
-				myUser.setName(setupFromUser.getName());
-				myUser.setEmail(setupFromUser.getEmail());
+				CustomOptionFrame.getInstance().displayPanel("Setup");
 				break;
-			case "Login...":
-				String email = JOptionPane.showInputDialog("Enter your email: ");
-
-				//If an email was entered update the user display
-				if (email != null) {
-					myUser.setEmail(email);
-				}
+			case "OK":
+				myUser.setName(SetupPane.getInstance().getNameField().getText());
+				myUser.setEmail(SetupPane.getInstance().getEmailField().getText());
+				System.out.println(myUser.getEmail());
+				CustomOptionFrame.getInstance().dispose();
+				Gui.getInstance().displayPanel("Home");
+				break;
+			case "Login":
+				// TODO: import here.
+				CustomOptionFrame.getInstance().dispose();
+				Gui.getInstance().displayPanel("Home");
 				break;
 			case "Setup...":
-				final SetupPane setupFromMenu = new SetupPane();
-				JOptionPane.showMessageDialog(Gui.getInstance(), setupFromMenu, "Setup", 
-		                JOptionPane.INFORMATION_MESSAGE);
-				myUser.setName(setupFromMenu.getName());
-				myUser.setEmail(setupFromMenu.getEmail());				
+				CustomOptionFrame.getInstance().displayPanel("Setup");				
 				File userFile = new File(myUser.getEmail() + ".json");
 				JSONSupport.writeJSON(myUser, userFile);
 				break;
