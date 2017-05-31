@@ -66,3 +66,4 @@ public class LoginPane extends JPanel {
 //			myUserMenuItem.setText(enteredEmail);
 //		}
 	}
+}

@@ -18,7 +18,7 @@ public class SQLiteJDBC {
      * 
      * @param theArgs
      */
-	public static void main(String theArgs[]) {  
+	public static void main(final String theArgs[]) {  
 		Scanner console = new Scanner(System.in);
 //	    Connection conn = getConnection();
 	    System.out.println("Add table to database? y/n");
