@@ -17,11 +17,15 @@ import model.Item;
  * @version May 29, 2017
  */
 public class ItemTest {
-
+	/** Name of test item*/
 	static final String NAME = "Super Saver 3000";
-	
+	/** Cost of test item*/
 	static final double COST = 99.99;
-	
+	/** Energy value of test item*/
+	static final double EVALUE = 5.5;
+	/** Type of test item*/
+	static final String TYPE = "Window";
+	/** Name of test item object*/
 	private Item myItem;
 			
 	/**
@@ -29,7 +33,7 @@ public class ItemTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		myItem = new Item(NAME, COST);
+		myItem = new Item(NAME, COST, EVALUE, TYPE);
 	}
 
 	
@@ -39,7 +43,7 @@ public class ItemTest {
 	 */
 	@Test
 	public void testConstructor() {
-		assertNotNull(new Item(NAME, COST));
+		assertNotNull(new Item(NAME, COST, EVALUE, TYPE));
 	}
 	
 	/**
@@ -61,12 +65,29 @@ public class ItemTest {
 	}
 	
 	/**
+	 * Test Item eValue getter
+	 * @author Isaac Seemann
+	 */
+	@Test
+	public void testGetEValue() {
+		assertEquals(EVALUE, myItem.getEValue(), 0.05);
+	}
+	
+	/**
+	 * Test Item Type getter
+	 * @author Isaac Seemann
+	 */
+	@Test
+	public void testGetType() {
+		assertEquals(TYPE, myItem.getType());
+	}
+	/**
 	 * Test Item hashCode method
 	 * @author Isaac Seemann
 	 */
 	@Test
 	public void testHashCode() {
-		Item testItem = new Item(NAME, COST);
+		Item testItem = new Item(NAME, COST, EVALUE, TYPE);
 		assertEquals("Hash values not equal", myItem.hashCode(), testItem.hashCode());
 	}
 }
