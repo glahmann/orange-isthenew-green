@@ -51,7 +51,7 @@ final public class JSONSupportTest {
     public void setUp() {
     	myUser = new User(USER_NAME, USER_EMAIL);
     	Project project = new Project("Kind of Cool Project");
-    	Item item = new Item("Kind of Cool Item", 100);
+    	Item item = new Item("Kind of Cool Item", 100, 12, "Kind of Cool Item");
     	Bill bill = new Bill("Kind of Cool Bill", 50, 1, 2017, 2, 2017);
     	Residence house = new Residence("Kind of Cool House");
     	project.addItem(item);

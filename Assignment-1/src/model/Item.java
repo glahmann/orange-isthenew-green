@@ -117,7 +117,9 @@ public class Item {
            
             //if all fields are equal the objects are equal
             returnValue = Objects.equals(myName, otherItem.myName)
-                       && Objects.equals(myCost, otherItem.myCost);
+                       && Objects.equals(myCost, otherItem.myCost)
+                       && Objects.equals(myEValue, otherItem.myEValue)
+                       && Objects.equals(myType, otherItem.myType);
         } 
         
         return returnValue;
