@@ -33,7 +33,7 @@ public class ItemTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		myItem = new Item(NAME, COST, EVALUE, TYPE);
+		myItem = new Item(TYPE, NAME, COST, EVALUE);
 	}
 
 	
@@ -43,7 +43,7 @@ public class ItemTest {
 	 */
 	@Test
 	public void testConstructor() {
-		assertNotNull(new Item(NAME, COST, EVALUE, TYPE));
+		assertNotNull(new Item(TYPE, NAME, COST, EVALUE));
 	}
 	
 	/**
@@ -87,7 +87,7 @@ public class ItemTest {
 	 */
 	@Test
 	public void testHashCode() {
-		Item testItem = new Item(NAME, COST, EVALUE, TYPE);
+		Item testItem = new Item(TYPE, NAME, COST, EVALUE);
 		assertEquals("Hash values not equal", myItem.hashCode(), testItem.hashCode());
 	}
 }
