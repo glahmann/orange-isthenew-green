@@ -45,14 +45,15 @@ public class Item {
 	 * @param theCost the item's cost.
 	 */
 	@JsonCreator
-	public Item(@JsonProperty("Item Name")final String theName, 
+	public Item(@JsonProperty("Item Type")final String theType,
+	        @JsonProperty("Item Name")final String theName, 
 			@JsonProperty("Item Cost")final double theCost,
-			@JsonProperty("Item Energy Value")final double theEValue,
-			@JsonProperty("Item Type")final String theType) {
-		myName = theName;
+			@JsonProperty("Item Energy Value")final double theEValue) {
+	    myType = theType;
+	    myName = theName;
 		myCost = theCost;
 		myEValue = theEValue;
-		myType = theType;
+		
 	}
 	
 	/**
@@ -75,6 +76,7 @@ public class Item {
 	
 	/**
 	 * Getter for the cost of the item.
+	 * @author Garrett Lahmann
 	 * @return the cost of the item.
 	 */
 	@JsonProperty("Item Energy Value")
