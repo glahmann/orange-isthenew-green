@@ -43,12 +43,38 @@ public final class ManageResidenceScreen extends JScrollPane {
 	 */
 	private static final int FONT_SIZE = 20;
 	
+	private JButton myDeleteButton;
+	
+	private JButton myCreateButton;
+	
+	private JButton myChooseButton;
+	
+	private JButton myBackButton;
+	
 	/**
 	 * Private constructor to prevent instantiation.
 	 */
 	private ManageResidenceScreen() {
 		buildTopPanel();
 		buildContentPanel();
+	}
+	
+	public final void setAcion(final Action theAction) {
+		myDeleteButton.addActionListener(theAction);
+		myChooseButton.addActionListener(theAction);
+		myCreateButton.addActionListener(theAction);
+		myBackButton.addActionListener(theAction);
+	}
+	
+	/**
+	 * Singleton getter for this instance. Creates an instance if one does not exist.
+	 * @return Singleton instance for ManageResidenceScreen.
+	 */
+	public static final ManageResidenceScreen getInstance() {
+		if (myResidenceScreen == null) {
+			myResidenceScreen = new ManageResidenceScreen();
+		}
+		return myResidenceScreen;
 	}
 	
 	/**
@@ -60,8 +86,8 @@ public final class ManageResidenceScreen extends JScrollPane {
 		setColumnHeaderView(topPanel);
 		topPanel.setLayout(new MigLayout("", "[]", "[]"));
 		
-		final JButton back = new JButton("Back");
-		topPanel.add(back, "cell 0 0");
+		myBackButton = new JButton("Back");
+		topPanel.add(myBackButton, "cell 0 0");
 	}
 	
 	/**
@@ -142,33 +168,13 @@ public final class ManageResidenceScreen extends JScrollPane {
 	private final void buildBottomPanel(final JPanel thePanelHolder) {
 		final JPanel bottomPanel = new JPanel();
 		bottomPanel.setBackground(Color.ORANGE);
-		final Action residenceAction = new ManageResidenceActions(null); // TODO: change to connectActionToPanel method or find a better method.
-		bottomPanel.add(populateBottomPanel("Delete", residenceAction));
-		bottomPanel.add(populateBottomPanel("Choose", residenceAction));
-		bottomPanel.add(populateBottomPanel("Create", residenceAction));
+		
+		myDeleteButton = new JButton("Delete");
+		myChooseButton = new JButton("Choose");
+		myCreateButton = new JButton("Create");
+		bottomPanel.add(myDeleteButton);
+		bottomPanel.add(myChooseButton);
+		bottomPanel.add(myCreateButton);
 		thePanelHolder.add(bottomPanel, BorderLayout.SOUTH);
-	}
-	
-	/**
-	 * Builds the button for the bottom panel.
-	 * @param theString the button name.
-	 * @param theAction action for the button.
-	 * @return the button.
-	 */
-	private final JButton populateBottomPanel(final String theString, final Action theAction) {
-		final JButton button = new JButton(theString);
-		button.addActionListener(theAction);
-		return button;
-	}
-	
-	/**
-	 * Singleton getter for this instance. Creates an instance if one does not exist.
-	 * @return Singleton instance for ManageResidenceScreen.
-	 */
-	public static final ManageResidenceScreen getInstance() {
-		if (myResidenceScreen == null) {
-			myResidenceScreen = new ManageResidenceScreen();
-		}
-		return myResidenceScreen;
 	}
 }
