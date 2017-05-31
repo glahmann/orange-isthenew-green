@@ -1,13 +1,9 @@
 package view;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -22,17 +18,21 @@ import net.miginfocom.swing.MigLayout;
  */
 public class LoginPane extends JPanel{
 	
+	/**
+	 * 
+	 */
 	private static LoginPane myLoginPane = null;
 	
 	/**
 	  * Size of email text field.
 	  */
-	 private static final int TEXT_FIELD_SIZE = 15;
-
- 	/**
- 	 * Action to login or setup a new account.
- 	 */
- 	private Action myAction;
+	private static final int TEXT_FIELD_SIZE = 15;
+ 	
+	
+ 	private final JButton myLoginButton;
+ 	
+ 	
+ 	private final JButton myNewUserButton;
 
  	/**
  	 * Email field.
@@ -42,10 +42,11 @@ public class LoginPane extends JPanel{
 	/**
 	 * Constructs the login pane.
 	 * @param theAction the action that deals with logging in or setting up an account.
-	 */	public LoginPane() {
+	 */	private LoginPane() {
 		myEmailField = new JTextField(TEXT_FIELD_SIZE);
-		//myAction = theAction;
-//		buildLogin();
+		myLoginButton = new JButton("Login");
+		myNewUserButton = new JButton("New User?");
+		buildLogin();
 	}
 	
 	public static final LoginPane getInstance() {
@@ -56,35 +57,33 @@ public class LoginPane extends JPanel{
 	}
 	
 	public final void setAction(final Action theAction) {
-		myAction = theAction;
-		buildLogin();
+		myLoginButton.addActionListener(theAction);
+		myNewUserButton.addActionListener(theAction);
+		myEmailField.addActionListener(theAction);
 	}
+	
 	
 	public final JTextField getEmailField() {
 		return myEmailField;
 	}
 
+	
 	private final void buildLogin() {
 		setLayout(new MigLayout(new LC().align("center", "center")));
 		final JPanel topPanel = new JPanel(new MigLayout());
 		topPanel.add(new JLabel("Email"));
-		myEmailField.addActionListener(myAction);
+
 		topPanel.add(myEmailField);
 		add(topPanel, "wrap");
 		
 		final JPanel bottomPanel = new JPanel(new MigLayout());
-		final JButton newUserButton = new JButton("New User?");
-		bottomPanel.add(newUserButton);
+		bottomPanel.add(myNewUserButton);
 		
-		newUserButton.setBorderPainted(false);
-		newUserButton.setContentAreaFilled(false);
-		newUserButton.setForeground(Color.BLUE);
-		
-		newUserButton.addActionListener(myAction);
-		
-		final JButton loginButton = new JButton("Login");
-		loginButton.addActionListener(myAction);
-		bottomPanel.add(loginButton);
+		myNewUserButton.setBorderPainted(false);
+		myNewUserButton.setContentAreaFilled(false);
+		myNewUserButton.setForeground(Color.BLUE);
+
+		bottomPanel.add(myLoginButton);
 		add(bottomPanel);
 	}
 }

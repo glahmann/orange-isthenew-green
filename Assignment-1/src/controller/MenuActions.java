@@ -12,6 +12,7 @@ import javax.swing.JWindow;
 
 import model.User;
 import view.AboutPane;
+import view.CustomOptionFrame;
 import view.Gui;
 import view.LoginPane;
 import view.SetupPane;
@@ -54,23 +55,22 @@ public final class MenuActions extends AbstractAction {
 		
 		switch(whichButton) {
 			case "New User?":
-				final SetupPane setupFromUser = new SetupPane();
-				JOptionPane.showMessageDialog(Gui.getInstance(), setupFromUser, "Setup", 
-		                JOptionPane.INFORMATION_MESSAGE);
-				System.out.println(setupFromUser.getEmail());
-				myUser.setName(setupFromUser.getName());
-				myUser.setEmail(setupFromUser.getEmail());
+				CustomOptionFrame.getInstance().displayPanel("Setup");
+				break;
+			case "OK":
+				myUser.setName(SetupPane.getInstance().getNameField().getText());
+				myUser.setEmail(SetupPane.getInstance().getEmailField().getText());
+				System.out.println(myUser.getEmail());
+				CustomOptionFrame.getInstance().dispose();
+				Gui.getInstance().displayPanel("Home");
 				break;
 			case "Login":
-//				File file = new File(myUser.getEmail() + ".json");
-//				JSONSupport.readJSON(file);
+				// TODO: import here.
+				CustomOptionFrame.getInstance().dispose();
+				Gui.getInstance().displayPanel("Home");
 				break;
 			case "Setup...":
-				final SetupPane setupFromMenu = new SetupPane();
-				JOptionPane.showMessageDialog(Gui.getInstance(), setupFromMenu, "Setup", 
-		                JOptionPane.INFORMATION_MESSAGE);
-				myUser.setName(setupFromMenu.getName());
-				myUser.setEmail(setupFromMenu.getEmail());				
+				CustomOptionFrame.getInstance().displayPanel("Setup");				
 				File userFile = new File(myUser.getEmail() + ".json");
 				JSONSupport.writeJSON(myUser, userFile);
 				break;

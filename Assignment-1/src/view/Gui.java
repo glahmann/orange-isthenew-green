@@ -22,32 +22,7 @@ final public class Gui extends JFrame {
 	 * Singleton Gui.
 	 */
 	private static Gui myGui = null;
-//
-//	/** 
-//     * ToolKit. 
-//     */
-//    private static final Toolkit KIT = Toolkit.getDefaultToolkit();
-//    
-//    /** 
-//     * Dimensions of the screen.
-//     */
-//    private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
-//    
-//    /**
-//     * Size of email text field.
-//     */
-//    private static final int TEXT_FIELD_SIZE = 15;
-//	
-//	/**
-//	 * Menu bar that contains File.
-//	 */
-//	private final JMenuBar myMenu;
-//
-//	/**
-//	 * Menu item that displays the current user email.
-//	 */
-//	private JMenuItem myUserMenuItem;
-	
+
 	/**
 	 * Holds the panels for this gui frame.
 	 */
