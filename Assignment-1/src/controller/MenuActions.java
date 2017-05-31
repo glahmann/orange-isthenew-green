@@ -8,10 +8,12 @@ import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
+import javax.swing.JWindow;
 
 import model.User;
 import view.AboutPane;
 import view.Gui;
+import view.LoginPane;
 import view.SetupPane;
 
 /**
@@ -48,7 +50,6 @@ public final class MenuActions extends AbstractAction {
 	 */
 	@Override
 	public final void actionPerformed(final ActionEvent theEvent) {
-		
 		final String whichButton = theEvent.getActionCommand();
 		
 		switch(whichButton) {
@@ -56,16 +57,13 @@ public final class MenuActions extends AbstractAction {
 				final SetupPane setupFromUser = new SetupPane();
 				JOptionPane.showMessageDialog(Gui.getInstance(), setupFromUser, "Setup", 
 		                JOptionPane.INFORMATION_MESSAGE);
+				System.out.println(setupFromUser.getEmail());
 				myUser.setName(setupFromUser.getName());
 				myUser.setEmail(setupFromUser.getEmail());
 				break;
-			case "Login...":
-				String email = JOptionPane.showInputDialog("Enter your email: ");
-
-				//If an email was entered update the user display
-				if (email != null) {
-					myUser.setEmail(email);
-				}
+			case "Login":
+//				File file = new File(myUser.getEmail() + ".json");
+//				JSONSupport.readJSON(file);
 				break;
 			case "Setup...":
 				final SetupPane setupFromMenu = new SetupPane();

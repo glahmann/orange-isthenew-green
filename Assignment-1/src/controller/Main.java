@@ -3,7 +3,12 @@ package controller;
  * Starts the GUI application. 
  */
 
+import java.awt.Dimension;
 import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JWindow;
 
 import model.User;
 import view.Gui;
@@ -53,9 +58,16 @@ public final class Main {
     private final static void start() {
     	final User user = new User(null, null); // TODO: overload constructor.
     	final MenuActions menuAction = new MenuActions(user);
-    	final LoginPane login = new LoginPane(menuAction);
+    	LoginPane.getInstance().setAction(menuAction);
     	final ThisMenuBar menu = new ThisMenuBar(menuAction);
     	Gui.getInstance().setMenu(menu);
+    	
+    	// displays login page.
+    	JFrame window = new JFrame();
+    	window.add(LoginPane.getInstance());
+    	window.setLocationRelativeTo(null);
+    	window.pack();
+    	window.setVisible(true);
     	
     	// add panels to the frame.
     	Gui.getInstance().addPanel(HomeScreen.getInstance(), "Home");
@@ -67,6 +79,7 @@ public final class Main {
     	// add actions to panels.
     	HomeScreen.getInstance().connectPanelToAction(homeAction);
     	
-    	Gui.getInstance().displayPanel("Home");
+    	
+    	//Gui.getInstance().displayPanel("Home");
     }
 }
