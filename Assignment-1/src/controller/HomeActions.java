@@ -1,14 +1,10 @@
 package controller;
 
-import net.miginfocom.swing.MigLayout;
 import view.BillPane;
-import view.CreateProject;
 import view.CustomOptionFrame;
 import view.Gui;
-import view.ManageResidenceScreen;
-
-import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.io.File;
 
 import javax.swing.*;
 
@@ -67,7 +63,8 @@ public final class HomeActions extends AbstractAction {
 			case "Save/Exit":
 				int exit = JOptionPane.showConfirmDialog(null, "Would you like to exit?", "Leaving so soon?",
 						JOptionPane.YES_NO_OPTION);
-
+				File theFile = new File(myUser.getEmail() + ".json");
+				JSONSupport.writeJSON(myUser, theFile);
 				//Close the program if "yes" option is picked
 				if (exit == 0) {
 					System.exit(0);

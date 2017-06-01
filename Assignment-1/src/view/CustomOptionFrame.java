@@ -35,7 +35,6 @@ public final class CustomOptionFrame extends JFrame {
 	 * Constructs a custom frame.
 	 */
 	private CustomOptionFrame() {
-		setLocation((int) SCREEN_SIZE.getWidth() / 2,(int) SCREEN_SIZE.getHeight() / 2);
 		myPanelHolder = new JPanel(new CardLayout());
 		add(myPanelHolder);
 	}
@@ -55,6 +54,8 @@ public final class CustomOptionFrame extends JFrame {
 		CardLayout layout = (CardLayout) myPanelHolder.getLayout();
 		layout.show(myPanelHolder, thePanelTag);
 		pack();
+        setLocation(SCREEN_SIZE.width / 2 - getWidth() / 2, 
+        		SCREEN_SIZE.height / 2 - getHeight() / 2);
 		setVisible(true);
 	}
 	

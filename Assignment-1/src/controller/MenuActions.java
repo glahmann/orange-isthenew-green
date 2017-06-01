@@ -60,7 +60,6 @@ public final class MenuActions extends AbstractAction {
 			case "OK":
 				myUser.setName(SetupPane.getInstance().getNameField().getText());
 				myUser.setEmail(SetupPane.getInstance().getEmailField().getText());
-				System.out.println(myUser.getEmail());
 				CustomOptionFrame.getInstance().dispose();
 				Gui.getInstance().displayPanel("Home");
 				break;
