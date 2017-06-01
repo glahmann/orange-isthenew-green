@@ -78,6 +78,7 @@ public final class Main {
     	Gui.getInstance().addPanel(HomeScreen.getInstance(), "Home");
     	Gui.getInstance().addPanel(ManageResidenceScreen.getInstance(), "Manage Residences");
 		Gui.getInstance().addPanel(ProjectMarket.getInstance(), "Market");
+		Gui.getInstance().addPanel(CalcPane.getInstance(), "Calculator");
     	
     	// add panels to the custom dialogue frame.
     	CustomOptionFrame.getInstance().addPanel(LoginPane.getInstance(), "Login");

@@ -58,8 +58,8 @@ public final class HomeActions extends AbstractAction {
 				JOptionPane.showMessageDialog(Gui.getInstance(), bill);
 				// TODO: Add to user.
 				break;
-			case "Manage Projects":
-				// TODO: manage projects controller
+			case "Statistics":
+			    Gui.getInstance().displayPanel("Calculator");
 				break;
 			case "Manage Residences":
 				Gui.getInstance().displayPanel("Manage Residences");

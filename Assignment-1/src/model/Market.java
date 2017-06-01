@@ -30,7 +30,7 @@ public class Market {
     /**
      * Populates a list with all items of given type from database.
      * 
-     * @param theType the item type to be added to list.
+     * @param theType the item type to be added to list (OK: light, appliance, insulation, window).
      */
     public void changeTab(final String theType) {
         myItems.clear();
