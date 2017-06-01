@@ -3,12 +3,7 @@ package controller;
  * Starts the GUI application. 
  */
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JWindow;
 
 import model.User;
 import view.*;
@@ -52,7 +47,7 @@ public final class Main {
      * Helper method for instantiating and passing dependencies.
      */
     private final static void start() {
-    	final User user = new User(null, null); // TODO: overload constructor.
+    	final User user = new User(); 
     	
     	// add user data to actions.
     	final HomeActions homeAction = new HomeActions(user);

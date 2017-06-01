@@ -31,6 +31,16 @@ final public class User extends Observable {
 	private final ArrayList<Residence> myResidences;
 	
 	/**
+	 * Default constructor that allows to create an empty user.
+	 * @author Yaro Salo
+	 */
+	public User() {
+		myName = "";
+		myEmail = "";
+		myResidences = new ArrayList<Residence>(); 
+	}
+	
+	/**
 	 * Initialize instance fields.
 	 * 
 	 * @param theName the name of the user.
