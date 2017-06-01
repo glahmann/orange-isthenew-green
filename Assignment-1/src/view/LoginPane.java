@@ -42,7 +42,8 @@ public class LoginPane extends JPanel{
 	/**
 	 * Constructs the login pane.
 	 * @param theAction the action that deals with logging in or setting up an account.
-	 */	private LoginPane() {
+	 */
+	private LoginPane() {
 		myEmailField = new JTextField(TEXT_FIELD_SIZE);
 		myLoginButton = new JButton("Login");
 		myNewUserButton = new JButton("New User?");
