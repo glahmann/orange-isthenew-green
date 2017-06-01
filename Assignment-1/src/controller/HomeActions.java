@@ -3,6 +3,7 @@ package controller;
 import net.miginfocom.swing.MigLayout;
 import view.BillPane;
 import view.CreateProject;
+import view.CustomOptionFrame;
 import view.Gui;
 import view.ManageResidenceScreen;
 
@@ -47,8 +48,10 @@ public final class HomeActions extends AbstractAction {
 		
 		switch(whichButton) {
 			case "Create Project":
-				final CreateProject project = new CreateProject(this);
-				JOptionPane.showMessageDialog(Gui.getInstance(), project);
+				CustomOptionFrame.getInstance().displayPanel("Create Project");
+				break;
+			case "Create":
+				Gui.getInstance().displayPanel("Market");
 				break;
 			case "Enter an Energy Bill?":
 				final BillPane bill = new BillPane();

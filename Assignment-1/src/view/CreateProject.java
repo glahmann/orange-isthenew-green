@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
 /**
@@ -20,42 +21,58 @@ import net.miginfocom.swing.MigLayout;
  * @author Zira Cook
  * @version 20170527
  */
-public class CreateProject {
+public class CreateProject extends JPanel{
 	
 	/**
 	 * Size for text field.s
 	 */
 	private static final int TEXT_FIELD_SIZE = 15;
+	
+	private static CreateProject myProject = null;
+	
+	private final JTextField myProjectNameBox;
+	
+	private final JButton myEnterBillButton;
+	
+	private final JButton myCreateButton;
 
 	/**
 	 * Constructs create project dialogue.
 	 */
-	public CreateProject(final Action theAction) { //extending JPanel would probably be better.
+	private CreateProject() {
 		//Setup for new project screen
-		final JPanel newProjectPanel = new JPanel(new MigLayout());
-		newProjectPanel.add(new JLabel("Project Name: "));
+		setLayout(new MigLayout(new LC().align("center", "center")));
+		final JPanel topPanel = new JPanel(new MigLayout());
+		topPanel.add(new JLabel("Project Name: "));
 
-		final JTextField projectNameBox = new JTextField(TEXT_FIELD_SIZE);
-		newProjectPanel.add(projectNameBox);
-		final JButton enterBillButton = new JButton("Enter an Energy Bill?");
-		newProjectPanel.add(enterBillButton, "cell 1 1");
+		myProjectNameBox = new JTextField(TEXT_FIELD_SIZE);
+		topPanel.add(myProjectNameBox);
+		
+		final JPanel bottomPanel = new JPanel(new MigLayout());
+		myEnterBillButton = new JButton("Enter an Energy Bill?");
+		bottomPanel.add(myEnterBillButton);
 
-		enterBillButton.setBorderPainted(false);
-		enterBillButton.setContentAreaFilled(false);
-		enterBillButton.setForeground(Color.BLUE);
-
-		//If user wants to enter an energy bill
-		enterBillButton.addActionListener(theAction);
-
-//		JOptionPane.showMessageDialog(null, newProjectPanel);
-
-		final String enteredProjectName = projectNameBox.getText();
-
-		if(enteredProjectName.equals("")) {
-		}
+		myEnterBillButton.setBorderPainted(false);
+		myEnterBillButton.setContentAreaFilled(false);
+		myEnterBillButton.setForeground(Color.BLUE);
+		
+		myCreateButton = new JButton("Create");
+		bottomPanel.add(myCreateButton);
+		
+		add(topPanel, "wrap");
+		add(bottomPanel);
 	}
 	
-//	public final String getName() {
-//		return myName;
-//	}
+	public static final CreateProject getInstance() {
+		if (myProject == null) {
+			myProject = new CreateProject();
+		}
+		return myProject;
+	}
+	
+	public final void setAction(final Action theAction) {
+		myProjectNameBox.addActionListener(theAction);
+		myEnterBillButton.addActionListener(theAction);
+		myCreateButton.addActionListener(theAction);
+	}
 }
