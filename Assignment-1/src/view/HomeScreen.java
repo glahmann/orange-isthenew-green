@@ -88,7 +88,6 @@ public final class HomeScreen extends JPanel {
 	/**
 	 * Creates a button to add to the panel.
 	 * @param theButtonName the name of the button.
-	 * @param theAction the action tied to the button.
 	 * @return the button.
 	 */
 	private final JButton buildButton(final String theButtonName) {

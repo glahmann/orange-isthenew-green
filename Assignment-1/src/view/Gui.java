@@ -52,7 +52,7 @@ final public class Gui extends JFrame {
 	
 	/**
 	 * Displays the sleceted panel in the panel holder.
-	 * @param theString the panel tag.
+	 * @param thePanelTag the panel tag.
 	 */
 	public final void displayPanel(final String thePanelTag) {
 		CardLayout layout = (CardLayout) myPanelHolder.getLayout();
@@ -63,7 +63,7 @@ final public class Gui extends JFrame {
 	/**
 	 * Adds a panel to the holder with a tag as a reference.
 	 * @param theComponent the panel.
-	 * @param theString the reference.
+	 * @param thePanelTag the reference.
 	 */
 	public final void addPanel(final JComponent theComponent, final String thePanelTag) {
 		myPanelHolder.add(theComponent, thePanelTag);

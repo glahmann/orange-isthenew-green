@@ -11,14 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JWindow;
 
 import model.User;
-import view.CreateProject;
-import view.CustomOptionFrame;
-import view.Gui;
-import view.HomeScreen;
-import view.LoginPane;
-import view.ManageResidenceScreen;
-import view.SetupPane;
-import view.ThisMenuBar;
+import view.*;
 
 /**
  * Start the GUI application.
@@ -84,6 +77,7 @@ public final class Main {
     	// add panels to the main frame.
     	Gui.getInstance().addPanel(HomeScreen.getInstance(), "Home");
     	Gui.getInstance().addPanel(ManageResidenceScreen.getInstance(), "Manage Residences");
+		Gui.getInstance().addPanel(ProjectMarket.getInstance(), "Market");
     	
     	// add panels to the custom dialogue frame.
     	CustomOptionFrame.getInstance().addPanel(LoginPane.getInstance(), "Login");

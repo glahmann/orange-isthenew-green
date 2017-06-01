@@ -51,6 +51,7 @@ public final class HomeActions extends AbstractAction {
 				CustomOptionFrame.getInstance().displayPanel("Create Project");
 				break;
 			case "Create":
+				Gui.getInstance().displayPanel("Market");
 				break;
 			case "Enter an Energy Bill?":
 				final BillPane bill = new BillPane();
