@@ -79,7 +79,7 @@ public final class HomeScreen extends JPanel {
 		panel.setLayout(new MigLayout("", "[][][][][][][]", "[][][][][][][][][]"));
 
 		panel.add(buildButton("Create Project"), "cell 1 2,growx");
-		panel.add(buildButton("Manage Projects"), "cell 5 2,growx");
+		panel.add(buildButton("Statistics"), "cell 5 2,growx");
 		panel.add(buildButton("Manage Residences"), "cell 1 6");
 		panel.add(buildButton("Save/Exit"), "cell 5 6,growx");
 
