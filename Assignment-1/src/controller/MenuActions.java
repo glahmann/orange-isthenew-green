@@ -69,6 +69,9 @@ public final class MenuActions extends AbstractAction {
 				CustomOptionFrame.getInstance().dispose();
 				Gui.getInstance().displayPanel("Home");
 				break;
+			case "Home":
+				Gui.getInstance().displayPanel("Home");
+				break;
 			case "Setup...":
 				CustomOptionFrame.getInstance().displayPanel("Setup");				
 				File userFile = new File(myUser.getEmail() + ".json");

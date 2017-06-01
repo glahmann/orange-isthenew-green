@@ -34,8 +34,8 @@ public final class ThisMenuBar extends JMenuBar {
 		final JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic('F');
 		
-		fileMenu.add(populateMenu("Login..."));
 		fileMenu.add(populateMenu("Setup..."));
+		fileMenu.add(populateMenu("Home"));
 		fileMenu.add(populateMenu("About..."));
 
 		final JMenu userMenu = new JMenu("User");
