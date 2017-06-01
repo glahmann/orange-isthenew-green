@@ -14,8 +14,15 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import net.miginfocom.layout.LC;
+import net.miginfocom.swing.MigLayout;
+
 import javax.swing.SwingUtilities;
 
+import java.awt.Dimension;
+import java.awt.GridLayout;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -25,6 +32,14 @@ import javax.swing.JPanel;
  */
 public class CalcPane extends JPanel {
 
+    /**
+     * 
+     */
+    private static final int FONT_SIZE = 20;
+    
+    /**
+     * 
+     */
     private static CalcPane myCalcPane = null;
     
     
@@ -32,6 +47,8 @@ public class CalcPane extends JPanel {
      * Constructor for the calc pane
      */
     private CalcPane() {
+        setBackground(java.awt.Color.ORANGE);
+        setLayout(new MigLayout(new LC().align("center", "center")));
         buildCalc();
     }
     
@@ -51,25 +68,29 @@ public class CalcPane extends JPanel {
      * Builds the display for the calc pane.
      */
     private final void buildCalc() {
-//        //testMap = buildMaps();
-//        hardcodeMaps();
-//
-//        //Setup cards
-//        myInsulationCard = buildCards("INSULATION", myInsulations); //TODO change to specified maps
-//        myLightingCard = buildCards("LIGHTING", myLights);
-//        myAppliancecard = buildCards("APPLIANCES", myAppliances);
-//        myWindowCard = buildCards("WINDOWS", myWindows);
-//
-//        //Create and add tabs with the cards
-//        addTab("INSULATION", myInsulationCard);
-//        addTab("LIGHTING", myLightingCard);
-//        addTab("APPLIANCES", myAppliancecard);
-//        addTab("WINDOWS", myWindowCard);
         final JFXPanel fxPanel = new JFXPanel();
+        final JPanel infoPanel = new JPanel(new GridLayout(4, 1));
+        
+        final JLabel prevEnergy = new JLabel("  6/16 Energy Used:  868 kWh");
+        prevEnergy.setMinimumSize(new Dimension(400, 100));
+        prevEnergy.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
+        final JLabel prevBill = new JLabel("  6/16 Bill:  $95.48");
+        prevBill.setMinimumSize(new Dimension(400, 100));
+        prevBill.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
+        final JLabel projEnergy = new JLabel("  6/17 Projected Energy Saved:  54kWh");
+        projEnergy.setMinimumSize(new Dimension(400, 100));
+        projEnergy.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
+        final JLabel projSave = new JLabel("  6/17 Projected Savings:  $6.02");
+        projSave.setMinimumSize(new Dimension(400, 100));
+        projSave.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
+        
+        infoPanel.add(prevEnergy);
+        infoPanel.add(prevBill);
+        infoPanel.add(projEnergy);
+        infoPanel.add(projSave);
         add(fxPanel);
-//        setSize(300, 200);
-//        setVisible(true); // TODO not necessary?
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(infoPanel);
+//        add(projSaveLabel);
 
         Platform.runLater(new Runnable() {
             @Override
