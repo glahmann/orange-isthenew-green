@@ -123,9 +123,9 @@ public final class ManageResidenceScreen extends JScrollPane {
 		
 		final ButtonGroup buttonGroup = new ButtonGroup();
 		// will change to a for loop implementation to read in data after it is parsed.
-		contentPanel.add(populateContentPanel("Test Name", 50, springPanel, nameLabel, buttonGroup, true, contentPanel, 1));
-		contentPanel.add(populateContentPanel("Test Type", 50, springPanel, typeLabel, buttonGroup, false, contentPanel, 1));
-		contentPanel.add(populateContentPanel("Test Amount", 50, springPanel, projectsLabel, buttonGroup, false, contentPanel, 1));
+		contentPanel.add(populateContentPanel("Zira's House", 50, springPanel, nameLabel, buttonGroup, true, contentPanel, 1));
+		contentPanel.add(populateContentPanel("Parents' Basement", 50, springPanel, typeLabel, buttonGroup, false, contentPanel, 1));
+		contentPanel.add(populateContentPanel("1", 50, springPanel, projectsLabel, buttonGroup, false, contentPanel, 1));
 		
 		buildBottomPanel(contentPanelHolder);
 	}
