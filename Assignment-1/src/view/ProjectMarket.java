@@ -147,7 +147,7 @@ final public class ProjectMarket extends JTabbedPane {
      * @param style the font style
      * @param fontSize the font size
      */
-    private final void setLabelLook(JLabel currentLabel, JPanel parentPanel, int style, int fontSize) { //TODO take in dimension
+    private void setLabelLook(JLabel currentLabel, JPanel parentPanel, int style, int fontSize) { //TODO take in dimension
         currentLabel.setFont(new Font("Times New Roman", style, fontSize));
 
         if (!currentLabel.getText().equals("Quantity")) {
@@ -159,7 +159,7 @@ final public class ProjectMarket extends JTabbedPane {
         parentPanel.add(currentLabel);
     }
 
-    private final void hardcodeMaps() {
+    private void hardcodeMaps() { //TODO get rid of this
         myInsulations.put("Faced Insulation Roll 15 in x 25 ft", 26.50);
         myInsulations.put("Insulating Foam Single Can 16 oz", 6.75);
         myInsulations.put("Acoustic Insulation Panel 12 in x 12 in", 29.99);

@@ -48,6 +48,7 @@ public final class HomeActions extends AbstractAction {
 				break;
 			case "Create":
 				Gui.getInstance().displayPanel("Market");
+                CustomOptionFrame.getInstance().dispose();
 				break;
 			case "Enter an Energy Bill?":
 				final BillPane bill = new BillPane();

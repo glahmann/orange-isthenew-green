@@ -41,7 +41,7 @@ public final class ThisMenuBar extends JMenuBar {
 		final JMenu userMenu = new JMenu("User");
 		userMenu.setMnemonic('U');
 		
-		userMenu.add(populateMenu("Default"));
+		userMenu.add(populateMenu("Zira"));
 
 		add(fileMenu);
 		add(userMenu);
