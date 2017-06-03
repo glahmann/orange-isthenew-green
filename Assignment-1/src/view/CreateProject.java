@@ -21,7 +21,7 @@ import net.miginfocom.swing.MigLayout;
  * @author Zira Cook
  * @version 20170527
  */
-public class CreateProject extends JPanel{
+public class CreateProject extends JPanel {
 	
 	/**
 	 * Size for text field.s
@@ -74,5 +74,9 @@ public class CreateProject extends JPanel{
 		myProjectNameBox.addActionListener(theAction);
 		myEnterBillButton.addActionListener(theAction);
 		myCreateButton.addActionListener(theAction);
+	}
+	
+	public final JTextField getProjectNameField() {
+		return myProjectNameBox;
 	}
 }

@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -15,12 +16,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @version 20170516
  */
 @JsonPropertyOrder({"Residence Name", "Projected Bill", "Bills", "Projects"})
-final public class Residence {
+final public class Residence extends Observable {
 	
 	/**
 	 * Name of the residence.
 	 */
 	private final String myName;
+	
+	/**
+	 * Type of the residence.
+	 */
+	private final HousingType myType;
 	
 	/**
 	 * The projected amount for the next bill.
@@ -41,8 +47,9 @@ final public class Residence {
 	 * Constructs the user's residence.
 	 * @param theName the name of the residence.
 	 */
-	public Residence(final String theName) {
+	public Residence(final String theName, final HousingType theType) {
 		myName = theName;
+		myType = theType;
 		myProjectedBill = 0;
 		myBills = new ArrayList<Bill>();
 		myProjects = new ArrayList<Project>();
@@ -60,14 +67,17 @@ final public class Residence {
 	 */
 	@JsonCreator
 	public Residence(@JsonProperty("Residence Name")final String theName,
+			@JsonProperty("Residence Type")final HousingType theType,
 			@JsonProperty("Projected Bill")final double theProjectedBill,
 			@JsonProperty("Bills")ArrayList<Bill> theBills,
 			@JsonProperty("Projects")final ArrayList<Project> theProjects) {
 		myName = theName;
+		myType = theType;
 		myProjectedBill = theProjectedBill;
 		myBills = theBills;
 		myProjects = theProjects;
 	}
+	
 	/**
 	 * Getter for the residence's name.
 	 * @return the name of the residence.
@@ -75,6 +85,11 @@ final public class Residence {
 	@JsonProperty("Residence Name")
 	public final String getName() {
 		return myName;
+	}
+	
+	@JsonProperty("Residence Type")
+	public final HousingType getType() {
+		return myType;
 	}
 	
 	/**
@@ -118,12 +133,25 @@ final public class Residence {
 		return copyProjects;
 	}
 	
+	private final ArrayList<String> projectInfo() {
+		final ArrayList<String> list = new ArrayList<String>();
+		
+		for (Project currentPro: myProjects) {
+			list.add(currentPro.getName());
+			list.add(String.valueOf(currentPro.getItems().size()));
+			list.add(String.valueOf(currentPro.getSavings()));
+		}
+		return list;
+	}
+	
 	/**
 	 * Adds a project to this residence.
 	 * @param theProject the project to be added.
 	 */
 	public final void addProject(final Project theProject) {
 		myProjects.add(theProject);
+		setChanged();
+		notifyObservers(projectInfo());
 	}
 	
 	/**
@@ -136,6 +164,28 @@ final public class Residence {
 		if(myProjects.contains(theProject)) {
 			myProjects.remove(theProject);
 		}
+		setChanged();
+		notifyObservers(projectInfo());
+	}
+	
+	/**
+	 * Removes a project by name.
+	 * @param theProject the project to be removed.
+	 * @author Donald Muffler
+	 */
+	public final void removeProject(final String theProjectName) {
+		int currentIndex = 0;
+		boolean found = false;
+		
+		while(!found && currentIndex < myProjects.size()) {
+			if (myProjects.get(currentIndex).getName().equals(theProjectName)) {
+				myProjects.remove(currentIndex);
+				found = true;
+			}
+			currentIndex++;
+		}
+		setChanged();
+		notifyObservers(projectInfo());
 	}
 	
 	/**

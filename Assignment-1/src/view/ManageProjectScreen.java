@@ -25,7 +25,7 @@ import net.miginfocom.swing.MigLayout;
  * @author Donald Muffler
  * @version 20170524
  */
-public final class ManageResidenceScreen extends JScrollPane implements Observer {
+public final class ManageProjectScreen extends JScrollPane implements Observer {
 	// TODO: add an updatePanel method and observer which calls updatePanel.
 
 	/**
@@ -36,7 +36,7 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	/**
 	 * Singleton instance for Manage Residence screen.
 	 */
-	private static ManageResidenceScreen myResidenceScreen = null;
+	private static ManageProjectScreen myProjectScreen = null;
 	
 	/**
 	 * Size of font on the page.
@@ -61,7 +61,7 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	/**
 	 * Choose residence button.
 	 */
-	private JButton myChooseButton;
+	private JButton myOpenButton;
 	
 	/**
 	 * Back button.
@@ -102,7 +102,7 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	/**
 	 * Private constructor to prevent instantiation.
 	 */
-	private ManageResidenceScreen() {
+	private ManageProjectScreen() {
 		myContentPanelHolder = new JPanel(new BorderLayout());
 		setViewportView(myContentPanelHolder);
 		buildTopPanel();
@@ -112,7 +112,7 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	
 	public final void setAcion(final Action theAction) {
 		myDeleteButton.addActionListener(theAction);
-		myChooseButton.addActionListener(theAction);
+		myOpenButton.addActionListener(theAction);
 		myCreateButton.addActionListener(theAction);
 		myBackButton.addActionListener(theAction);
 	}
@@ -121,11 +121,11 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	 * Singleton getter for this instance. Creates an instance if one does not exist.
 	 * @return Singleton instance for ManageResidenceScreen.
 	 */
-	public static final ManageResidenceScreen getInstance() {
-		if (myResidenceScreen == null) {
-			myResidenceScreen = new ManageResidenceScreen();
+	public static final ManageProjectScreen getInstance() {
+		if (myProjectScreen == null) {
+			myProjectScreen = new ManageProjectScreen();
 		}
-		return myResidenceScreen;
+		return myProjectScreen;
 	}
 
 	@Override
@@ -171,13 +171,13 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 		mySpringLayout.putConstraint(SpringLayout.WEST, myNameTitle, 40, SpringLayout.WEST, myContentPanel);
 		myContentPanel.add(myNameTitle);
 		
-		myTypeTitle = new JLabel("Type");
+		myTypeTitle = new JLabel("Item Count");
 		myTypeTitle.setFont(new Font("Times New Roman", Font.BOLD, FONT_SIZE));
 		mySpringLayout.putConstraint(SpringLayout.NORTH, myTypeTitle, 0, SpringLayout.NORTH, myNameTitle);
 		mySpringLayout.putConstraint(SpringLayout.WEST, myTypeTitle, 400, SpringLayout.EAST, myNameTitle);
 		myContentPanel.add(myTypeTitle);
 		
-		myProjectsTitle = new JLabel("Projects");
+		myProjectsTitle = new JLabel("Savings");
 		myProjectsTitle.setFont(new Font("Times New Roman", Font.BOLD, FONT_SIZE));
 		mySpringLayout.putConstraint(SpringLayout.NORTH, myProjectsTitle, 0, SpringLayout.NORTH, myNameTitle);
 		mySpringLayout.putConstraint(SpringLayout.WEST, myProjectsTitle, 400, SpringLayout.EAST, myTypeTitle);
@@ -220,24 +220,24 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 		final JPanel bottomPanel = new JPanel();
 		bottomPanel.setBackground(Color.ORANGE);
 
-		myDeleteButton = new JButton("Delete Residence");
-		myChooseButton = new JButton("Choose Residence");
-		myCreateButton = new JButton("Create Residence");
+		myDeleteButton = new JButton("Delete Project");
+		myOpenButton = new JButton("Open Project");
+		myCreateButton = new JButton("Create Project");
 		bottomPanel.add(myDeleteButton);
-		bottomPanel.add(myChooseButton);
+		bottomPanel.add(myOpenButton);
 		bottomPanel.add(myCreateButton);
 		myContentPanelHolder.add(bottomPanel, BorderLayout.SOUTH);
 	}
 	
 	
 	private final void updatePanel(Object theObject) {
-		ArrayList<String> resInfo = (ArrayList<String>) theObject;
+		ArrayList<String> projectInfo = (ArrayList<String>) theObject;
 		myCheckBoxes = new HashMap<String, JCheckBox>();
 		final ButtonGroup checkBoxGroup = new ButtonGroup();
-		for (int i = 0; i < resInfo.size(); i += 3) {
-			myContentPanel.add(populateContentPanel(resInfo.get(i), 50, myNameTitle, checkBoxGroup, true, (i + 1) / 3 + 1));
-			myContentPanel.add(populateContentPanel(resInfo.get(i + 1), 50, myTypeTitle, checkBoxGroup, false, (i + 1) / 3 + 1));
-			myContentPanel.add(populateContentPanel(resInfo.get(i + 2), 50, myProjectsTitle, checkBoxGroup, false, (i + 1) / 3 + 1));
+		for (int i = 0; i < projectInfo.size(); i += 3) {
+			myContentPanel.add(populateContentPanel(projectInfo.get(i), 50, myNameTitle, checkBoxGroup, true, (i + 1) / 3 + 1));
+			myContentPanel.add(populateContentPanel(projectInfo.get(i + 1), 50, myTypeTitle, checkBoxGroup, false, (i + 1) / 3 + 1));
+			myContentPanel.add(populateContentPanel(projectInfo.get(i + 2), 50, myProjectsTitle, checkBoxGroup, false, (i + 1) / 3 + 1));
 		}
 		myContentPanel.revalidate();
 	}

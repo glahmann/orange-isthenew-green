@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.Bill;
+import model.HousingType;
 import model.Project;
 import model.Residence;
 
@@ -53,7 +54,7 @@ public class ResidenceTest {
 		myBills.add(myBill);
 		myProject = new Project("Project");
 		myProjects.add(myProject);
-		myHouse = new Residence(NAME, PROBILL,myBills, myProjects);
+		myHouse = new Residence(NAME, HousingType.APARTMENT, PROBILL,myBills, myProjects);
 	}
 
 	/**
@@ -62,7 +63,7 @@ public class ResidenceTest {
 	 */
 	@Test
 	public void testDefaultConstructor() {
-		new Residence(NAME);
+		new Residence(NAME, HousingType.APARTMENT);
 	}
 
 	/**
@@ -71,7 +72,7 @@ public class ResidenceTest {
 	 */
 	@Test
 	public void testCopyConstructor() {
-		new Residence(NAME, PROBILL, myBills, myProjects);
+		new Residence(NAME, HousingType.APARTMENT, PROBILL, myBills, myProjects);
 	}
 
 	/**
@@ -219,7 +220,7 @@ public class ResidenceTest {
    
     	proList.add(project);
     	billList.add(bill);
-    	final Residence otherHouse = new Residence(NAME, PROBILL, billList, proList);
+    	final Residence otherHouse = new Residence(NAME, HousingType.APARTMENT, PROBILL, billList, proList);
 
     	
     	assertTrue(myHouse.hashCode() == otherHouse.hashCode());

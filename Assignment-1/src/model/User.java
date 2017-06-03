@@ -30,6 +30,8 @@ final public class User extends Observable {
 	/** List of residences. */
 	private final ArrayList<Residence> myResidences;
 	
+	private Residence myCurrentRes;
+	
 	/**
 	 * Default constructor that allows to create an empty user.
 	 * @author Yaro Salo
@@ -88,6 +90,18 @@ final public class User extends Observable {
 	public String getEmail() {
 		return myEmail;
 	}
+	
+	public final void setCurrentResidence(final String theResidenceName) {
+		for (Residence currentRes: myResidences) {
+			if (theResidenceName.equals(currentRes.getName())) {
+				myCurrentRes = currentRes;
+			}
+		}
+	}
+	
+	public final Residence getCurrentResidence() {
+		return myCurrentRes;
+	}
 
 	/**
 	 * Returns the list of residences for a user.
@@ -99,7 +113,7 @@ final public class User extends Observable {
 		
 		ArrayList<Residence> copyRes = new ArrayList<>();
 		for(Residence r: myResidences) {
-			copyRes.add(new Residence(r.getName(), r.getProjectedBill(),
+			copyRes.add(new Residence(r.getName(), r.getType(), r.getProjectedBill(),
 					r.getBills(), r.getProjects()));	
 		}
 		return copyRes;
@@ -147,12 +161,32 @@ final public class User extends Observable {
 		notifyObservers(resInfo());
 	}
 	
+	/**
+	 * Removes a residence by name.
+	 * @param theProject the residence to be removed.
+	 * @author Donald Muffler
+	 */
+	public final void removeResidence(final String theResidenceName) {
+		int currentIndex = 0;
+		boolean found = false;
+		
+		while(!found && currentIndex < myResidences.size()) {
+			if (myResidences.get(currentIndex).getName().equals(theResidenceName)) {
+				myResidences.remove(currentIndex);
+				found = true;
+			}
+			currentIndex++;
+		}
+		setChanged();
+		notifyObservers(resInfo());
+	}
+	
 	private final ArrayList<String> resInfo() {
 		final ArrayList<String> list = new ArrayList<String>();
 		
 		for (Residence currentRes: myResidences) {
 			list.add(currentRes.getName());
-			list.add("Need Type");
+			list.add(currentRes.getType().name());
 			list.add(String.valueOf(currentRes.getProjects().size()));
 		}
 		return list;

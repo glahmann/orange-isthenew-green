@@ -8,6 +8,8 @@ import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
+
 import javax.swing.border.TitledBorder;
 
 import controller.HomeActions;
@@ -72,17 +74,22 @@ public final class HomeScreen extends JPanel {
 	 * Builds the home panel.
 	 */
 	private final void buildPanel() {
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.ORANGE);
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Home", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		add(panel);
-		panel.setLayout(new MigLayout("", "[][][][][][][]", "[][][][][][][][][]"));
+		final JPanel outerPanel = new JPanel(new GridLayout(0, 1));
+		outerPanel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Home", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		outerPanel.setBackground(Color.ORANGE);
+		final JPanel panel1 = new JPanel();
+		panel1.setBackground(Color.ORANGE);
+		panel1.setBackground(Color.ORANGE);
+		outerPanel.add(panel1);
 
-		panel.add(buildButton("Create Project"), "cell 1 2,growx");
-		panel.add(buildButton("Statistics"), "cell 5 2,growx");
-		panel.add(buildButton("Manage Residences"), "cell 1 6");
-		panel.add(buildButton("Save/Exit"), "cell 5 6,growx");
-
+		panel1.add(buildButton("Manage Residences"));
+		panel1.add(buildButton("Statistics"));
+		
+		final JPanel panel2 = new JPanel();
+		panel2.setBackground(Color.ORANGE);
+		panel2.add(buildButton("Save/Exit"));
+		outerPanel.add(panel2);
+		add(outerPanel);
 	}
 	
 	/**

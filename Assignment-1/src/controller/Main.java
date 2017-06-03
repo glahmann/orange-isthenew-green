@@ -52,6 +52,7 @@ public final class Main {
     	// add user data to actions.
     	final HomeActions homeAction = new HomeActions(user);
     	final ManageResidenceActions residenceAction = new ManageResidenceActions(user);
+    	final ManageProjectActions projectAction = new ManageProjectActions(user);
     	
     	// add menu actions to panels.
     	final MenuActions menuAction = new MenuActions(user);
@@ -60,10 +61,14 @@ public final class Main {
     	
     	// add home actions to panels.
     	HomeScreen.getInstance().connectPanelToAction(homeAction);
-    	CreateProject.getInstance().setAction(homeAction);
     	
     	// add residence action to residence panel
     	ManageResidenceScreen.getInstance().setAcion(residenceAction);
+    	CreateResidenceScreen.getInstance().setAction(residenceAction);
+    	
+    	// add project action to project panel
+    	ManageProjectScreen.getInstance().setAcion(projectAction);
+    	CreateProject.getInstance().setAction(projectAction);
     	
     	// add JMenu to the main frame.
     	final ThisMenuBar menu = new ThisMenuBar(menuAction);
@@ -74,14 +79,17 @@ public final class Main {
     	Gui.getInstance().addPanel(ManageResidenceScreen.getInstance(), "Manage Residences");
 		Gui.getInstance().addPanel(ProjectMarket.getInstance(), "Market");
 		Gui.getInstance().addPanel(CalcPane.getInstance(), "Calculator");
-    	
+    	Gui.getInstance().addPanel(ManageProjectScreen.getInstance(), "Manage Projects");
+		
     	// add panels to the custom dialogue frame.
     	CustomOptionFrame.getInstance().addPanel(LoginPane.getInstance(), "Login");
     	CustomOptionFrame.getInstance().addPanel(SetupPane.getInstance(), "Setup");
     	CustomOptionFrame.getInstance().addPanel(CreateProject.getInstance(), "Create Project");
+    	CustomOptionFrame.getInstance().addPanel(CreateResidenceScreen.getInstance(), "Create Residence");
     	
-    	
+    	// add observers.
     	user.addObserver(ManageResidenceScreen.getInstance());
+    	
     	// displays login page.
     	CustomOptionFrame.getInstance().displayPanel("Login");
     }

@@ -37,6 +37,9 @@ final public class SetupPane extends JPanel {
 	 */
 	private final JTextField myEmailField;
 	
+	/**
+	 * Ok button.
+	 */
 	private final JButton myOKButton;
 	
 	/**
@@ -75,6 +78,12 @@ final public class SetupPane extends JPanel {
 		return mySetupPane;
 	}
 	
+	/**
+	 * @author Donald Muffler
+	 * 
+	 * Sets the action for this panel's buttons.
+	 * @param theAction the action to be set.
+	 */
 	public final void setAction(final Action theAction) {
 		myNameField.addActionListener(theAction);
 		myEmailField.addActionListener(theAction);
