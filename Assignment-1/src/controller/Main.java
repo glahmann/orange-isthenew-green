@@ -80,6 +80,8 @@ public final class Main {
     	CustomOptionFrame.getInstance().addPanel(SetupPane.getInstance(), "Setup");
     	CustomOptionFrame.getInstance().addPanel(CreateProject.getInstance(), "Create Project");
     	
+    	
+    	user.addObserver(ManageResidenceScreen.getInstance());
     	// displays login page.
     	CustomOptionFrame.getInstance().displayPanel("Login");
     }
