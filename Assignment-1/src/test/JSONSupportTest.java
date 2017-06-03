@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import controller.JSONSupport;
 import model.Bill;
+import model.HousingType;
 import model.Item;
 import model.Project;
 import model.Residence;
@@ -53,7 +54,7 @@ final public class JSONSupportTest {
     	Project project = new Project("Kind of Cool Project");
     	Item item = new Item("Kind of Cool Item", "Kind of Cool Item", 100, 12);
     	Bill bill = new Bill("Kind of Cool Bill", 50, 1, 2017, 2, 2017);
-    	Residence house = new Residence("Kind of Cool House");
+    	Residence house = new Residence("Kind of Cool House", HousingType.APARTMENT);
     	project.addItem(item);
     	
     	house.addBill(bill);

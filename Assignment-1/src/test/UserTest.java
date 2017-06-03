@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import model.HousingType;
 import model.Residence;
 import model.User;
 
@@ -33,7 +34,7 @@ final public class UserTest {
     public void setUp() {
     	 
         myUser = new User(NAME, EMAIL);
-        myHouse = new Residence("Super Cool House");
+        myHouse = new Residence("Super Cool House", HousingType.APARTMENT);
         myUser.addResidence(myHouse);
     }
 
@@ -64,7 +65,7 @@ final public class UserTest {
     @Test
     public void testGetResidences() {
     	final ArrayList<Residence> res = new ArrayList<>();
-    	res.add(new Residence("Super Cool House"));
+    	res.add(new Residence("Super Cool House", HousingType.APARTMENT));
     	assertEquals("getResidences() doesn't return the expected result", myUser.getResidences(), res);
     }
    
@@ -100,8 +101,8 @@ final public class UserTest {
     public void testRemoveResidences() {
     	
     	final User user = new User("Bond", "bond@jamesbond");
-    	final Residence house = new Residence("Bonds Place");
-    	final Residence house2 = new Residence("Not Bonds Place");
+    	final Residence house = new Residence("Bonds Place", HousingType.APARTMENT);
+    	final Residence house2 = new Residence("Not Bonds Place", HousingType.APARTMENT);
     	
     	user.addResidence(house);
     	user.addResidence(myHouse);
@@ -151,8 +152,8 @@ final public class UserTest {
     public void testEqualsIsSymmetric() {
     	ArrayList<Residence> list1 = new ArrayList<>();
     	ArrayList<Residence> list2 = new ArrayList<>();
-    	list1.add(new Residence("Super Cool House"));
-    	list2.add(new Residence("Super Cool House"));
+    	list1.add(new Residence("Super Cool House", HousingType.APARTMENT));
+    	list2.add(new Residence("Super Cool House", HousingType.APARTMENT));
         assertEquals(myUser, new User(NAME, EMAIL, list1)); 
         assertEquals(new User(NAME, EMAIL, list2), myUser);
         
@@ -168,9 +169,9 @@ final public class UserTest {
     	final ArrayList<Residence> list2 = new ArrayList<>();
     	final ArrayList<Residence> list3 = new ArrayList<>();
    
-    	list1.add(new Residence("Super Cool House"));
-    	list2.add(new Residence("Super Cool House"));
-    	list3.add(new Residence("Super Cool House"));
+    	list1.add(new Residence("Super Cool House", HousingType.APARTMENT));
+    	list2.add(new Residence("Super Cool House", HousingType.APARTMENT));
+    	list3.add(new Residence("Super Cool House", HousingType.APARTMENT));
         final User otherUser = new User(NAME, EMAIL, list1);
         
         assertEquals(myUser, new User(NAME, EMAIL, list2));
@@ -191,7 +192,7 @@ final public class UserTest {
     	
     	//Test  1 1 0
     	final ArrayList<Residence> list1 = new ArrayList<>();
-     	list1.add(new Residence("Semi Cool House"));
+     	list1.add(new Residence("Semi Cool House", HousingType.APARTMENT));
     	final User otherUser = new User(NAME, EMAIL, list1);
     	assertFalse("Residences are different", myUser.equals(otherUser));
     	
@@ -229,7 +230,7 @@ final public class UserTest {
     @Test 
     public void testHashCode() {
     	final ArrayList<Residence> list1 = new ArrayList<>();
-    	list1.add(new Residence("Super Cool House"));
+    	list1.add(new Residence("Super Cool House", HousingType.APARTMENT));
     	final User otherUser = new User(NAME, EMAIL, list1);
 
     	assertTrue(myUser.hashCode() == otherUser.hashCode());
