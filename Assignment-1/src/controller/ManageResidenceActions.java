@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 
+import model.Project;
+import model.Residence;
 import model.User;
 
 /**
@@ -48,7 +50,9 @@ public final class ManageResidenceActions extends AbstractAction{
 				// TODO: choose residence controller
 				break;
 			case "Create":
-				// TODO: create residence controller
+				Residence res = new Residence("My Home");
+				res.addProject(new Project("test"));
+				myUser.addResidence(res);
 				break;
 		}
 	}

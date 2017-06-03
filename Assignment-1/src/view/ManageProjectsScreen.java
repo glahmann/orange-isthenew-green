@@ -3,13 +3,10 @@ package view;
 import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
 
+import controller.ManageResidenceActions;
+
 import javax.swing.JPanel;
 import java.awt.Font;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
-
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -22,12 +19,12 @@ import java.awt.Color;
 import javax.swing.JCheckBox;
 
 /**
- * Singleton for resident management screen.
+ * Singleton for project Management screen.
  * 
  * @author Donald Muffler
  * @version 20170524
  */
-public final class ManageResidenceScreen extends JScrollPane implements Observer {
+public final class ManageProjectsScreen extends JScrollPane {
 	// TODO: add an updatePanel method and observer which calls updatePanel.
 
 	/**
@@ -38,14 +35,13 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	/**
 	 * Singleton instance for Manage Residence screen.
 	 */
-	private static ManageResidenceScreen myResidenceScreen = null;
+	private static ManageProjectsScreen myProjectsScreen = null;
+	
 	
 	/**
 	 * Size of font on the page.
 	 */
 	private static final int FONT_SIZE = 20;
-	
-	private Map<String, JCheckBox> myCheckBoxes;
 	
 	private JButton myDeleteButton;
 	
@@ -55,28 +51,12 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	
 	private JButton myBackButton;
 	
-	private JLabel myNameTitle;
-	
-	private JLabel myTypeTitle;
-	
-	private JLabel myProjectsTitle;
-	
-	private JPanel myContentPanel;
-	
-	private JPanel myContentPanelHolder;
-	
-	private SpringLayout mySpringPanel;
-	
-	
 	/**
 	 * Private constructor to prevent instantiation.
 	 */
-	private ManageResidenceScreen() {
-		myContentPanelHolder = new JPanel(new BorderLayout());
-		setViewportView(myContentPanelHolder);
+	private ManageProjectsScreen() {
 		buildTopPanel();
 		buildContentPanel();
-		buildBottomPanel();
 	}
 	
 	public final void setAcion(final Action theAction) {
@@ -90,19 +70,11 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	 * Singleton getter for this instance. Creates an instance if one does not exist.
 	 * @return Singleton instance for ManageResidenceScreen.
 	 */
-	public static final ManageResidenceScreen getInstance() {
-		if (myResidenceScreen == null) {
-			myResidenceScreen = new ManageResidenceScreen();
+	public static final ManageProjectsScreen getInstance() {
+		if (myProjectsScreen == null) {
+			myProjectsScreen = new ManageProjectsScreen();
 		}
-		return myResidenceScreen;
-	}
-
-	@Override
-	public void update(Observable theObservable, Object theObject) {
-		if (theObject instanceof ArrayList) {
-			buildContentPanel();
-			updatePanel(theObject);
-		}
+		return myProjectsScreen;
 	}
 	
 	/**
@@ -122,30 +94,40 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	 * Builds the content panel that displays the residence information.
 	 */
 	private final void buildContentPanel() {
+		final JPanel contentPanelHolder = new JPanel(new BorderLayout());
+		setViewportView(contentPanelHolder);
 		
-		myContentPanel = new JPanel();
-		myContentPanel.setBackground(Color.GREEN);
-		myContentPanelHolder.add(myContentPanel);
-		mySpringPanel = new SpringLayout();
-		myContentPanel.setLayout(mySpringPanel);
+		final JPanel contentPanel = new JPanel();
+		contentPanel.setBackground(Color.GREEN);
+		contentPanelHolder.add(contentPanel);
+		final SpringLayout springPanel = new SpringLayout();
+		contentPanel.setLayout(springPanel);
 		
-		myNameTitle = new JLabel("Name");
-		myNameTitle.setFont(new Font("Times New Roman", Font.BOLD, FONT_SIZE));
-		mySpringPanel.putConstraint(SpringLayout.NORTH, myNameTitle, 10, SpringLayout.NORTH, myContentPanel);
-		mySpringPanel.putConstraint(SpringLayout.WEST, myNameTitle, 40, SpringLayout.WEST, myContentPanel);
-		myContentPanel.add(myNameTitle);
+		final JLabel nameLabel = new JLabel("Name");
+		nameLabel.setFont(new Font("Times New Roman", Font.BOLD, FONT_SIZE));
+		springPanel.putConstraint(SpringLayout.NORTH, nameLabel, 10, SpringLayout.NORTH, contentPanel);
+		springPanel.putConstraint(SpringLayout.WEST, nameLabel, 40, SpringLayout.WEST, contentPanel);
+		contentPanel.add(nameLabel);
 		
-		myTypeTitle = new JLabel("Type");
-		myTypeTitle.setFont(new Font("Times New Roman", Font.BOLD, FONT_SIZE));
-		mySpringPanel.putConstraint(SpringLayout.NORTH, myTypeTitle, 0, SpringLayout.NORTH, myNameTitle);
-		mySpringPanel.putConstraint(SpringLayout.WEST, myTypeTitle, 400, SpringLayout.EAST, myNameTitle);
-		myContentPanel.add(myTypeTitle);
+		final JLabel typeLabel = new JLabel("Type");
+		typeLabel.setFont(new Font("Times New Roman", Font.BOLD, FONT_SIZE));
+		springPanel.putConstraint(SpringLayout.NORTH, typeLabel, 0, SpringLayout.NORTH, nameLabel);
+		springPanel.putConstraint(SpringLayout.WEST, typeLabel, 400, SpringLayout.EAST, nameLabel);
+		contentPanel.add(typeLabel);
 		
-		myProjectsTitle = new JLabel("Projects");
-		myProjectsTitle.setFont(new Font("Times New Roman", Font.BOLD, FONT_SIZE));
-		mySpringPanel.putConstraint(SpringLayout.NORTH, myProjectsTitle, 0, SpringLayout.NORTH, myNameTitle);
-		mySpringPanel.putConstraint(SpringLayout.WEST, myProjectsTitle, 400, SpringLayout.EAST, myTypeTitle);
-		myContentPanel.add(myProjectsTitle);
+		final JLabel projectsLabel = new JLabel("Projects");
+		projectsLabel.setFont(new Font("Times New Roman", Font.BOLD, FONT_SIZE));
+		springPanel.putConstraint(SpringLayout.NORTH, projectsLabel, 0, SpringLayout.NORTH, nameLabel);
+		springPanel.putConstraint(SpringLayout.WEST, projectsLabel, 400, SpringLayout.EAST, typeLabel);
+		contentPanel.add(projectsLabel);
+		
+		final ButtonGroup buttonGroup = new ButtonGroup();
+		// will change to a for loop implementation to read in data after it is parsed.
+		contentPanel.add(populateContentPanel("Zira's House", 50, springPanel, nameLabel, buttonGroup, true, contentPanel, 1));
+		contentPanel.add(populateContentPanel("Parents' Basement", 50, springPanel, typeLabel, buttonGroup, false, contentPanel, 1));
+		contentPanel.add(populateContentPanel("1", 50, springPanel, projectsLabel, buttonGroup, false, contentPanel, 1));
+		
+		buildBottomPanel(contentPanelHolder);
 	}
 	
 	/**
@@ -183,7 +165,7 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	 * Builds the bottom panel which contains the action buttons.
 	 * @param thePanelHolder the panel where the buttons reside.
 	 */
-	private final void buildBottomPanel() {
+	private final void buildBottomPanel(final JPanel thePanelHolder) {
 		final JPanel bottomPanel = new JPanel();
 		bottomPanel.setBackground(Color.ORANGE);
 		
@@ -193,18 +175,6 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 		bottomPanel.add(myDeleteButton);
 		bottomPanel.add(myChooseButton);
 		bottomPanel.add(myCreateButton);
-		myContentPanelHolder.add(bottomPanel, BorderLayout.SOUTH);
-	}
-	
-	
-	private final void updatePanel(Object theObject) {
-		ArrayList<String> resInfo = (ArrayList<String>) theObject;
-		final ButtonGroup checkBoxGroup = new ButtonGroup();
-		for (int i = 0; i < resInfo.size(); i += 3) {
-			myContentPanel.add(populateContentPanel(resInfo.get(i), 50, mySpringPanel, myNameTitle, checkBoxGroup, true, myContentPanel, (i + 1) / 3 + 1));
-			myContentPanel.add(populateContentPanel(resInfo.get(i + 1), 50, mySpringPanel, myTypeTitle, checkBoxGroup, false, myContentPanel, (i + 1) / 3 + 1));
-			myContentPanel.add(populateContentPanel(resInfo.get(i + 2), 50, mySpringPanel, myProjectsTitle, checkBoxGroup, false, myContentPanel, (i + 1) / 3 + 1));
-		}
-		myContentPanel.revalidate();
+		thePanelHolder.add(bottomPanel, BorderLayout.SOUTH);
 	}
 }

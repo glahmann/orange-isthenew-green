@@ -129,6 +129,8 @@ final public class User extends Observable {
 	 */
 	public final void addResidence(final Residence theResidence) {
 		myResidences.add(theResidence);
+		setChanged();
+		notifyObservers(resInfo());
 	}
 	
 	/**
@@ -141,7 +143,21 @@ final public class User extends Observable {
 		if(myResidences.contains(theResidence)) {
 			myResidences.remove(theResidence);
 		}
-	} 
+		setChanged();
+		notifyObservers(resInfo());
+	}
+	
+	private final ArrayList<String> resInfo() {
+		final ArrayList<String> list = new ArrayList<String>();
+		
+		for (Residence currentRes: myResidences) {
+			list.add(currentRes.getName());
+			list.add("Need Type");
+			list.add(String.valueOf(currentRes.getProjects().size()));
+		}
+		return list;
+	}
+	
     /**
      * {@inheritDoc}
      * 
