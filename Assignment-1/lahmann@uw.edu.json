@@ -1,0 +1,28 @@
+{
+  "User Name" : "Garrett",
+  "User Email" : "lahmann@uw.edu",
+  "Residences" : [ {
+    "Residence Name" : "G-house",
+    "Projected Bill" : 0.0,
+    "Bills" : [ ],
+    "Projects" : [ {
+      "Project Name" : "kitchen-reno",
+      "Savings" : 0.0,
+      "Cost" : 0.0,
+      "Items" : [ ]
+    } ],
+    "Residence Type" : "HOUSE"
+  } ],
+  "currentResidence" : {
+    "Residence Name" : "G-house",
+    "Projected Bill" : 0.0,
+    "Bills" : [ ],
+    "Projects" : [ {
+      "Project Name" : "kitchen-reno",
+      "Savings" : 0.0,
+      "Cost" : 0.0,
+      "Items" : [ ]
+    } ],
+    "Residence Type" : "HOUSE"
+  }
+}
