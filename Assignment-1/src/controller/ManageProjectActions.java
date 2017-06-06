@@ -4,19 +4,14 @@ import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
 import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.JCheckBox;
 
-import model.HousingType;
 import model.Project;
-import model.Residence;
 import model.User;
 import view.CreateProject;
-import view.CreateResidenceScreen;
 import view.CustomOptionFrame;
 import view.Gui;
 import view.ManageProjectScreen;
-import view.ManageResidenceScreen;
 
 /**
  * Actions for the manage residence screen.
@@ -51,6 +46,7 @@ public final class ManageProjectActions extends AbstractAction{
 		
 		switch(whichButton) {
 			case "Back":
+				myUser.updateInfo();
 				Gui.getInstance().displayPanel("Manage Residences");
 				break;
 			case "Delete Project":
@@ -59,7 +55,7 @@ public final class ManageProjectActions extends AbstractAction{
 				for (String proName: tempMap.keySet()) {
 					if (tempMap.get(proName).isSelected()) {
 						if (whichButton.equals("Delete Project")) {
-							myUser.removeResidence(proName);
+							myUser.getCurrentResidence().removeProject(proName);
 						} else {
 							myUser.setCurrentResidence(proName);
 							Gui.getInstance().displayPanel("Market");
@@ -74,9 +70,9 @@ public final class ManageProjectActions extends AbstractAction{
 				final Project pro = new Project(CreateProject.getInstance().getProjectNameField().getText());
 				myUser.getCurrentResidence().addProject(pro);
                 CustomOptionFrame.getInstance().dispose();
+                
 				//Gui.getInstance().displayPanel("Market");
 				break;
 		}
 	}
-
 }

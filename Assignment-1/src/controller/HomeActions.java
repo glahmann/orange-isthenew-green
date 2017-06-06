@@ -59,6 +59,7 @@ public final class HomeActions extends AbstractAction {
 			    Gui.getInstance().displayPanel("Calculator");
 				break;
 			case "Manage Residences":
+				myUser.updateInfo();
 				Gui.getInstance().displayPanel("Manage Residences");
 				break;
 			case "Save/Exit":
