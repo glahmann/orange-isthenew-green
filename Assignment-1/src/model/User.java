@@ -181,15 +181,9 @@ final public class User extends Observable {
 		notifyObservers(resInfo());
 	}
 	
-	private final ArrayList<String> resInfo() {
-		final ArrayList<String> list = new ArrayList<String>();
-		
-		for (Residence currentRes: myResidences) {
-			list.add(currentRes.getName());
-			list.add(currentRes.getType().name());
-			list.add(String.valueOf(currentRes.getProjects().size()));
-		}
-		return list;
+	public final void updateInfo() {
+		setChanged();
+		notifyObservers(resInfo());
 	}
 	
     /**
@@ -235,4 +229,15 @@ final public class User extends Observable {
         
         return Objects.hash(myName, myEmail, myResidences);
     }
+    
+	private final ArrayList<String> resInfo() {
+		final ArrayList<String> list = new ArrayList<String>();
+		
+		for (Residence currentRes: myResidences) {
+			list.add(currentRes.getName());
+			list.add(currentRes.getType().name());
+			list.add(String.valueOf(currentRes.getProjects().size()));
+		}
+		return list;
+	}
 }
