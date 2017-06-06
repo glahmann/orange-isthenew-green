@@ -4,6 +4,8 @@ package controller;
  */
 
 import java.awt.EventQueue;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 import model.User;
 import view.*;
@@ -37,7 +39,11 @@ public final class Main {
     	EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-            	start();
+            	User user = new User();
+            	final MenuActions menuAction = new MenuActions(user);
+            	LoginPane.getInstance().setAction(menuAction);
+            	CustomOptionFrame.getInstance().addPanel(LoginPane.getInstance(), "Login");
+            	CustomOptionFrame.getInstance().displayPanel("Login");
             }
         });
     }
@@ -46,8 +52,12 @@ public final class Main {
      * @author Donald Muffler
      * Helper method for instantiating and passing dependencies.
      */
-    private final static void start() {
-    	final User user = new User(); 
+    public final static void start(User user) {
+    	// displays login page.
+//    	CustomOptionFrame.getInstance().displayPanel("Login");
+    	
+    	
+    	
     	
     	// add user data to actions.
     	final HomeActions homeAction = new HomeActions(user);
@@ -82,15 +92,12 @@ public final class Main {
     	Gui.getInstance().addPanel(ManageProjectScreen.getInstance(), "Manage Projects");
 		
     	// add panels to the custom dialogue frame.
-    	CustomOptionFrame.getInstance().addPanel(LoginPane.getInstance(), "Login");
+//    	CustomOptionFrame.getInstance().addPanel(LoginPane.getInstance(), "Login");
     	CustomOptionFrame.getInstance().addPanel(SetupPane.getInstance(), "Setup");
     	CustomOptionFrame.getInstance().addPanel(CreateProject.getInstance(), "Create Project");
     	CustomOptionFrame.getInstance().addPanel(CreateResidenceScreen.getInstance(), "Create Residence");
     	
     	// add observers.
     	user.addObserver(ManageResidenceScreen.getInstance());
-    	
-    	// displays login page.
-    	CustomOptionFrame.getInstance().displayPanel("Login");
     }
 }

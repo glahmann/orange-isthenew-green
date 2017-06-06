@@ -51,8 +51,8 @@ public final class HomeActions extends AbstractAction {
                 CustomOptionFrame.getInstance().dispose();
 				break;
 			case "Enter an Energy Bill?":
-				final BillPane bill = new BillPane();
-				JOptionPane.showMessageDialog(Gui.getInstance(), bill);
+				//final BillPane bill = new BillPane();
+				//JOptionPane.showMessageDialog(Gui.getInstance(), bill);
 				// TODO: Add to user.
 				break;
 			case "Statistics":

@@ -5,6 +5,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
@@ -64,8 +66,17 @@ public final class MenuActions extends AbstractAction {
 				Gui.getInstance().displayPanel("Home");
 				break;
 			case "Login":
-				// TODO: import here.
-				CustomOptionFrame.getInstance().dispose();
+					CustomOptionFrame.getInstance().dispose();
+					String fileName = LoginPane.getInstance().getEmailField().getText();
+				    final File file = new File(fileName + ".json");
+				    if (file.exists()) {
+						User user = JSONSupport.readJSON(file);
+						Main.start(user);
+				    } else {
+				    	System.exit(0);
+				    }
+//					User user = JSONSupport.readJSON(file);
+//					Main.start(user);
 				Gui.getInstance().displayPanel("Home");
 				break;
 			case "Home":

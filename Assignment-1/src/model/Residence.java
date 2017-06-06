@@ -15,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author Donald Muffler
  * @version 20170516
  */
-@JsonPropertyOrder({"Residence Name", "Projected Bill", "Bills", "Projects"})
+@JsonPropertyOrder({"Residence Name", "Residence Type", "Projected Bill", "Bills", "Projects"})
 final public class Residence extends Observable {
 	
 	/**
