@@ -1,17 +1,23 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
 
+import model.HousingType;
+import model.Item;
+import model.Market;
 import model.Project;
 import model.User;
 import view.CreateProject;
 import view.CustomOptionFrame;
 import view.Gui;
 import view.ManageProjectScreen;
+import view.ManageResidenceScreen;
+import view.ProjectMarket;
 
 /**
  * Actions for the manage residence screen.
@@ -70,7 +76,17 @@ public final class ManageProjectActions extends AbstractAction{
 				final Project pro = new Project(CreateProject.getInstance().getProjectNameField().getText());
 				myUser.getCurrentResidence().addProject(pro);
                 CustomOptionFrame.getInstance().dispose();
-                break;
+
+				//Gui.getInstance().displayPanel("Market");
+				break;
+			case "UPDATE CART":
+			    final Market market = ProjectMarket.getInstance().getMarket();
+			    final ArrayList<Item> selected = market.getSelected();
+			    final Project projectUp = myUser.getCurrentResidence().getCurrentProject();
+			    for (Item i: selected) {
+			        projectUp.addItem(i);
+			    }
+			    break;
 		}
 	}
 }

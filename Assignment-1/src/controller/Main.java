@@ -11,7 +11,9 @@ import view.*;
  * Start the GUI application.
  * 
  * @author Yaro Salo
- * @version April 12, 2017
+ * @author Donald Muffler
+ * @author Garrett Lahmann
+ * @version June 6, 2017
  */
 public final class Main {
 
@@ -74,6 +76,7 @@ public final class Main {
     	// add project action to project panel
     	ManageProjectScreen.getInstance().setAcion(projectAction);
     	CreateProject.getInstance().setAction(projectAction);
+    	ProjectMarket.getInstance().setAction(projectAction);
     	
     	// add JMenu to the main frame.
     	final ThisMenuBar menu = new ThisMenuBar(menuAction);

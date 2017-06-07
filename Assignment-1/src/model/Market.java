@@ -5,12 +5,17 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.swing.JComboBox;
 
 /**
  * A class to hold items from the database matching the selected type.
  * 
  * @author Garrett Lahmann
- * @version 30 May 2016
+ * @version 6 June 2016
  */
 public class Market {
 
@@ -34,6 +39,9 @@ public class Market {
      */
     private final ArrayList<Item> myWindows;
     
+    
+    private Map<String, JComboBox<Integer>> myMap;
+    
     /**
      * Creates a list of items 
      */
@@ -42,6 +50,7 @@ public class Market {
         myInsulation = new ArrayList<Item>();
         myLighting = new ArrayList<Item>();
         myWindows = new ArrayList<Item>();
+        myMap = new HashMap<String, JComboBox<Integer>>();
         populateLists();
     }
     
@@ -114,4 +123,50 @@ public class Market {
         }
         return items;
     }
+    
+    /**
+     * 
+     * @param theName
+     * @param theCounter
+     */
+    public void addItemPair(final String theName, final JComboBox<Integer> theCounter) {
+        myMap.put(theName, theCounter);
+    }
+    
+    /**
+     * 
+     * @return a list of the selected items.
+     */
+    public ArrayList<Item> getSelected() {
+        ArrayList<Item> selected = new ArrayList<Item>();
+        try {
+            Connection conn = null;
+            Statement stmt = null;
+            Class.forName("org.sqlite.JDBC");
+            conn = DriverManager.getConnection("jdbc:sqlite:item.db");
+            conn.setAutoCommit(false);
+            stmt = conn.createStatement();
+            
+            for(Entry<String, JComboBox<Integer>> entry : myMap.entrySet()) {
+                int count = (int) entry.getValue().getSelectedItem();
+                if (count > 0) {
+                    ResultSet rs = stmt.executeQuery("SELECT * FROM item WHERE name='" + entry.getKey() + "';");
+                    Item itm = new Item(rs.getString("type"), rs.getString("name"),
+                                        rs.getDouble("cost"), rs.getDouble("evalue"));
+                    for (int i = 1; i <= count; i++) {
+                        selected.add(itm);
+                    }
+                }
+            }
+            
+            stmt.close();
+            conn.close();
+            
+        } catch (Exception theEx) {
+            System.err.println( theEx.getClass().getName() + ": " + theEx.getMessage() );
+            System.exit(0);
+        }
+        return selected;
+    }
+    
 }
