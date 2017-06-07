@@ -10,7 +10,127 @@
       "Project Name" : "dsfsdf",
       "Savings" : 0.0,
       "Cost" : 0.0,
-      "Items" : [ ]
+      "Items" : [ {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      } ]
+    }, {
+      "Project Name" : "sdfsdf",
+      "Savings" : 0.0,
+      "Cost" : 0.0,
+      "Items" : [ {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "LG Eco Bottom Freezer Refrigerator",
+        "Item Cost" : 1147.5,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 1000.0
+      }, {
+        "Item Name" : "LG Eco Bottom Freezer Refrigerator",
+        "Item Cost" : 1147.5,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 1000.0
+      }, {
+        "Item Name" : "LG Eco Bottom Freezer Refrigerator",
+        "Item Cost" : 1147.5,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 1000.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      } ]
     } ]
   } ]
 }
