@@ -53,7 +53,7 @@ final public class JSONSupportTest {
     	myUser = new User(USER_NAME, USER_EMAIL);
     	Project project = new Project("Kind of Cool Project");
     	Item item = new Item("Kind of Cool Item", "Kind of Cool Item", 100, 12);
-    	Bill bill = new Bill("Kind of Cool Bill", 50, 1, 2017, 2, 2017);
+    	Bill bill = new Bill(50, 1, 2017, 2, 2017, 100);
     	Residence house = new Residence("Kind of Cool House", HousingType.APARTMENT);
     	project.addItem(item);
     	

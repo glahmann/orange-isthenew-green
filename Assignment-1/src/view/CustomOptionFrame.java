@@ -56,6 +56,7 @@ public final class CustomOptionFrame extends JFrame {
 		pack();
         setLocation(SCREEN_SIZE.width / 2 - getWidth() / 2, 
         		SCREEN_SIZE.height / 2 - getHeight() / 2);
+        setTitle(thePanelTag);
 		setVisible(true);
 	}
 	

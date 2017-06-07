@@ -114,9 +114,10 @@ final public class Residence extends Observable {
 	public final ArrayList<Bill> getBills() {
 		ArrayList<Bill> copyBills = new ArrayList<>();
 		for(Bill b: myBills) {
-			copyBills.add(new Bill(b.getName(), b.getAmount(),
+			copyBills.add(new Bill(b.getAmount(),
 					b.getBeginMonth(), b.getBeginYear(),
-					b.getEndMonth(), b.getEndYear()));
+					b.getEndMonth(), b.getEndYear(),
+					b.getEValue()));
 		}
 		return copyBills;
 	}

@@ -10,12 +10,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author Donald Muffler
  * @version 20170516
  */
-@JsonPropertyOrder({"Bill Name", "Bill Ammount", "Start Month", 
-	"Start Year", "End Month", "End Year"})
+@JsonPropertyOrder({"Bill Ammount", "Start Month", 
+	"Start Year", "End Month", "End Year", "EValue"})
 final public class Bill {
-	
-	/** Name of the bill. */
-	final String myName;
 	
 	/** Amount of the bill. */
 	private final double myAmount;
@@ -31,6 +28,9 @@ final public class Bill {
 
 	/** End year of the bill. */
 	private final int myEndYear;
+	
+	/** EValue per kWh. **/
+	private final double myEValue;
 
 	/**
 	 * Constructs the bill with an amount and the dates associated.
@@ -39,29 +39,21 @@ final public class Bill {
 	 * @param theBeginYear begin date of the bill.
 	 * @param theEndMonth end date of the bill.
 	 * @param theEndYear end date of the bill.
+	 * @param theEValue the evalue per kWh.
 	 */
 	@JsonCreator
-	public Bill(@JsonProperty("Bill Name")final String theName, 
-			@JsonProperty("Bill Ammount")final double theAmount,
+	public Bill(@JsonProperty("Bill Ammount")final double theAmount,
 			@JsonProperty("Start Month")final int theBeginMonth,
 			@JsonProperty("Start Year")final int theBeginYear,
 			@JsonProperty("End Month")final int theEndMonth,
-			@JsonProperty("End Year")final int theEndYear){
-		myName = theName;
+			@JsonProperty("End Year")final int theEndYear,
+			@JsonProperty("EValue")final double theEValue){
 		myAmount = theAmount;
 		myBeginMonth = theBeginMonth;
 		myBeginYear = theBeginYear;
 		myEndMonth = theEndMonth;
 		myEndYear = theEndYear;
-	}
-	
-	/**
-	 * Getter for the name of the bill.
-	 * @return the bill's name.
-	 */
-	@JsonProperty("Bill Name")
-	public final String getName() {
-		return myName;
+		myEValue = theEValue;
 	}
 
 	/**
@@ -109,6 +101,15 @@ final public class Bill {
 		return myEndYear;
 	}
 	
+	/**
+	 * Getter for the eValue of the bill.
+	 * @return the eValue of the bill.
+	 */
+	@JsonProperty("EValue")
+	public final double getEValue() {
+		return myEValue;
+	}
+	
     /**
      * {@inheritDoc}
      * 
@@ -133,11 +134,11 @@ final public class Bill {
             final Bill otherBill = (Bill) theOther; //theOther can be safely casted. 
            
             //if all fields are equal the objects are equal
-            returnValue = Objects.equals(myName, otherBill.myName)
-                       && Objects.equals(myBeginMonth, otherBill.myBeginMonth)
+            returnValue = Objects.equals(myBeginMonth, otherBill.myBeginMonth)
                        && Objects.equals(myBeginYear, otherBill.myBeginYear)
                        && Objects.equals(myEndMonth, otherBill.myEndMonth)
-                       && Objects.equals(myEndYear, otherBill.myEndYear);
+                       && Objects.equals(myEndYear, otherBill.myEndYear)
+                       && Objects.equals(myEValue, otherBill.myEValue);
         } 
         
         return returnValue;
@@ -153,6 +154,6 @@ final public class Bill {
     @Override
     public int hashCode() {
         
-        return Objects.hash(myName, myBeginMonth, myBeginYear, myEndMonth, myEndYear);
+        return Objects.hash(myBeginMonth, myBeginYear, myEndMonth, myEndYear, myEValue);
     }
 }
