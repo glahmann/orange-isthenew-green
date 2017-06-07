@@ -19,7 +19,7 @@ public class CartActions extends AbstractAction{
 	
 	public CartActions(final Project theProject)  {
 		myProject = theProject;
-		
+		myCartPanel = new CartPane();
 	}
 
 	@Override

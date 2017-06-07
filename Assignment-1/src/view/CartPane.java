@@ -125,7 +125,7 @@ public class CartPane extends JPanel implements Observer{
     public final void setAction(final Action theAction) {
     	myRemoveButton.addActionListener(theAction);
     	myConfirmButton.addActionListener(theAction);
-    	myItemList.addListSelectionListener(arg0);
+    	//myItemList.addListSelectionListener(arg0);
     }
 
 	@Override

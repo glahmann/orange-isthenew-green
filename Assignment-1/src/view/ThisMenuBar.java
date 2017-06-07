@@ -9,6 +9,7 @@ import javax.swing.JMenuItem;
  * The menu bar for the gui.
  * 
  * @author Donald Muffler
+ * @author Zira Cook
  * @version 20170527
  */
 public final class ThisMenuBar extends JMenuBar {
@@ -18,17 +19,25 @@ public final class ThisMenuBar extends JMenuBar {
 	 */
 	private final Action myMenuAction;
 
+    /**
+     * Users name for the user menu option.
+     */
+    private final String myUserName;
+
 	/**
 	 * Constructs the menu.
 	 * @param theAction action associated to the menu.
 	 */
-	public ThisMenuBar(final Action theAction) {
+	public ThisMenuBar(final Action theAction, final String theUserName) {
 		myMenuAction = theAction;
+        myUserName = theUserName;
 		buildMenu();
 	}
 
 	/**
 	 * Builds the menu.
+     * @author Donald Muffler
+     * @author Zira Cook
 	 */
 	private final void buildMenu() {
 		final JMenu fileMenu = new JMenu("File");
@@ -40,8 +49,17 @@ public final class ThisMenuBar extends JMenuBar {
 
 		final JMenu userMenu = new JMenu("User");
 		userMenu.setMnemonic('U');
-		
-		userMenu.add(populateMenu("Zira"));
+
+        //Displays the users name as a disabled item
+        JMenuItem userDisplayName;
+		if(myUserName != null && !myUserName.equals("")) {
+            userDisplayName = new JMenuItem(myUserName);
+        } else {
+            userDisplayName = new JMenuItem("Default");
+        }
+
+        userMenu.add(userDisplayName);
+        userDisplayName.setEnabled(false);
 
 		add(fileMenu);
 		add(userMenu);

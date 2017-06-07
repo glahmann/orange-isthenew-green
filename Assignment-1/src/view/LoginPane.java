@@ -19,7 +19,7 @@ import net.miginfocom.swing.MigLayout;
 public class LoginPane extends JPanel{
 	
 	/**
-	 * 
+	 * Starting login pane for singleton use.
 	 */
 	private static LoginPane myLoginPane = null;
 	
@@ -27,11 +27,15 @@ public class LoginPane extends JPanel{
 	  * Size of email text field.
 	  */
 	private static final int TEXT_FIELD_SIZE = 15;
- 	
-	
+
+	/**
+	 * Button to login.
+	 */
  	private final JButton myLoginButton;
- 	
- 	
+
+    /**
+     * Button to create a new user.
+     */
  	private final JButton myNewUserButton;
 
  	/**
@@ -41,7 +45,6 @@ public class LoginPane extends JPanel{
  
 	/**
 	 * Constructs the login pane.
-	 * @param theAction the action that deals with logging in or setting up an account.
 	 */
 	private LoginPane() {
 		myEmailField = new JTextField(TEXT_FIELD_SIZE);
@@ -49,26 +52,37 @@ public class LoginPane extends JPanel{
 		myNewUserButton = new JButton("New User?");
 		buildLogin();
 	}
-	
+
+    /**
+     * @return a singleton instance of the login pane
+     */
 	public static final LoginPane getInstance() {
 		if (myLoginPane == null) {
 			myLoginPane = new LoginPane();
 		}
 		return myLoginPane;
 	}
-	
+
+    /**
+     * Sets actions for the buttons.
+     * @param theAction actions for all the buttons and email field
+     */
 	public final void setAction(final Action theAction) {
 		myLoginButton.addActionListener(theAction);
 		myNewUserButton.addActionListener(theAction);
 		myEmailField.addActionListener(theAction);
 	}
-	
-	
+
+    /**
+     * @return text field for the email
+     */
 	public final JTextField getEmailField() {
 		return myEmailField;
 	}
 
-	
+    /**
+     * Builds the login pane.
+     */
 	private final void buildLogin() {
 		setLayout(new MigLayout(new LC().align("center", "center")));
 		final JPanel topPanel = new JPanel(new MigLayout());
