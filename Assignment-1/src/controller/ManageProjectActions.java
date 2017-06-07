@@ -103,8 +103,7 @@ public final class ManageProjectActions extends AbstractAction{
 			        projectUp.addItem(i);
 			    }
 			    break;
-            case "Cancel":
-
+            
 		}
 	}
 }
