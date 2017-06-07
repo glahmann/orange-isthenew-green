@@ -79,6 +79,7 @@ public final class Main {
     	ManageProjectScreen.getInstance().setAcion(projectAction);
     	CreateProject.getInstance().setAction(projectAction);
     	ProjectMarket.getInstance().setAction(projectAction);
+    	BillPane.getInstance().setActions(projectAction);
     	
     	// add JMenu to the main frame.
     	final ThisMenuBar menu = new ThisMenuBar(menuAction, user.getName());
@@ -96,12 +97,13 @@ public final class Main {
     	CustomOptionFrame.getInstance().addPanel(SetupPane.getInstance(), "Setup");
     	CustomOptionFrame.getInstance().addPanel(CreateProject.getInstance(), "Create Project");
     	CustomOptionFrame.getInstance().addPanel(CreateResidenceScreen.getInstance(), "Create Residence");
+    	CustomOptionFrame.getInstance().addPanel(BillPane.getInstance(), "Bill Pane");
     	
     	// add observers.
     	user.addObserver(ManageResidenceScreen.getInstance());
 
         //Set close operation for GUI, so it writes to JSON
-        Gui.getInstance().setCloseOperaion(user);
-
+        Gui.getInstance().setCloseOperation(user);
+        
     }
 }

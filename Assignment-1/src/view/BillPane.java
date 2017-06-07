@@ -1,5 +1,6 @@
 package view;
 
+import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -14,66 +15,75 @@ public class BillPane extends JPanel {
 	private static BillPane myBillPane = null;
 	
     /** Size of email text field. */
-    private static final int TEXT_FIELD_SIZE = 15;
+    private static final int TEXT_FIELD_SIZE = 11;
     
-    /** Amount of the bill. */
-    private final int myBillCost;
+    private final JTextField myBillCost;
     
-    /** Start month of the bill. */
-    private final int myStartMonth;
+    private final JTextField myStartMonth;
     
-    /** end month of the bill. */
-    private final int myEndMonth;
+    private final JTextField myEndMonth;
     
-    /** End year of the bill.*/
-    private final int myEndYear;
+    private final JTextField myStartYear;
     
-    /** Start year for the bill. */
-    private final int myStartYear;
+    private final JTextField myEndYear;
     
-    /**
-     * Name for the bill.
-     */
-    private final String myBillName;
+    private final JTextField myEValue;
+    
+    private final JButton myCancelButton;
+    
+    private final JButton myAddButton;
 
     /**
      * Constructor for the bill pane.
      */
     private BillPane() {
-    	setLayout(new MigLayout());
-
-        add(new JLabel("Total Bill Cost: $"), "cell 0 0");
-        final JTextField enterBillAmmount = new JTextField(TEXT_FIELD_SIZE);
-        add(enterBillAmmount, "cell 1 0");
-
-        add(new JLabel("Start Month (MM): "), "cell 0 2");
-        final JTextField enterBeginMonth = new JTextField(10);
-        add(enterBeginMonth, "cell 1 2");
-        add(new JLabel("Year (YYYY): "), "cell 2 2");
-        final JTextField enterBeginYear = new JTextField(10);
-        add(enterBeginYear, "cell 3 2");
-
-        add(new JLabel("End Month (MM): "), "cell 0 4");
-        final JTextField enterEndMonth = new JTextField(10);
-        add(enterEndMonth, "cell 1 4");
-        add(new JLabel("Year (YYYY): "), "cell 2 4");
-        final JTextField enterEndYear = new JTextField(10);
-        add(enterEndYear, "cell 3 4");
+    	setLayout(new MigLayout(new LC().align("center", "center")));
+    	final JPanel topPanel = new JPanel(new MigLayout(new LC().wrapAfter(1)));
+    	
+    	final JPanel panel1 = new JPanel(new MigLayout());
+        panel1.add(new JLabel("Total Bill Cost: $"));
+        myBillCost = new JTextField(TEXT_FIELD_SIZE);
+        panel1.add(myBillCost, "gapleft 64");
+        topPanel.add(panel1);
         
-       myBillCost = Integer.parseInt(enterBillAmmount.getText());
-       
-       myStartMonth = Integer.parseInt(enterBeginMonth.getText());
-       myStartYear = Integer.parseInt(enterBeginYear.getText());
-       myEndMonth = Integer.parseInt(enterEndMonth.getText());
-       myEndYear = Integer.parseInt(enterEndYear.getText());
-       myBillName = String.valueOf(myStartMonth+myStartYear+myEndMonth+myEndYear); //TODO: change or remove?
+        final JPanel panel2 = new JPanel();
+        panel2.add(new JLabel("Start Month/Year MM YYYY: "));
+        myStartMonth = new JTextField(5);
+        panel2.add(myStartMonth, "cell 1 2");
+        myStartYear = new JTextField(5);
+        panel2.add(myStartYear);
+        topPanel.add(panel2);
+
+        final JPanel panel3 = new JPanel(new MigLayout());
+        panel3.add(new JLabel("End Month/Year MM YYYY: "));
+        myEndMonth = new JTextField(5);
+        panel3.add(myEndMonth, "gapleft 6");
+        myEndYear = new JTextField(5);
+        panel3.add(myEndYear);
+        topPanel.add(panel3);
+        
+        final JPanel panel4 = new JPanel(new MigLayout());
+        panel4.add(new JLabel("eValue per kWh: "));
+        myEValue = new JTextField(5);
+        panel4.add(myEValue, "gapleft 90");
+
+        topPanel.add(panel4);
+        
+        final JPanel buttonPanel = new JPanel(new MigLayout());
+        myCancelButton = new JButton("Cancel");
+        buttonPanel.add(myCancelButton, "gapleft 65");
+        myAddButton = new JButton("Add Bill");
+        buttonPanel.add(myAddButton);
+        topPanel.add(buttonPanel);
+        
+        add(topPanel);
     }
 
     /**
      * Gets an instance of the pane
      * @return a singleton
      */
-    public final BillPane getInstance() {
+    public final static BillPane getInstance() {
     	if (myBillPane == null) {
     		myBillPane = new BillPane();
     	}
@@ -81,15 +91,16 @@ public class BillPane extends JPanel {
     }
     
     public final void setActions(final Action theAction) {
-    	
+    	myCancelButton.addActionListener(theAction);
+    	myAddButton.addActionListener(theAction);
     }
     
     /**
      * Getter for bill amount.
      * @return bill amount.
      */
-    public final int getBillCost() {
-    	return myBillCost;
+    public final double getBillCost() {
+    	return Double.parseDouble(myBillCost.getText());
     }
     
     /**
@@ -97,7 +108,7 @@ public class BillPane extends JPanel {
      * @return start month.
      */
     public final int getStartMonth() {
-    	return myStartMonth;
+    	return Integer.parseInt(myStartMonth.getText());
     }
 
     /**
@@ -105,7 +116,7 @@ public class BillPane extends JPanel {
      * @return end month.
      */
     public final int getEndMonth() {
-    	return myEndMonth;
+    	return Integer.parseInt(myEndMonth.getText());
     }
     
     /**
@@ -113,15 +124,7 @@ public class BillPane extends JPanel {
      * @return end year.
      */
     public final int getEndYear() {
-    	return myEndYear;
-    }
-    
-    /**
-     * Getter for bill name.
-     * @return bill name.
-     */
-    public final String getBillName() {
-    	return myBillName;
+    	return Integer.parseInt(myEndYear.getText());
     }
     
     /**
@@ -129,6 +132,10 @@ public class BillPane extends JPanel {
      * @return start year.
      */
     public final int getStarYear() {
-    	return myStartYear;
+    	return Integer.parseInt(myStartYear.getText());
+    }
+    
+    public final double getEValue() {
+    	return Double.parseDouble(myEValue.getText());
     }
 }

@@ -77,6 +77,9 @@ public final class ManageProjectActions extends AbstractAction{
                 CustomOptionFrame.getInstance().dispose();
 				Gui.getInstance().displayPanel("Market");
 				break;
+			case "Enter an Energy Bill?":
+				CustomOptionFrame.getInstance().displayPanel("Bill Pane");
+				break;
 			case "UPDATE CART":
 			    final Market market = ProjectMarket.getInstance().getMarket();
 			    final ArrayList<Item> selected = market.getSelected();
