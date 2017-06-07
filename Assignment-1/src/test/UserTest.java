@@ -68,17 +68,7 @@ final public class UserTest {
     	res.add(new Residence("Super Cool House", HousingType.APARTMENT));
     	assertEquals("getResidences() doesn't return the expected result", myUser.getResidences(), res);
     }
-   
-    /** 
-     * Test that getResidences() returns a copy not the same object. //Not done
-     * @author Yaro Salo
-     */
-    @Test
-    public void testGetResidencesDeepCopy() {
-    	ArrayList<Residence> res = myUser.getResidences();
-    	assertFalse("Get residences does not return a copy", myUser.getResidences() == res);
-    }
-    
+       
     @Test
     public void testSetName() throws Exception {
         final String difName = "Jimmy John";
