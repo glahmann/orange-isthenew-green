@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -17,7 +16,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @version 20170516
  */
 @JsonPropertyOrder({"Residence Name", "Residence Type", "Projected Bill", "Bills", "Projects"})
-//@JsonIgnoreProperties({"currentProject"})
 final public class Residence extends Observable {
 	
 	/**
@@ -206,8 +204,12 @@ final public class Residence extends Observable {
 		}
 	}
 	
-	public final void setCurrentProject(final Project theProject) {
-		myCurrentProject = theProject;
+	public final void setCurrentProject(final String theProjectName) {
+		for (Project currentPro: myProjects) {
+			if (theProjectName.equals(currentPro.getName())) {
+				myCurrentProject = currentPro;
+			}
+		}
 	}
 	
 	public final Project getCurrentProject() {
