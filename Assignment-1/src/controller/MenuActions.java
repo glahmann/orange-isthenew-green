@@ -6,6 +6,8 @@ package controller;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
+
 import model.Residence;
 import model.User;
 import view.AboutPane;

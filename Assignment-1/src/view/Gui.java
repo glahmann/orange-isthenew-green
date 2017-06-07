@@ -62,7 +62,7 @@ final public class Gui extends JFrame {
      * Writes user data to JSON
      * @author Zira Cook
      */
-    public final void setCloseOperaion(final User theUser) {
+    public final void setCloseOperation(final User theUser) {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(final WindowEvent theEvent) {
