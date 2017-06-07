@@ -101,9 +101,10 @@ public class ResidenceTest {
 	public void testGetBills() {
 		final ArrayList<Bill> b = new ArrayList<>();
 	
-    	b.add(new Bill(50, 1, 2017, 2, 2017, 10));
+    	b.add(new Bill(50, 1, 2017, 2, 2017, 100));
     	assertTrue("getBills() doesn't return the expected result",
     			myHouse.getBills().equals(b));
+
 	}
 
 	/**
@@ -198,9 +199,9 @@ public class ResidenceTest {
 	 */
 	@Test 
 	public void testRemoveBillNotExists() {
-		final Bill bill = new Bill(100, 1, 2017, 2, 2017, 100);
+		final Bill bill = new Bill(100, 1, 2017, 2, 2017, 200); //different bill
 		final int sizeBefRemove = myHouse.getBills().size();
-		
+	
 		myHouse.removeBill(bill);
 		
 		assertTrue("Ammount of bills should not change", 

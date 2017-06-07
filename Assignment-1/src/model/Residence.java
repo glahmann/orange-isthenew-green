@@ -246,7 +246,9 @@ final public class Residence extends Observable {
             returnValue = Objects.equals(myName, otherRes.myName)
                        && Objects.equals(myProjectedBill, otherRes.myProjectedBill)
                        && Objects.equals(myBills, otherRes.myBills)
-                       && Objects.equals(myProjects, otherRes.myProjects);
+                       && Objects.equals(myProjects, otherRes.myProjects)
+                       && Objects.equals(myType, otherRes.myType);
+            
         } 
         
         return returnValue;
@@ -262,7 +264,7 @@ final public class Residence extends Observable {
     @Override
     public int hashCode() {
         
-        return Objects.hash(myName, myProjectedBill, myBills, myProjects);
+        return Objects.hash(myName, myProjectedBill, myBills, myProjects,myType);
     }
     
 	private final ArrayList<String> projectInfo() {
