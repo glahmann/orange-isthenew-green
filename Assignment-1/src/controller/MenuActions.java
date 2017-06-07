@@ -12,11 +12,13 @@ import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 import javax.swing.JWindow;
 
+import model.Residence;
 import model.User;
 import view.AboutPane;
 import view.CustomOptionFrame;
 import view.Gui;
 import view.LoginPane;
+import view.ManageProjectScreen;
 import view.SetupPane;
 
 /**
@@ -37,7 +39,7 @@ public final class MenuActions extends AbstractAction {
 	/**
 	 * The User.
 	 */
-	final User myUser;
+	User myUser;
 	
 	/**
 	 * Constructor for menu actions.
@@ -60,8 +62,8 @@ public final class MenuActions extends AbstractAction {
 				CustomOptionFrame.getInstance().displayPanel("Setup");
 				break;
 			case "OK":
-				myUser.setName(SetupPane.getInstance().getNameField().getText());
-				myUser.setEmail(SetupPane.getInstance().getEmailField().getText());
+				myUser = new User(SetupPane.getInstance().getNameField().getText(), SetupPane.getInstance().getEmailField().getText());
+				Main.start(myUser);
 				CustomOptionFrame.getInstance().dispose();
 				Gui.getInstance().displayPanel("Home");
 				break;
@@ -70,13 +72,14 @@ public final class MenuActions extends AbstractAction {
 					String fileName = LoginPane.getInstance().getEmailField().getText();
 				    final File file = new File(fileName + ".json");
 				    if (file.exists()) {
-						User user = JSONSupport.readJSON(file);
-						Main.start(user);
+						myUser = JSONSupport.readJSON(file);
+						for(Residence residence : myUser.getResidences()) {
+							residence.addObserver(ManageProjectScreen.getInstance());
+						}
+						Main.start(myUser);
 				    } else {
 				    	System.exit(0);
 				    }
-//					User user = JSONSupport.readJSON(file);
-//					Main.start(user);
 				Gui.getInstance().displayPanel("Home");
 				break;
 			case "Home":

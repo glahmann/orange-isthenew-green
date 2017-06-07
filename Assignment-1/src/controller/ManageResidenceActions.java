@@ -57,9 +57,10 @@ public final class ManageResidenceActions extends AbstractAction{
 					if (tempMap1.get(resName).isSelected()) {
 						if (whichButton.equals("Delete Residence")) {
 							myUser.removeResidence(resName);
-						} else {
+						} else { // create
 							myUser.setCurrentResidence(resName);
 							myUser.getCurrentResidence().updateInfo();
+							
 							Gui.getInstance().displayPanel("Manage Projects");
 						}
 					}
