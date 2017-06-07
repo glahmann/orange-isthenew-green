@@ -18,42 +18,37 @@ import java.util.Map;
 final public class ProjectMarket extends JTabbedPane {
 
     /**
-     * 
+     * Serialized ID for the object.
      */
     private static final long serialVersionUID = -2339981887842998145L;
 
     /**
-     * 
+     * Array to populate combo boxes for quantities.
      */
     private final static Integer[] QUANTITY_DROP_DOWN = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    
-    /**
-     * 
-     */
-    private static final int TAB_COUNT = 4;
 
     /**
-     * 
+     * Default font size.
      */
     private static final int FONT_SIZE = 20;
 
     /**
-     * 
+     * Default horizontal gap for flow layout.
      */
     private static final int HORIZONTAL_GAP = 100;
 
     /**
-     * 
+     * Project market instance for singleton use.
      */
     private static ProjectMarket myMarket = null;
     
     /**
-     * 
+     * ArrayList to update.
      */
     private final ArrayList<JButton> myUpdateButtons;
     
     /**
-     * 
+     * Market for the display.
      */
     private Market myMarketModel;
 
@@ -104,14 +99,6 @@ final public class ProjectMarket extends JTabbedPane {
      * @author Garrett Lahmann
      */
     private final void buildMarket() {
-
-        //Setup cards
-//        myInsulationCard =  
-//        myLightingCard = ;
-//        myAppliancecard = buildCards("APPLIANCES");
-//        myWindowCard = buildCards("WINDOWS");
-
-        //Create and add tabs with the cards
         
         addTab("INSULATION", buildCards("INSULATION"));
         addTab("LIGHTING", buildCards("LIGHTING"));
@@ -125,7 +112,6 @@ final public class ProjectMarket extends JTabbedPane {
      * @author Zira Cook
      * @author Garrett Lahmann
      * @param theTitle the title of the tab
-     * @param theMap the map associated with tab data
      * @return the finished tab
      */
     private final JPanel buildCards(final String theTitle) {

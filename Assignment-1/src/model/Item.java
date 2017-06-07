@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * 
  * @author Donald Muffler
  * @author Garrett Lahmann
+ * @author Yaro Salo
  * @version 20170517
  */
 @JsonPropertyOrder({"Item Name", "Item Cost"})

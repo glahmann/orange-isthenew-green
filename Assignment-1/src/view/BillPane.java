@@ -31,19 +31,14 @@ public class BillPane extends JPanel {
     /** Start year for the bill. */
     private final int myStartYear;
     
-    //private final JTextField myCostField;
-    
-    //private final JTextField myStartMonthField;
-    
-    //private final JTextField myEndMonthField;
-    
-    //private final JTextField my
-    
     /**
      * Name for the bill.
      */
     private final String myBillName;
 
+    /**
+     * Constructor for the bill pane.
+     */
     private BillPane() {
     	setLayout(new MigLayout());
 
@@ -73,7 +68,11 @@ public class BillPane extends JPanel {
        myEndYear = Integer.parseInt(enterEndYear.getText());
        myBillName = String.valueOf(myStartMonth+myStartYear+myEndMonth+myEndYear); //TODO: change or remove?
     }
-    
+
+    /**
+     * Gets an instance of the pane
+     * @return a singleton
+     */
     public final BillPane getInstance() {
     	if (myBillPane == null) {
     		myBillPane = new BillPane();

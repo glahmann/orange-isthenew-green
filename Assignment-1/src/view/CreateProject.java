@@ -24,16 +24,28 @@ import net.miginfocom.swing.MigLayout;
 public class CreateProject extends JPanel {
 	
 	/**
-	 * Size for text field.s
+	 * Size for text fields.
 	 */
 	private static final int TEXT_FIELD_SIZE = 15;
-	
+
+    /**
+     * Project created in the pane.
+     */
 	private static CreateProject myProject = null;
-	
+
+    /**
+     * New project's name text field.
+     */
 	private final JTextField myProjectNameBox;
-	
+
+    /**
+     * Button for entering a bill.
+     */
 	private final JButton myEnterBillButton;
-	
+
+    /**
+     * Button for creating the project.
+     */
 	private final JButton myCreateButton;
 
 	/**
@@ -62,20 +74,32 @@ public class CreateProject extends JPanel {
 		add(topPanel, "wrap");
 		add(bottomPanel);
 	}
-	
+
+	/**
+	 * Gets an instance of the create project screen.
+	 * @return a singleton of the pane
+     */
 	public static final CreateProject getInstance() {
 		if (myProject == null) {
 			myProject = new CreateProject();
 		}
 		return myProject;
 	}
-	
+
+	/**
+	 * Sets actions for each text box.
+	 * @param theAction text box actions
+     */
 	public final void setAction(final Action theAction) {
 		myProjectNameBox.addActionListener(theAction);
 		myEnterBillButton.addActionListener(theAction);
 		myCreateButton.addActionListener(theAction);
 	}
-	
+
+    /**
+     * Getter for project name field.
+     * @return the text field of the entered project name
+     */
 	public final JTextField getProjectNameField() {
 		return myProjectNameBox;
 	}

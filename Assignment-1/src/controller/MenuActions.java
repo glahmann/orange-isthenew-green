@@ -27,6 +27,7 @@ import view.SetupPane;
  * @author Garrett Lahmann
  * @author Isaac Seemann
  * @author Donald Muffler
+ * @author Zira Cook
  * @version 15 May 2017
  */
 public final class MenuActions extends AbstractAction {
@@ -52,6 +53,7 @@ public final class MenuActions extends AbstractAction {
 	/**
 	 * @author Garrett Lahmann
 	 * @author Donald Muffler
+     * @author Zira Cook
 	 */
 	@Override
 	public final void actionPerformed(final ActionEvent theEvent) {
@@ -78,7 +80,9 @@ public final class MenuActions extends AbstractAction {
 						}
 						Main.start(myUser);
 				    } else {
-				    	System.exit(0);
+                        //If user doesn't exist, an error dialogue will now show, instead of the project just aborting
+				    	JOptionPane.showMessageDialog(null, "Error: Email not found");
+						System.exit(0);
 				    }
 				Gui.getInstance().displayPanel("Home");
 				break;

@@ -155,7 +155,7 @@ final public class User extends Observable {
 	
 	/**
 	 * Removes a project from this residence.
-	 * @param theProject the project to be removed.
+	 * @param theResidence the project to be removed.
 	 * @author Donald Muffler
 	 * @author Yaro Salo
 	 */
@@ -169,7 +169,7 @@ final public class User extends Observable {
 	
 	/**
 	 * Removes a residence by name.
-	 * @param theProject the residence to be removed.
+	 * @param theResidenceName the residence to be removed.
 	 * @author Donald Muffler
 	 */
 	public final void removeResidence(final String theResidenceName) {

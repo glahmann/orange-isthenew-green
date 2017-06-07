@@ -13,6 +13,7 @@ import view.*;
  * @author Yaro Salo
  * @author Donald Muffler
  * @author Garrett Lahmann
+ * @author Zira Cook
  * @version June 6, 2017
  */
 public final class Main {
@@ -52,6 +53,7 @@ public final class Main {
     
     /**
      * @author Donald Muffler
+     * @author Zira Cook
      * Helper method for instantiating and passing dependencies.
      */
     public final static void start(User user) {
@@ -79,7 +81,7 @@ public final class Main {
     	ProjectMarket.getInstance().setAction(projectAction);
     	
     	// add JMenu to the main frame.
-    	final ThisMenuBar menu = new ThisMenuBar(menuAction);
+    	final ThisMenuBar menu = new ThisMenuBar(menuAction, user.getName());
     	Gui.getInstance().setMenu(menu);
     	
     	// add panels to the main frame.
@@ -97,5 +99,9 @@ public final class Main {
     	
     	// add observers.
     	user.addObserver(ManageResidenceScreen.getInstance());
+
+        //Set close operation for GUI, so it writes to JSON
+        Gui.getInstance().setCloseOperaion(user);
+
     }
 }

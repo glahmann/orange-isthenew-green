@@ -33,7 +33,7 @@ public final class HomeActions extends AbstractAction {
 	}
 	
 	/**
-	 * Serializabe.
+	 * Serializable.
 	 */
 	private static final long serialVersionUID = -255517639779622036L;
 
