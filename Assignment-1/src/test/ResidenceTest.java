@@ -48,7 +48,7 @@ public class ResidenceTest {
 	 */
 	@Before
 	public void setUp() {
-		myBill = new Bill("Bill", 50, 1, 2017, 2, 2017);
+		myBill = new Bill(50, 1, 2017, 2, 2017, 100);
 		myBills = new ArrayList<>();
 		myProjects = new ArrayList<>();
 		myBills.add(myBill);
@@ -101,9 +101,10 @@ public class ResidenceTest {
 	public void testGetBills() {
 		final ArrayList<Bill> b = new ArrayList<>();
 	
-    	b.add(new Bill("Bill", 50, 1, 2017, 2, 2017));
+    	b.add(new Bill(50, 1, 2017, 2, 2017, 100));
     	assertTrue("getBills() doesn't return the expected result",
     			myHouse.getBills().equals(b));
+
 	}
 
 	/**
@@ -177,7 +178,7 @@ public class ResidenceTest {
 	 */
 	@Test
 	public void testAddBill() {
-		final Bill bill = myBill = new Bill("Another Bill", 100, 1, 2017, 2, 2017);
+		final Bill bill = myBill = new Bill(100, 1, 2017, 2, 2017, 100);
 		myHouse.addBill(bill);
 		assertTrue(myHouse.getBills().contains(bill));
 	}
@@ -198,9 +199,9 @@ public class ResidenceTest {
 	 */
 	@Test 
 	public void testRemoveBillNotExists() {
-		final Bill bill = new Bill("Another Bill", 100, 1, 2017, 2, 2017);
+		final Bill bill = new Bill(100, 1, 2017, 2, 2017, 200); //different bill
 		final int sizeBefRemove = myHouse.getBills().size();
-		
+	
 		myHouse.removeBill(bill);
 		
 		assertTrue("Ammount of bills should not change", 
@@ -216,7 +217,7 @@ public class ResidenceTest {
     	final ArrayList<Project> proList = new ArrayList<>();
       	final ArrayList<Bill> billList = new ArrayList<>();
     	final Project project = new Project("Project");
-    	final Bill bill = new Bill("Bill", 50, 1, 2017, 2, 2017);
+    	final Bill bill = new Bill(50, 1, 2017, 2, 2017, 100);
    
     	proList.add(project);
     	billList.add(bill);

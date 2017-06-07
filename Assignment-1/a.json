@@ -1,0 +1,30 @@
+{
+  "User Name" : "Donny",
+  "User Email" : "a",
+  "Residences" : [ {
+    "Residence Name" : "res1",
+    "Residence Type" : "APARTMENT",
+    "Projected Bill" : 0.0,
+    "Bills" : [ {
+      "Bill Ammount" : 100.0,
+      "Start Month" : 1,
+      "Start Year" : 2000,
+      "End Month" : 2,
+      "End Year" : 2000,
+      "EValue" : 100.0
+    }, {
+      "Bill Ammount" : 1.0,
+      "Start Month" : 1,
+      "Start Year" : 11,
+      "End Month" : 1,
+      "End Year" : 1,
+      "EValue" : 1.0
+    } ],
+    "Projects" : [ {
+      "Project Name" : "pro1",
+      "Savings" : 0.0,
+      "Cost" : 0.0,
+      "Items" : [ ]
+    } ]
+  } ]
+}

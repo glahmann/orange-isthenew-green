@@ -98,6 +98,8 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 	 */
 	private SpringLayout mySpringLayout;
 	
+	private JButton myBillButton;
+	
 	
 	/**
 	 * Private constructor to prevent instantiation.
@@ -111,6 +113,7 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 	}
 	
 	public final void setAcion(final Action theAction) {
+		myBillButton.addActionListener(theAction);
 		myDeleteButton.addActionListener(theAction);
 		myOpenButton.addActionListener(theAction);
 		myCreateButton.addActionListener(theAction);
@@ -223,6 +226,8 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 		myDeleteButton = new JButton("Delete Project");
 		myOpenButton = new JButton("Open Project");
 		myCreateButton = new JButton("Create Project");
+		myBillButton = new JButton("Add Energy Bill");
+		bottomPanel.add(myBillButton);
 		bottomPanel.add(myDeleteButton);
 		bottomPanel.add(myOpenButton);
 		bottomPanel.add(myCreateButton);

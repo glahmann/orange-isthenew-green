@@ -7,10 +7,12 @@ import java.util.HashMap;
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
 
+import model.Bill;
 import model.Item;
 import model.Market;
 import model.Project;
 import model.User;
+import view.BillPane;
 import view.CreateProject;
 import view.CustomOptionFrame;
 import view.Gui;
@@ -78,7 +80,21 @@ public final class ManageProjectActions extends AbstractAction{
 				Gui.getInstance().displayPanel("Market");
 				break;
 			case "Enter an Energy Bill?":
+			case "Add Energy Bill" :
 				CustomOptionFrame.getInstance().displayPanel("Bill Pane");
+				break;
+			case "Cancel":
+				CustomOptionFrame.getInstance().dispose();
+			break;
+			case "Add Bill" :
+				CustomOptionFrame.getInstance().dispose();
+				final Bill bill = new Bill(BillPane.getInstance().getBillCost(),
+						BillPane.getInstance().getStartMonth(),
+						BillPane.getInstance().getStarYear(),
+						BillPane.getInstance().getEndMonth(),
+						BillPane.getInstance().getEndYear(),
+						BillPane.getInstance().getEValue());
+				myUser.getCurrentResidence().addBill(bill);
 				break;
 			case "UPDATE CART":
 			    final Market market = ProjectMarket.getInstance().getMarket();

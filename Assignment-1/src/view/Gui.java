@@ -86,6 +86,7 @@ final public class Gui extends JFrame {
 	public final void displayPanel(final String thePanelTag) {
 		CardLayout layout = (CardLayout) myPanelHolder.getLayout();
 		layout.show(myPanelHolder, thePanelTag);
+		setTitle(thePanelTag);
 		setVisible(true);
 	}
 	
