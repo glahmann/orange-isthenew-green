@@ -134,6 +134,7 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 			myContentPanelHolder.remove(myContentPanel);
 			buildContentPanel();
 			updatePanel(theObject);
+			
 		}
 	}
 	

@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -15,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author Donald Muffler
  * @version 20170516
  */
-@JsonPropertyOrder({"Residence Name", "Projected Bill", "Bills", "Projects"})
+@JsonPropertyOrder({"Residence Name", "Residence Type", "Projected Bill", "Bills", "Projects"})
+//@JsonIgnoreProperties({"currentProject"})
 final public class Residence extends Observable {
 	
 	/**

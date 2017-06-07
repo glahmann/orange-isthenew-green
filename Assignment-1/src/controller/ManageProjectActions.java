@@ -70,9 +70,7 @@ public final class ManageProjectActions extends AbstractAction{
 				final Project pro = new Project(CreateProject.getInstance().getProjectNameField().getText());
 				myUser.getCurrentResidence().addProject(pro);
                 CustomOptionFrame.getInstance().dispose();
-                
-				//Gui.getInstance().displayPanel("Market");
-				break;
+                break;
 		}
 	}
 }
