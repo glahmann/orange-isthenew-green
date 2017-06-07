@@ -27,9 +27,7 @@ public class BillPane extends JPanel {
     
     private final JTextField myEndYear;
     
-    private final JTextField myEValue;
-    
-    private final JButton myCancelButton;
+    private final JTextField myEnergyUsage;
     
     private final JButton myAddButton;
 
@@ -63,17 +61,15 @@ public class BillPane extends JPanel {
         topPanel.add(panel3);
         
         final JPanel panel4 = new JPanel(new MigLayout());
-        panel4.add(new JLabel("eValue per kWh: "));
-        myEValue = new JTextField(5);
-        panel4.add(myEValue, "gapleft 90");
+        panel4.add(new JLabel("Energy Use in kWh: "));
+        myEnergyUsage = new JTextField(5);
+        panel4.add(myEnergyUsage, "gapleft 90");
 
         topPanel.add(panel4);
         
         final JPanel buttonPanel = new JPanel(new MigLayout());
-        myCancelButton = new JButton("Cancel");
-        buttonPanel.add(myCancelButton, "gapleft 65");
         myAddButton = new JButton("Add Bill");
-        buttonPanel.add(myAddButton);
+        buttonPanel.add(myAddButton, "gapleft 175");
         topPanel.add(buttonPanel);
         
         add(topPanel);
@@ -91,7 +87,6 @@ public class BillPane extends JPanel {
     }
     
     public final void setActions(final Action theAction) {
-    	myCancelButton.addActionListener(theAction);
     	myAddButton.addActionListener(theAction);
     }
     
@@ -136,6 +131,6 @@ public class BillPane extends JPanel {
     }
     
     public final double getEValue() {
-    	return Double.parseDouble(myEValue.getText());
+    	return Double.parseDouble(myEnergyUsage.getText());
     }
 }
