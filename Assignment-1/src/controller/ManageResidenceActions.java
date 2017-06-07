@@ -74,8 +74,9 @@ public final class ManageResidenceActions extends AbstractAction{
 						(HousingType) CreateResidenceScreen.getInstance().getResSelection().getSelectedItem());
 				res.addObserver(ManageProjectScreen.getInstance());
 				myUser.addResidence(res);
-				myUser.updateInfo();
+				myUser.setCurrentResidence(res.getName());
 				CustomOptionFrame.getInstance().dispose();
+				Gui.getInstance().displayPanel("Manage Projects");
 				break;
 			case "Cancel": // for create residence pane.
 				CustomOptionFrame.getInstance().dispose();

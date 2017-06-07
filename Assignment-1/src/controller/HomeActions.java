@@ -1,7 +1,5 @@
 package controller;
 
-import view.BillPane;
-import view.CustomOptionFrame;
 import view.Gui;
 import java.awt.event.ActionEvent;
 import java.io.File;

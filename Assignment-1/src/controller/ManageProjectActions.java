@@ -7,7 +7,6 @@ import java.util.HashMap;
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
 
-import model.HousingType;
 import model.Item;
 import model.Market;
 import model.Project;
@@ -16,7 +15,6 @@ import view.CreateProject;
 import view.CustomOptionFrame;
 import view.Gui;
 import view.ManageProjectScreen;
-import view.ManageResidenceScreen;
 import view.ProjectMarket;
 
 /**
@@ -63,7 +61,7 @@ public final class ManageProjectActions extends AbstractAction{
 						if (whichButton.equals("Delete Project")) {
 							myUser.getCurrentResidence().removeProject(proName);
 						} else {
-							myUser.setCurrentResidence(proName);
+							myUser.getCurrentResidence().setCurrentProject(proName);
 							Gui.getInstance().displayPanel("Market");
 						}
 					}
@@ -75,9 +73,9 @@ public final class ManageProjectActions extends AbstractAction{
 			case "Create": // for create project pane.
 				final Project pro = new Project(CreateProject.getInstance().getProjectNameField().getText());
 				myUser.getCurrentResidence().addProject(pro);
+				myUser.getCurrentResidence().setCurrentProject(pro.getName());
                 CustomOptionFrame.getInstance().dispose();
-
-				//Gui.getInstance().displayPanel("Market");
+				Gui.getInstance().displayPanel("Market");
 				break;
 			case "UPDATE CART":
 			    final Market market = ProjectMarket.getInstance().getMarket();

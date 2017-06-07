@@ -5,7 +5,6 @@ import java.util.Objects;
 import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -21,7 +20,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @version April 12, 2017
  */
 @JsonPropertyOrder({"User Name", "User Email", "Residences"})
-//@JsonIgnoreProperties(ignoreUnknown=true)
 @JsonIgnoreProperties({"currentResidence"})
 final public class User extends Observable {
 	
@@ -94,7 +92,7 @@ final public class User extends Observable {
 	public String getEmail() {
 		return myEmail;
 	}
-	//@JsonProperty
+
 	public final void setCurrentResidence(final String theResidenceName) {
 		for (Residence currentRes: myResidences) {
 			if (theResidenceName.equals(currentRes.getName())) {

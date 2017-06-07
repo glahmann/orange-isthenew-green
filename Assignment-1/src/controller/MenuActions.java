@@ -5,13 +5,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 import javax.swing.AbstractAction;
-import javax.swing.JOptionPane;
-import javax.swing.JWindow;
-
 import model.Residence;
 import model.User;
 import view.AboutPane;
