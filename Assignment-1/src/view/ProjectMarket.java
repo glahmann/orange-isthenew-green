@@ -26,6 +26,11 @@ final public class ProjectMarket extends JTabbedPane {
      * 
      */
     private final static Integer[] QUANTITY_DROP_DOWN = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    
+    /**
+     * 
+     */
+    private static final int TAB_COUNT = 4;
 
     /**
      * 
@@ -45,7 +50,7 @@ final public class ProjectMarket extends JTabbedPane {
     /**
      * 
      */
-    private final JButton myUpdateButton;
+    private final ArrayList<JButton> myUpdateButtons;
     
     /**
      * 
@@ -57,7 +62,7 @@ final public class ProjectMarket extends JTabbedPane {
      */
     private ProjectMarket() {
         myMarketModel = new Market();
-        myUpdateButton = new JButton("UPDATE CART");
+        myUpdateButtons = new ArrayList<JButton>();
         buildMarket();
     }
 
@@ -82,11 +87,14 @@ final public class ProjectMarket extends JTabbedPane {
     }
     
     /**
-     * 
+     * TODO figure out if this is added before buttons are created..
      * @param theAction
      */
     public final void setAction(final Action theAction) {
-        myUpdateButton.addActionListener(theAction);
+        for (JButton btn: myUpdateButtons) {
+            btn.addActionListener(theAction);
+        }
+        
     }
 
     /**
@@ -157,10 +165,12 @@ final public class ProjectMarket extends JTabbedPane {
 
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         
-        myUpdateButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        myUpdateButton.setPreferredSize(new Dimension(350, 100));
+        JButton updateButton = new JButton("UPDATE CART");
+        updateButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        updateButton.setPreferredSize(new Dimension(350, 100));
+        myUpdateButtons.add(updateButton);
         
-        bottomPanel.add(myUpdateButton);
+        bottomPanel.add(updateButton);
         thePanel.add(bottomPanel);
 
         return thePanel;

@@ -3,6 +3,7 @@
   "User Email" : "",
   "Residences" : [ {
     "Residence Name" : "sdfsdf",
+    "Residence Type" : "APARTMENT",
     "Projected Bill" : 0.0,
     "Bills" : [ ],
     "Projects" : [ {
@@ -10,19 +11,6 @@
       "Savings" : 0.0,
       "Cost" : 0.0,
       "Items" : [ ]
-    } ],
-    "Residence Type" : "APARTMENT"
-  } ],
-  "currentResidence" : {
-    "Residence Name" : "sdfsdf",
-    "Projected Bill" : 0.0,
-    "Bills" : [ ],
-    "Projects" : [ {
-      "Project Name" : "dsfsdf",
-      "Savings" : 0.0,
-      "Cost" : 0.0,
-      "Items" : [ ]
-    } ],
-    "Residence Type" : "APARTMENT"
-  }
+    } ]
+  } ]
 }

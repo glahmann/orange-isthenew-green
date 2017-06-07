@@ -79,14 +79,14 @@ public final class ManageProjectActions extends AbstractAction{
 
 				//Gui.getInstance().displayPanel("Market");
 				break;
-//			case "UPDATE CART":
-//			    final Market market = ProjectMarket.getInstance().getMarket();
-//			    final ArrayList<Item> selected = market.getSelected();
-////			    final Project projectUp = myUser.getCurrentResidence().getCurrentProject());
-//			    for (Item i: selected) {
-//			        projectUp.addItem(i);
-//			    }
-//			    break;
+			case "UPDATE CART":
+			    final Market market = ProjectMarket.getInstance().getMarket();
+			    final ArrayList<Item> selected = market.getSelected();
+			    final Project projectUp = myUser.getCurrentResidence().getCurrentProject();
+			    for (Item i: selected) {
+			        projectUp.addItem(i);
+			    }
+			    break;
 		}
 	}
 }
