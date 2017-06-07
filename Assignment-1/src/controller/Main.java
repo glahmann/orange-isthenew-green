@@ -62,6 +62,7 @@ public final class Main {
     	final HomeActions homeAction = new HomeActions(user);
     	final ManageResidenceActions residenceAction = new ManageResidenceActions(user);
     	final ManageProjectActions projectAction = new ManageProjectActions(user);
+    	final CartActions cartActions = new CartActions(user);
     	
     	// add menu actions to panels.
     	final MenuActions menuAction = new MenuActions(user);
@@ -81,6 +82,9 @@ public final class Main {
     	ProjectMarket.getInstance().setAction(projectAction);
     	BillPane.getInstance().setActions(projectAction);
     	
+    	// add cart action to cart panel
+    	CartPane.getInstance().setAction(cartActions);
+    	
     	// add JMenu to the main frame.
     	final ThisMenuBar menu = new ThisMenuBar(menuAction, user.getName());
     	Gui.getInstance().setMenu(menu);
@@ -98,7 +102,8 @@ public final class Main {
     	CustomOptionFrame.getInstance().addPanel(CreateProject.getInstance(), "Create Project");
     	CustomOptionFrame.getInstance().addPanel(CreateResidenceScreen.getInstance(), "Create Residence");
     	CustomOptionFrame.getInstance().addPanel(BillPane.getInstance(), "Bill Pane");
-    	
+    	CustomOptionFrame.getInstance().addPanel(CartPane.getInstance(), "Cart Pane");
+    			
     	// add observers.
     	user.addObserver(ManageResidenceScreen.getInstance());
 
