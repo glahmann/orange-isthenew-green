@@ -170,6 +170,7 @@ final public class ProjectMarket extends JTabbedPane {
         myUpdateButtons.add(updateButton);
         myViewButtons.add(viewButton);
         bottomPanel.add(updateButton);
+        bottomPanel.add(viewButton);
         thePanel.add(bottomPanel);
 
         return thePanel;
