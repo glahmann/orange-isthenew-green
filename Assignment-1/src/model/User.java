@@ -235,7 +235,7 @@ final public class User extends Observable {
     }
     
 	private final ArrayList<String> resInfo() {
-		final ArrayList<String> list = new ArrayList<String>();
+		final ArrayList<String> list = new ArrayList<>();
 		
 		for (Residence currentRes: myResidences) {
 			list.add(currentRes.getName());
@@ -244,4 +244,19 @@ final public class User extends Observable {
 		}
 		return list;
 	}
+
+	private final ArrayList<Double> billInfo() {
+        final ArrayList<Double> billList = new ArrayList<>();
+
+        for (Residence currentRes: myResidences) {
+            for (Bill currentBill: currentRes.getBills()) {
+                billList.add((double) currentBill.getBeginMonth());
+                billList.add((double) currentBill.getBeginYear());
+                billList.add(currentBill.getAmount());
+
+            }
+        }
+
+        return billList;
+    }
 }

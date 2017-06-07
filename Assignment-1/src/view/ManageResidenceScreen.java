@@ -215,7 +215,6 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 	
 	/**
 	 * Builds the bottom panel which contains the action buttons.
-	 * @param thePanelHolder the panel where the buttons reside.
 	 */
 	private final void buildBottomPanel() {
 		final JPanel bottomPanel = new JPanel();

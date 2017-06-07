@@ -41,8 +41,18 @@ public class CalcPane extends JPanel {
      * 
      */
     private static CalcPane myCalcPane = null;
-    
-    
+
+    /**
+     * The energy used.
+     */
+    private double myEnergyUsed;
+
+    private double myBillCost;
+
+    private double myProjectedEnergySavings;
+
+    private double myProjectedBillSavings;
+
     /**
      * Constructor for the calc pane
      */
@@ -71,16 +81,16 @@ public class CalcPane extends JPanel {
         final JFXPanel fxPanel = new JFXPanel();
         final JPanel infoPanel = new JPanel(new GridLayout(4, 1));
         
-        final JLabel prevEnergy = new JLabel("  6/16 Energy Used:  868 kWh");
+        final JLabel prevEnergy = new JLabel("  Energy Used:  868 kWh");
         prevEnergy.setMinimumSize(new Dimension(400, 100));
         prevEnergy.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
-        final JLabel prevBill = new JLabel("  6/16 Bill:  $95.48");
+        final JLabel prevBill = new JLabel("  Bill:  $95.48");
         prevBill.setMinimumSize(new Dimension(400, 100));
         prevBill.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
-        final JLabel projEnergy = new JLabel("  6/17 Projected Energy Saved:  54kWh");
+        final JLabel projEnergy = new JLabel("  Projected Energy Saved:  54kWh");
         projEnergy.setMinimumSize(new Dimension(400, 100));
         projEnergy.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
-        final JLabel projSave = new JLabel("  6/17 Projected Savings:  $6.02");
+        final JLabel projSave = new JLabel("  Projected Savings:  $6.02");
         projSave.setMinimumSize(new Dimension(400, 100));
         projSave.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
         
@@ -90,7 +100,6 @@ public class CalcPane extends JPanel {
         infoPanel.add(projSave);
         add(fxPanel);
         add(infoPanel);
-//        add(projSaveLabel);
 
         Platform.runLater(new Runnable() {
             @Override
