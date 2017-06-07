@@ -7,6 +7,8 @@ import model.Market;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Zira Cook
@@ -20,22 +22,34 @@ final public class ProjectMarket extends JTabbedPane {
      */
     private static final long serialVersionUID = -2339981887842998145L;
 
+    /**
+     * 
+     */
     private final static Integer[] QUANTITY_DROP_DOWN = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
+    /**
+     * 
+     */
     private static final int FONT_SIZE = 20;
 
+    /**
+     * 
+     */
     private static final int HORIZONTAL_GAP = 100;
 
+    /**
+     * 
+     */
     private static ProjectMarket myMarket = null;
-
-    private JPanel myInsulationCard;
-
-    private JPanel myLightingCard;
-
-    private JPanel myAppliancecard;
-
-    private JPanel myWindowCard;
     
+    /**
+     * 
+     */
+    private final JButton myUpdateButton;
+    
+    /**
+     * 
+     */
     private Market myMarketModel;
 
     /**
@@ -43,6 +57,7 @@ final public class ProjectMarket extends JTabbedPane {
      */
     private ProjectMarket() {
         myMarketModel = new Market();
+        myUpdateButton = new JButton("UPDATE CART");
         buildMarket();
     }
 
@@ -56,6 +71,23 @@ final public class ProjectMarket extends JTabbedPane {
         }
         return myMarket;
     }
+    
+    /**
+     * 
+     * @author Garrett Lahmann
+     * @return the market model.
+     */
+    public Market getMarket() {
+        return myMarketModel; // I know it's bad...
+    }
+    
+    /**
+     * 
+     * @param theAction
+     */
+    public final void setAction(final Action theAction) {
+        myUpdateButton.addActionListener(theAction);
+    }
 
     /**
      * Builds the display for the market page.
@@ -66,16 +98,17 @@ final public class ProjectMarket extends JTabbedPane {
     private final void buildMarket() {
 
         //Setup cards
-        myInsulationCard = buildCards("INSULATION"); //TODO change to specified maps
-        myLightingCard = buildCards("LIGHTING");
-        myAppliancecard = buildCards("APPLIANCES");
-        myWindowCard = buildCards("WINDOWS");
+//        myInsulationCard =  
+//        myLightingCard = ;
+//        myAppliancecard = buildCards("APPLIANCES");
+//        myWindowCard = buildCards("WINDOWS");
 
         //Create and add tabs with the cards
-        addTab("INSULATION", myInsulationCard);
-        addTab("LIGHTING", myLightingCard);
-        addTab("APPLIANCES", myAppliancecard);
-        addTab("WINDOWS", myWindowCard);
+        
+        addTab("INSULATION", buildCards("INSULATION"));
+        addTab("LIGHTING", buildCards("LIGHTING"));
+        addTab("APPLIANCES", buildCards("APPLIANCES"));
+        addTab("WINDOWS", buildCards("WINDOWS"));
     }
 
     /**
@@ -109,7 +142,8 @@ final public class ProjectMarket extends JTabbedPane {
             JComboBox<Integer> quantities = new JComboBox<>(QUANTITY_DROP_DOWN);
             quantities.setFont(new Font("Times New Roman", Font.PLAIN, FONT_SIZE));
 
-            thisPanel.add(quantities);       
+            thisPanel.add(quantities);
+            myMarketModel.addItemPair(itm.getName(), quantities);
             
             JLabel[] itemLabels = {new JLabel(" " + itm.getName()), 
                     new JLabel(" $ " + itm.getCost())};
@@ -122,10 +156,11 @@ final public class ProjectMarket extends JTabbedPane {
         }
 
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        JButton updateButton = new JButton("UPDATE CART");
-        updateButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
-        updateButton.setPreferredSize(new Dimension(350, 100));
-        bottomPanel.add(updateButton);
+        
+        myUpdateButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        myUpdateButton.setPreferredSize(new Dimension(350, 100));
+        
+        bottomPanel.add(myUpdateButton);
         thePanel.add(bottomPanel);
 
         return thePanel;
