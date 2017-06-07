@@ -7,7 +7,9 @@ import java.util.HashMap;
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
 
+
 import model.Bill;
+import model.Cart;
 import model.Item;
 import model.Market;
 import model.Project;
@@ -99,6 +101,7 @@ public final class ManageProjectActions extends AbstractAction{
 			case "UPDATE CART":
 			    final Market market = ProjectMarket.getInstance().getMarket();
 			    final ArrayList<Item> selected = market.getSelected();
+			    final Cart cart = new Cart(selected);
 			    final Project projectUp = myUser.getCurrentResidence().getCurrentProject();
 			    for (Item i: selected) {
 			        projectUp.addItem(i);
