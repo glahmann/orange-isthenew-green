@@ -1,9 +1,11 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 
+import model.Item;
 import model.Project;
 import model.User;
 import view.CartPane;
@@ -22,15 +24,14 @@ public class CartActions extends AbstractAction{
 	private static final long serialVersionUID = 2594837122483831137L;
 
 	private final User myUser;
-	/**Project cart is modifying*/
-	private final Project myProject;
-
-	private final CartPane myCartPanel;
-
+	/**Project that cart is modifying*/
+	private Project myProject = null;
+	/**Cart gui*/
+	private CartPane myCartPanel = null;
+	
+	/**Cart controller constructor*/
 	public CartActions(final User user)  {
 		myUser = user;
-		myProject = user.getCurrentResidence().getCurrentProject();
-		myCartPanel = new CartPane();
 	}
 
 	@Override
@@ -38,12 +39,18 @@ public class CartActions extends AbstractAction{
 		final String whichButton = theEvent.getActionCommand();
 
 		switch(whichButton) {
-
+		    case "VIEW CART":
+		    	myProject = myUser.getCurrentResidence().getCurrentProject();
+		    	myCartPanel = new CartPane();
 			case "Cancel":
 				CustomOptionFrame.getInstance().dispose();
 				break;
 			case "Remove":
-				
+				ArrayList<Item> projItems = myProject.getItems();
+				int[] removalIndices = myCartPanel.getSelectedItemIndices();
+				for(int idx : removalIndices){
+					myProject.removeItem(projItems.get(idx));
+				}
 				break;
 				
 		}
