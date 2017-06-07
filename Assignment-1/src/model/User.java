@@ -5,6 +5,8 @@ import java.util.Objects;
 import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -19,6 +21,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @version April 12, 2017
  */
 @JsonPropertyOrder({"User Name", "User Email", "Residences"})
+//@JsonIgnoreProperties(ignoreUnknown=true)
+@JsonIgnoreProperties({"currentResidence"})
 final public class User extends Observable {
 	
 	/** The name of the user. */
@@ -90,7 +94,7 @@ final public class User extends Observable {
 	public String getEmail() {
 		return myEmail;
 	}
-	
+	//@JsonProperty
 	public final void setCurrentResidence(final String theResidenceName) {
 		for (Residence currentRes: myResidences) {
 			if (theResidenceName.equals(currentRes.getName())) {
@@ -99,6 +103,7 @@ final public class User extends Observable {
 		}
 	}
 	
+	//@JsonIgnore
 	public final Residence getCurrentResidence() {
 		return myCurrentRes;
 	}
@@ -111,12 +116,13 @@ final public class User extends Observable {
 	@JsonProperty("Residences") 
 	public ArrayList<Residence> getResidences() {
 		
-		ArrayList<Residence> copyRes = new ArrayList<>();
-		for(Residence r: myResidences) {
-			copyRes.add(new Residence(r.getName(), r.getType(), r.getProjectedBill(),
-					r.getBills(), r.getProjects()));	
-		}
-		return copyRes;
+//		ArrayList<Residence> copyRes = new ArrayList<>();
+//		for(Residence r: myResidences) {
+//			copyRes.add(new Residence(r.getName(), r.getType(), r.getProjectedBill(),
+//					r.getBills(), r.getProjects()));	
+//		}
+//		return copyRes;
+		return myResidences;
 	}
 	/**
 	 * Sets the name of the user. 
@@ -181,15 +187,9 @@ final public class User extends Observable {
 		notifyObservers(resInfo());
 	}
 	
-	private final ArrayList<String> resInfo() {
-		final ArrayList<String> list = new ArrayList<String>();
-		
-		for (Residence currentRes: myResidences) {
-			list.add(currentRes.getName());
-			list.add(currentRes.getType().name());
-			list.add(String.valueOf(currentRes.getProjects().size()));
-		}
-		return list;
+	public final void updateInfo() {
+		setChanged();
+		notifyObservers(resInfo());
 	}
 	
     /**
@@ -235,4 +235,15 @@ final public class User extends Observable {
         
         return Objects.hash(myName, myEmail, myResidences);
     }
+    
+	private final ArrayList<String> resInfo() {
+		final ArrayList<String> list = new ArrayList<String>();
+		
+		for (Residence currentRes: myResidences) {
+			list.add(currentRes.getName());
+			list.add(currentRes.getType().name());
+			list.add(String.valueOf(currentRes.getProjects().size()));
+		}
+		return list;
+	}
 }

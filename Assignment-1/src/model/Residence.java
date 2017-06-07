@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Observable;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -15,7 +16,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * @author Donald Muffler
  * @version 20170516
  */
-@JsonPropertyOrder({"Residence Name", "Projected Bill", "Bills", "Projects"})
+@JsonPropertyOrder({"Residence Name", "Residence Type", "Projected Bill", "Bills", "Projects"})
+//@JsonIgnoreProperties({"currentProject"})
 final public class Residence extends Observable {
 	
 	/**
@@ -42,6 +44,8 @@ final public class Residence extends Observable {
 	 * List of projects. 
 	 */
 	private final ArrayList<Project> myProjects;
+	
+	private Project myCurrentProject;
 
 	/**
 	 * Constructs the user's residence.
@@ -133,17 +137,6 @@ final public class Residence extends Observable {
 		return copyProjects;
 	}
 	
-	private final ArrayList<String> projectInfo() {
-		final ArrayList<String> list = new ArrayList<String>();
-		
-		for (Project currentPro: myProjects) {
-			list.add(currentPro.getName());
-			list.add(String.valueOf(currentPro.getItems().size()));
-			list.add(String.valueOf(currentPro.getSavings()));
-		}
-		return list;
-	}
-	
 	/**
 	 * Adds a project to this residence.
 	 * @param theProject the project to be added.
@@ -164,6 +157,11 @@ final public class Residence extends Observable {
 		if(myProjects.contains(theProject)) {
 			myProjects.remove(theProject);
 		}
+		setChanged();
+		notifyObservers(projectInfo());
+	}
+	
+	public final void updateInfo() {
 		setChanged();
 		notifyObservers(projectInfo());
 	}
@@ -206,6 +204,14 @@ final public class Residence extends Observable {
 		if(myBills.contains(theBill)) {
 			myBills.remove(theBill);
 		}
+	}
+	
+	public final void setCurrentProject(final Project theProject) {
+		myCurrentProject = theProject;
+	}
+	
+	public final Project getCurrentProject() {
+		return myCurrentProject;
 	}
 	
     /**
@@ -253,4 +259,15 @@ final public class Residence extends Observable {
         
         return Objects.hash(myName, myProjectedBill, myBills, myProjects);
     }
+    
+	private final ArrayList<String> projectInfo() {
+		final ArrayList<String> list = new ArrayList<String>();
+		//list.add(myName);
+		for (Project currentPro: myProjects) {
+			list.add(currentPro.getName());
+			list.add(String.valueOf(currentPro.getItems().size()));
+			list.add(String.valueOf(currentPro.getSavings()));
+		}
+		return list;
+	}
 }

@@ -140,4 +140,14 @@ public class Item {
         
         return Objects.hash(myName, myCost);
     }
+    
+    /**
+     * @return Formatted string summary of Item
+     * @author Isaac Seemann
+     */
+    @Override
+    public String toString(){
+    	return myName + " " + myType + " " + String.valueOf(myEValue) + "Watts $" +
+    			String.valueOf(myCost);
+    }
 }

@@ -4,7 +4,6 @@ package controller;
  */
 
 import java.awt.EventQueue;
-
 import model.User;
 import view.*;
 
@@ -39,7 +38,14 @@ public final class Main {
     	EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-            	start();
+            	// login and setup pane,
+            	User user = new User();
+            	final MenuActions menuAction = new MenuActions(user);
+            	LoginPane.getInstance().setAction(menuAction);
+            	SetupPane.getInstance().setAction(menuAction);
+            	CustomOptionFrame.getInstance().addPanel(SetupPane.getInstance(), "Setup");
+            	CustomOptionFrame.getInstance().addPanel(LoginPane.getInstance(), "Login");
+            	CustomOptionFrame.getInstance().displayPanel("Login");
             }
         });
     }
@@ -48,8 +54,7 @@ public final class Main {
      * @author Donald Muffler
      * Helper method for instantiating and passing dependencies.
      */
-    private final static void start() {
-    	final User user = new User(); 
+    public final static void start(User user) {
     	
     	// add user data to actions.
     	final HomeActions homeAction = new HomeActions(user);
@@ -92,8 +97,5 @@ public final class Main {
     	
     	// add observers.
     	user.addObserver(ManageResidenceScreen.getInstance());
-    	
-    	// displays login page.
-    	CustomOptionFrame.getInstance().displayPanel("Login");
     }
 }

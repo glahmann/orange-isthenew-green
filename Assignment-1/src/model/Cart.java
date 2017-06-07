@@ -16,7 +16,7 @@ public class Cart {
 	
 	/**Empty cart constructor*/
 	public Cart() {
-		double myTotal = 0.0;
+		myTotal = 0.0;
 		myItems = new ArrayList<>();
 	}
 	
@@ -25,7 +25,7 @@ public class Cart {
 	 * @param theItems list of items to initialize the cart with
 	 */
 	public Cart(final ArrayList<Item> theItems) {
-		double myTotal = 0.0;
+		myTotal = 0.0;
 		myItems = new ArrayList<>();
 		myItems.addAll(theItems);
 		
@@ -33,13 +33,7 @@ public class Cart {
 			myTotal += item.getCost();
 		}
 	}
-	/**
-	 * Add an item to the cart
-	 * @param theItem
-	 */
-	public void addItem(final Item theItem){
-		myItems.add(theItem);
-	}
+	
 	/**
 	 * Remove an item to the cart
 	 * @param theItem
@@ -47,9 +41,17 @@ public class Cart {
 	public void removeItem(final Item theItem){
 		myItems.remove(theItem);
 	}
-	/**Total number of items in the cart*/
+	/**Total number of items in the cart
+	 * @return Item count in cart
+	 */
 	public int getTotalItems(){
 	    return myItems.size();
+	}
+	/**Total cost of items in the cart
+	 * @return Item count in cart
+	 */
+	public double getTotalCost(){
+	    return myTotal;
 	}
 	/**
 	 * Add the items to project, include total cost and Evalue->savings(TBD)

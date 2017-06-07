@@ -43,22 +43,23 @@ public final class HomeActions extends AbstractAction {
 		final String whichButton = theEvent.getActionCommand();
 		
 		switch(whichButton) {
-			case "Create Project":
-				CustomOptionFrame.getInstance().displayPanel("Create Project");
-				break;
-			case "Create":
-				Gui.getInstance().displayPanel("Market");
-                CustomOptionFrame.getInstance().dispose();
-				break;
-			case "Enter an Energy Bill?":
-				final BillPane bill = new BillPane();
-				JOptionPane.showMessageDialog(Gui.getInstance(), bill);
-				// TODO: Add to user.
-				break;
+//			case "Create Project":
+//				CustomOptionFrame.getInstance().displayPanel("Create Project");
+//				break;
+//			case "Create":
+//				Gui.getInstance().displayPanel("Market");
+//                CustomOptionFrame.getInstance().dispose();
+//				break;
+//			case "Enter an Energy Bill?":
+//				//final BillPane bill = new BillPane();
+//				//JOptionPane.showMessageDialog(Gui.getInstance(), bill);
+//				// TODO: Add to user.
+//				break;
 			case "Statistics":
 			    Gui.getInstance().displayPanel("Calculator");
 				break;
 			case "Manage Residences":
+				myUser.updateInfo();
 				Gui.getInstance().displayPanel("Manage Residences");
 				break;
 			case "Save/Exit":

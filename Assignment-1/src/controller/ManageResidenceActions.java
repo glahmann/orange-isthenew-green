@@ -4,11 +4,9 @@ import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
 import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.JCheckBox;
 
 import model.HousingType;
-import model.Project;
 import model.Residence;
 import model.User;
 import view.CreateResidenceScreen;
@@ -37,7 +35,7 @@ public final class ManageResidenceActions extends AbstractAction{
 	
 	/**
 	 * 
-	 * @param theAction
+	 * @param theUser
 	 */
 	public ManageResidenceActions(final User theUser) {
 		myUser = theUser;
@@ -59,8 +57,10 @@ public final class ManageResidenceActions extends AbstractAction{
 					if (tempMap1.get(resName).isSelected()) {
 						if (whichButton.equals("Delete Residence")) {
 							myUser.removeResidence(resName);
-						} else {
+						} else { // create
 							myUser.setCurrentResidence(resName);
+							myUser.getCurrentResidence().updateInfo();
+							
 							Gui.getInstance().displayPanel("Manage Projects");
 						}
 					}
@@ -74,6 +74,7 @@ public final class ManageResidenceActions extends AbstractAction{
 						(HousingType) CreateResidenceScreen.getInstance().getResSelection().getSelectedItem());
 				res.addObserver(ManageProjectScreen.getInstance());
 				myUser.addResidence(res);
+				myUser.updateInfo();
 				CustomOptionFrame.getInstance().dispose();
 				break;
 			case "Cancel": // for create residence pane.
@@ -81,5 +82,4 @@ public final class ManageResidenceActions extends AbstractAction{
 			break;
 		}
 	}
-
 }

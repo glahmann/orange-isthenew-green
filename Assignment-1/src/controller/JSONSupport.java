@@ -2,6 +2,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -38,6 +39,7 @@ final public class JSONSupport {
     	try {
 			//enable indentation
     		MAPPER.enable(SerializationFeature.INDENT_OUTPUT);
+    		MAPPER.setSerializationInclusion(Include.NON_NULL);
     		//convert object to JSON string and save into a file directly
     		MAPPER.writeValue(theFile, theUser);
 		} catch (JsonGenerationException e) {
