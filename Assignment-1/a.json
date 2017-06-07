@@ -1,8 +1,8 @@
 {
   "User Name" : "Donny",
-  "User Email" : "myEmail",
+  "User Email" : "a",
   "Residences" : [ {
-    "Residence Name" : "res2",
+    "Residence Name" : "res1",
     "Residence Type" : "APARTMENT",
     "Projected Bill" : 0.0,
     "Bills" : [ {
@@ -11,15 +11,17 @@
       "Start Year" : 2000,
       "End Month" : 2,
       "End Year" : 2000,
-      "eValue" : 100.0
+      "EValue" : 100.0
+    }, {
+      "Bill Ammount" : 1.0,
+      "Start Month" : 1,
+      "Start Year" : 11,
+      "End Month" : 1,
+      "End Year" : 1,
+      "EValue" : 1.0
     } ],
     "Projects" : [ {
-      "Project Name" : "sicker pro",
-      "Savings" : 0.0,
-      "Cost" : 0.0,
-      "Items" : [ ]
-    }, {
-      "Project Name" : "sickest pro",
+      "Project Name" : "pro1",
       "Savings" : 0.0,
       "Cost" : 0.0,
       "Items" : [ ]
