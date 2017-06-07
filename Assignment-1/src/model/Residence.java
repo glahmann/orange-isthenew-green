@@ -169,7 +169,7 @@ final public class Residence extends Observable {
 	
 	/**
 	 * Removes a project by name.
-	 * @param theProject the project to be removed.
+	 * @param theProjectName the project to be removed.
 	 * @author Donald Muffler
 	 */
 	public final void removeProject(final String theProjectName) {

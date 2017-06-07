@@ -40,8 +40,7 @@ public final class ManageProjectActions extends AbstractAction{
 	private final User myUser;
 	
 	/**
-	 * 
-	 * @param theAction
+	 * @param theUser the currently signed in user
 	 */
 	public ManageProjectActions(final User theUser) {
 		myUser = theUser;
@@ -107,6 +106,7 @@ public final class ManageProjectActions extends AbstractAction{
 			        projectUp.addItem(i);
 			    }
 			    break;
+            
 		}
 	}
 }
