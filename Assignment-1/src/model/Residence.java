@@ -269,7 +269,6 @@ final public class Residence extends Observable {
     
 	private final ArrayList<String> projectInfo() {
 		final ArrayList<String> list = new ArrayList<String>();
-		//list.add(myName);
 		for (Project currentPro: myProjects) {
 			list.add(currentPro.getName());
 			list.add(String.valueOf(currentPro.getItems().size()));

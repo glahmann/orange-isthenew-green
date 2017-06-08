@@ -131,13 +131,13 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 		//Checks if the object is an arraylist of strings
         //This deals with the user updating an arraylist of doubles
         if (theObject instanceof ArrayList) {
-            if(((ArrayList) theObject).size() > 0) {
-                if (((ArrayList) theObject).get(0) instanceof String) {
-                    myContentPanelHolder.remove(myContentPanel);
-                    buildContentPanel();
-                    updatePanel(theObject);
-                }
-            }
+        	if (((ArrayList) theObject).size() > 0) {
+	            if (((ArrayList<String>) theObject).get(((ArrayList) theObject).size() - 1) instanceof String) {
+	                myContentPanelHolder.remove(myContentPanel);
+	                buildContentPanel();
+	                updatePanel(theObject);
+	            }
+        	}
 		}
 	}
 	
@@ -237,7 +237,7 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 		ArrayList<String> resInfo = (ArrayList<String>) theObject;
 		myCheckBoxes = new HashMap<String, JCheckBox>();
 		final ButtonGroup checkBoxGroup = new ButtonGroup();
-		for (int i = 0; i < resInfo.size(); i += 3) {
+		for (int i = 0; i < resInfo.size() - 1; i += 3) {
 			myContentPanel.add(populateContentPanel(resInfo.get(i), 50, myNameTitle, checkBoxGroup, true, (i + 1) / 3 + 1));
 			myContentPanel.add(populateContentPanel(resInfo.get(i + 1), 50, myTypeTitle, checkBoxGroup, false, (i + 1) / 3 + 1));
 			myContentPanel.add(populateContentPanel(resInfo.get(i + 2), 50, myProjectsTitle, checkBoxGroup, false, (i + 1) / 3 + 1));

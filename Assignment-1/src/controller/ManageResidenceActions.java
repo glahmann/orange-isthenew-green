@@ -75,6 +75,7 @@ public final class ManageResidenceActions extends AbstractAction{
 				res.addObserver(ManageProjectScreen.getInstance());
 				myUser.addResidence(res);
 				myUser.setCurrentResidence(res.getName());
+				myUser.getCurrentResidence().updateInfo();;
 				CustomOptionFrame.getInstance().dispose();
 				Gui.getInstance().displayPanel("Manage Projects");
 				break;

@@ -262,6 +262,7 @@ final public class User extends Observable {
 			list.add(currentRes.getType().name());
 			list.add(String.valueOf(currentRes.getProjects().size()));
 		}
+		list.add("String Check"); // for observer to check if list type is of type String.
 		return list;
 	}
 
