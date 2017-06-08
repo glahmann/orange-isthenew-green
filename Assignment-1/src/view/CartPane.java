@@ -18,13 +18,16 @@ import model.Item;
 import java.awt.Font;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Cart of items in current project
  * @author Isaac Seemann
  * @version 6/1/17
  */
-public class CartPane extends JPanel{
+
+public class CartPane extends JPanel implements Observer{
 
 	/**
 	 * Serial ID.
@@ -90,6 +93,7 @@ public class CartPane extends JPanel{
 		myItemScrollPane = new JScrollPane(myItemList);
 		buildCart();
 		setListListener();
+
 	}
 
 	/**
@@ -143,6 +147,7 @@ public class CartPane extends JPanel{
 		myItemList.clearSelection();
 		myRemoveButton.setEnabled(false);
 	}
+	
 	/**
 	 * Update JTextArea with summary of selected item
 	 * @param index of item in cart list
@@ -157,6 +162,7 @@ public class CartPane extends JPanel{
 			myItemSummaryArea.setText(summary);
 		}
 	}
+	
 	/**
 	 * Get Index values of items user has selected for removal
 	 * @return Array of indices
@@ -164,6 +170,7 @@ public class CartPane extends JPanel{
 	public final int getSelectedItemIndex(){
 		return myItemList.getSelectedIndex();
 	}
+	
 	/**
 	 * Add actionListeners to buttons
 	 * @param Cart controller passed from Main
@@ -173,6 +180,7 @@ public class CartPane extends JPanel{
 		myConfirmButton.addActionListener(theAction);
 		myCancelButton.addActionListener(theAction);
 	}
+	
 	/**
 	 * Add ListSelectionListener to list of items
 	 */
@@ -193,4 +201,11 @@ public class CartPane extends JPanel{
 			}
 		});
 	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
+
+	}
 }
+

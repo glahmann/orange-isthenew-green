@@ -30,9 +30,8 @@ public class CartActions extends AbstractAction{
 	 */
 	private final User myUser;
 
-	/**
-	 * The cart panel.
-	 */
+
+	/**Cart gui*/
 	private final CartPane myCartPanel;
 
 	/**
@@ -46,11 +45,11 @@ public class CartActions extends AbstractAction{
 
 	/**
 	 * Performs an action based on which button was pressed.
+	 * @param  theEvent The action event.
 	 */
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
 		final String whichButton = theEvent.getActionCommand();
-		
 		final Project project = myUser.getCurrentResidence().getCurrentProject();
 		switch(whichButton) {
 
