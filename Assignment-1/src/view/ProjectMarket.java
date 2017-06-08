@@ -4,6 +4,7 @@ import javax.swing.*;
 
 import model.Item;
 import model.Market;
+import net.miginfocom.swing.MigLayout;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
  * @author Garrett Lahmann
  * @version 6/5/17
  */
-final public class ProjectMarket extends JTabbedPane {
+final public class ProjectMarket extends JPanel {
 
     /**
      * Serialized ID for the object.
@@ -49,6 +50,8 @@ final public class ProjectMarket extends JTabbedPane {
      * List of view cart buttons.
      */
     private final ArrayList<JButton> myViewButtons;
+    
+    private JButton myBackButton;
     
     /**
      * Market for the display.
@@ -97,6 +100,7 @@ final public class ProjectMarket extends JTabbedPane {
         for (JButton btn: myViewButtons) {
             btn.addActionListener(theAction);
         }
+        myBackButton.addActionListener(theAction);
     }
 
     /**
@@ -104,13 +108,29 @@ final public class ProjectMarket extends JTabbedPane {
      * 
      * @author Zira Cook
      * @author Garrett Lahmann
+     * @author Donald Muffler
      */
     private final void buildMarket() {
-        
-        addTab("INSULATION", buildCards("INSULATION"));
-        addTab("LIGHTING", buildCards("LIGHTING"));
-        addTab("APPLIANCES", buildCards("APPLIANCES"));
-        addTab("WINDOWS", buildCards("WINDOWS"));
+    	setLayout(new BorderLayout());
+    	buildTopPanel();
+        final JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane.addTab("INSULATION", buildCards("INSULATION"));
+        tabbedPane.addTab("LIGHTING", buildCards("LIGHTING"));
+        tabbedPane.addTab("APPLIANCES", buildCards("APPLIANCES"));
+        tabbedPane.addTab("WINDOWS", buildCards("WINDOWS"));
+        add(tabbedPane);
+    }
+    
+    /**
+     * @author Donald Muffler
+     * 
+     * Panel for traversing back.
+     */
+    private final void buildTopPanel() {
+    	final JPanel topPanel = new JPanel(new MigLayout("", "[]", "[]"));
+		myBackButton = new JButton("Back To Projects");
+		topPanel.add(myBackButton, "cell 0 0");
+		add(topPanel, BorderLayout.NORTH);
     }
 
     /**

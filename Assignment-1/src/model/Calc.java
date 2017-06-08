@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -11,11 +12,11 @@ import java.util.Iterator;
  * @version 20170531
  */
 final public class Calc {
-    
+
     /**
-     * Average cost per kilowatt hour.
+     * Keeps doubles at 2 decimal places.
      */
-    private static final double POWER_COST = 0.11;
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".##");
     
     /**
      * Average power usage of Tacoma household (kWh/month).
@@ -80,6 +81,6 @@ final public class Calc {
 	        }
 	            
 	    }
-		return savings;
+		return Double.parseDouble(DECIMAL_FORMAT.format(savings));
 	}
 }
