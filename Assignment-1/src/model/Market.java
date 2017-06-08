@@ -39,7 +39,9 @@ public class Market {
      */
     private final ArrayList<Item> myWindows;
     
-    
+    /**
+     * A map of item names and their quantity selectors.
+     */
     private Map<String, JComboBox<Integer>> myMap;
     
     /**
@@ -134,6 +136,7 @@ public class Market {
     }
     
     /**
+     * Gets the selected items that the user wants to add to their cart.
      * 
      * @return a list of the selected items.
      */
@@ -167,6 +170,17 @@ public class Market {
             System.exit(0);
         }
         return selected;
+    }
+    
+    /**
+     * Reset the quantity selectors for all items in the market.
+     */
+    public void resetDropDowns() {
+        for(Entry<String, JComboBox<Integer>> entry : myMap.entrySet()) {
+            if (entry.getValue().getSelectedIndex() != 0) {
+                entry.getValue().setSelectedIndex(0);
+            }
+        }
     }
     
 }

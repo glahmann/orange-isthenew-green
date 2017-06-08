@@ -49,6 +49,9 @@ public final class ManageProjectActions extends AbstractAction{
 	
 	/**
 	 * 
+	 * 
+	 * @author Donald Muffler
+	 * @author Garrett Lahmann
 	 */
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
@@ -109,6 +112,7 @@ public final class ManageProjectActions extends AbstractAction{
 			    for (Item i: selected) {
 			        projectUp.addItem(i);
 			    }
+			    market.resetDropDowns(); 
 			    break;
 			case "VIEW CART":
 			    CartPane.getInstance().buildItemList(myUser.getCurrentResidence().getCurrentProject().getItems());

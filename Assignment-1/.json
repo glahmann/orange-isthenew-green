@@ -40,6 +40,16 @@
         "Item Cost" : 1.97,
         "Item Type" : "lighting",
         "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
+      }, {
+        "Item Name" : "Whirlpool Dishwasher, Energy Star",
+        "Item Cost" : 397.0,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 700.0
       } ]
     } ]
   } ]
