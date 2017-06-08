@@ -24,7 +24,77 @@
       "Project Name" : "pro1",
       "Savings" : 0.0,
       "Cost" : 0.0,
-      "Items" : [ ]
+      "Items" : [ {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "Left-Hand Casement Window",
+        "Item Cost" : 78.95,
+        "Item Type" : "windows",
+        "Item Energy Value" : 12.5
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      }, {
+        "Item Name" : "LG Eco Bottom Freezer Refrigerator",
+        "Item Cost" : 1147.5,
+        "Item Type" : "appliances",
+        "Item Energy Value" : 1000.0
+      }, {
+        "Item Name" : "60W Equivalent Soft White LED",
+        "Item Cost" : 1.97,
+        "Item Type" : "lighting",
+        "Item Energy Value" : 9.0
+      } ]
     } ]
   } ]
 }
