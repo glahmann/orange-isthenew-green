@@ -13,6 +13,7 @@ import view.CustomOptionFrame;
  * Action controller for cart pane and cart model.
  * 
  * @author Isaac Seemann
+ * @author Garrett Lahmann
  * @version 6/6/2017
  */
 public class CartActions extends AbstractAction{
@@ -22,24 +23,25 @@ public class CartActions extends AbstractAction{
 	private static final long serialVersionUID = 2594837122483831137L;
 
 	private final User myUser;
-	
-	/**Project cart is modifying*/
-	private final Project myProject;
 
 	private final CartPane myCartPanel;
 
-	public CartActions(final User user)  {
-		myUser = user;
-		myProject = user.getCurrentResidence().getCurrentProject();
+	public CartActions(final User theUser)  {
+		myUser = theUser;
 		myCartPanel = new CartPane();
 	}
 
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
 		final String whichButton = theEvent.getActionCommand();
-
+		
 		switch(whichButton) {
-
+		    case "Complete":
+		        final Project project = myUser.getCurrentResidence().getCurrentProject();
+		        break;
 			case "Cancel":
 				CustomOptionFrame.getInstance().dispose();
 				break;
