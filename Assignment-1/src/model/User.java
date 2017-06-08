@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * Represents a user that has a name and an email.
  * 
  * @author Yaro Salo
+ * @author Donald Muffler
  * @version April 12, 2017
  */
 @JsonPropertyOrder({"User Name", "User Email", "Residences"})
@@ -93,6 +94,12 @@ final public class User extends Observable {
 		return myEmail;
 	}
 
+	/**
+	 * Sets the current residence by name.
+	 * @param theResidenceName the residence name.
+	 * 
+	 * @author Donald Muffler
+	 */
 	public final void setCurrentResidence(final String theResidenceName) {
 		for (Residence currentRes: myResidences) {
 			if (theResidenceName.equals(currentRes.getName())) {
@@ -114,12 +121,6 @@ final public class User extends Observable {
 	@JsonProperty("Residences") 
 	public ArrayList<Residence> getResidences() {
 		
-//		ArrayList<Residence> copyRes = new ArrayList<>();
-//		for(Residence r: myResidences) {
-//			copyRes.add(new Residence(r.getName(), r.getType(), r.getProjectedBill(),
-//					r.getBills(), r.getProjects()));	
-//		}
-//		return copyRes;
 		return myResidences;
 	}
 	/**
@@ -253,6 +254,8 @@ final public class User extends Observable {
     /**
      * Gets readable info from all residences.
      * @return residence info
+     * 
+     * @author Donald Muffler
      */
 	private final ArrayList<String> resInfo() {
 		final ArrayList<String> list = new ArrayList<>();
