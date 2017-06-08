@@ -10,11 +10,13 @@ import model.Project;
 import model.User;
 import view.CartPane;
 import view.CustomOptionFrame;
+import view.Gui;
 
 /**
  * Action controller for cart pane and cart model.
  * 
  * @author Isaac Seemann
+ * @author Garrett Lahmann
  * @version 6/6/2017
  */
 public class CartActions extends AbstractAction{
@@ -24,35 +26,44 @@ public class CartActions extends AbstractAction{
 	private static final long serialVersionUID = 2594837122483831137L;
 
 	private final User myUser;
-	/**Project that cart is modifying*/
-	private Project myProject = null;
+
 	/**Cart gui*/
-	private CartPane myCartPanel = null;
-	
+	private final CartPane myCartPanel;
+
 	/**Cart controller constructor*/
-	public CartActions(final User user)  {
-		myUser = user;
+	public CartActions(final User theUser)  {
+		myUser = theUser;
+		myCartPanel = CartPane.getInstance();
+
 	}
 
+	/**
+	 * Actions of cart buttons
+	 */
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
 		final String whichButton = theEvent.getActionCommand();
-
+		final Project project = myUser.getCurrentResidence().getCurrentProject();
 		switch(whichButton) {
-		    case "VIEW CART":
-		    	myProject = myUser.getCurrentResidence().getCurrentProject();
-		    	myCartPanel = new CartPane();
-			case "Cancel":
-				CustomOptionFrame.getInstance().dispose();
-				break;
-			case "Remove":
-				ArrayList<Item> projItems = myProject.getItems();
-				int[] removalIndices = myCartPanel.getSelectedItemIndices();
-				for(int idx : removalIndices){
-					myProject.removeItem(projItems.get(idx));
-				}
-				break;
-				
+
+		case "Cancel":
+			CustomOptionFrame.getInstance().dispose();
+			break;
+		case "Remove":
+			ArrayList<Item> projItems = project.getItems();
+			int removalIndex = myCartPanel.getSelectedItemIndex();
+			System.out.println(removalIndex);
+			//System.out.println("Remove " + projItems.get(removalIndex) + "-> " + project.getItems().size());
+			if(removalIndex >= 0){
+				project.removeItem(projItems.get(removalIndex));
+				myCartPanel.buildItemList(project.getItems());
+				myCartPanel.displayItemSummary(-1);
+				myCartPanel.repaint();
+			}
+			break;
+		case "OK":
+			Gui.getInstance().displayPanel("Manage Projects");
+			CustomOptionFrame.getInstance().dispose();
 		}
 	}
 

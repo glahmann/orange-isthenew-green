@@ -16,6 +16,8 @@ import javax.swing.JList;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import model.Item;
 
@@ -35,110 +37,148 @@ import java.awt.GridLayout;
  * @version 6/1/17
  */
 public class CartPane extends JPanel implements Observer{
-	
+
 	private static CartPane myCart = null;
 
-	private JTextArea myCartSumText;
-	
+	private JTextArea myItemSummaryArea;
+
 	private JButton myConfirmButton;
-	
+
 	private JButton myRemoveButton;
-	
+
 	private JButton myCancelButton;
-	
+
 	private JLabel myCartTitleLabel;
-	
+
 	private JList<String> myItemList;
-	
+
 	private JScrollPane myItemScrollPane;
-	
-	
+
+	private ArrayList<Item> myItemArray;
+
+
 	/**
 	 * Create the panel.
 	 */
 	public CartPane() {
-		
-		myCartSumText = new JTextArea();
-		myRemoveButton = new JButton("Remove Item");
+
+		myItemSummaryArea = new JTextArea();
+		myRemoveButton = new JButton("Remove");
 		myConfirmButton = new JButton("OK");
 		myCancelButton = new JButton("Cancel");
 		myItemList = new JList<>();
 		myCartTitleLabel = new JLabel("Project Items");
 		myItemScrollPane = new JScrollPane(myItemList);
 		buildCart();
+		setListListener();
 	}
-	
+
 	/**
-     * Getter for the cart panel.
-     * @return the cart.
-     */
-    public final static CartPane getInstance() {
-        if (myCart == null) {
-            myCart = new CartPane();
-        }
-        return myCart;
-    }
-    
-    /**
-     * Add GUI components to the cart JPanel.
-     */
-    private final void buildCart() {
-    	this.setBackground(Color.GREEN);
-    	myItemScrollPane.setPreferredSize(getPreferredSize());
-		myCartSumText.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		
+	 * Getter for the cart panel.
+	 * @return the cart.
+	 */
+	public final static CartPane getInstance() {
+		if (myCart == null) {
+			myCart = new CartPane();
+		}
+		return myCart;
+	}
+
+	/**
+	 * Add GUI components to the cart JPanel.
+	 */
+	private final void buildCart() {
+		this.setBackground(Color.GREEN);
+		myItemScrollPane.setPreferredSize(getPreferredSize());
+		myItemSummaryArea.setFont(new Font("Monospaced", Font.PLAIN, 18));
+
 		setLayout(new MigLayout("", "[150px][150px][150px]", "[75px][75px][75px][75px]"));
-		
+
 		myCartTitleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 30));
 		add(myCartTitleLabel, "flowy,cell 1 0,growx");
-		
+
 		myConfirmButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		myRemoveButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		myCancelButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		add(myItemScrollPane, "cell 0 1,grow,span 2 2");
-		add(myCartSumText, "cell 2 1,grow,spany 2");
-		add(myRemoveButton, "cell 0 3,growx");
-		add(myRemoveButton, "cell 2 3,growx");
-		add(myConfirmButton, "cell 1 3,growx");	
+		add(myItemSummaryArea, "cell 2 1,grow,spany 2");
+		add(myCancelButton, "cell 0 3");
+		add(myRemoveButton, "cell 2 3");
+		add(myConfirmButton, "cell 1 3");	
 
-    }
-    
-    /**
-     * Build cart item list from Project Item content.
-     * @param theItemList
-     */
-    public final void buildItemList(ArrayList<Item> theItemList){
-    	String[] newItemList = new String[theItemList.size()];
-    	
-    	for(int i = 0; i < theItemList.size(); i++){
-    		newItemList[i] = theItemList.get(i).toString();
-    	}
-    	myItemList.setListData(newItemList);
-    	myItemList.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
-    	myItemList.clearSelection();
-    	myRemoveButton.setEnabled(false);
-    }
-    
-    public final void buildCartSummary(){
-    	
-    }
-    /**
-     * Get Index values of items user has selected for removal
-     * @return Array of indices
-     */
-    public final int[] getSelectedItemIndices(){
-    	return myItemList.getSelectedIndices();
-    }
-    public final void setAction(final Action theAction) {
-    	myRemoveButton.addActionListener(theAction);
-    	myConfirmButton.addActionListener(theAction);
-    	myCancelButton.addActionListener(theAction);
-    	//myItemList.addListSelectionListener(arg0);
-    }
+	}
+
+	/**
+	 * Build cart item list from Project Item content.
+	 * @param theItemList
+	 */
+	public final void buildItemList(ArrayList<Item> theItemList){
+		myItemArray = theItemList;
+		String[] newItemList = new String[theItemList.size()];
+
+		for(int i = 0; i < theItemList.size(); i++){
+			newItemList[i] = theItemList.get(i).getName();
+		}
+		myItemList.setListData(newItemList);
+		myItemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		myItemList.clearSelection();
+		myRemoveButton.setEnabled(false);
+	}
+	/**
+	 * Update JTextArea with summary of selected item
+	 * @param index of item in cart list
+	 */
+	public final void displayItemSummary(int theItemIndex){
+		if(theItemIndex == -1){
+			myItemSummaryArea.setText("");
+		}
+		else{
+			Item displayItem = myItemArray.get(theItemIndex);
+			String summary = displayItem.toString();
+			myItemSummaryArea.setText(summary);
+		}
+	}
+	/**
+	 * Get Index values of items user has selected for removal
+	 * @return Array of indices
+	 */
+	public final int getSelectedItemIndex(){
+		return myItemList.getSelectedIndex();
+	}
+	/**
+	 * Add actionListeners to buttons
+	 * @param Cart controller passed from Main
+	 */
+	public final void setAction(final Action theAction) {
+		myRemoveButton.addActionListener(theAction);
+		myConfirmButton.addActionListener(theAction);
+		myCancelButton.addActionListener(theAction);
+	}
+	/**
+	 * Add ListSelectionListener to list of items
+	 */
+	public final void setListListener(){
+		myItemList.addListSelectionListener(new ListSelectionListener() {
+			@Override
+			public void valueChanged(ListSelectionEvent listAction) {
+				if (!listAction.getValueIsAdjusting()) {
+					if(myItemList.isSelectionEmpty()){
+						myRemoveButton.setEnabled(false);
+					}
+					else{
+						System.out.println(myItemList.getSelectedIndex());
+						myRemoveButton.setEnabled(true);
+						displayItemSummary(myItemList.getSelectedIndex());
+					}	
+				}
+			}
+		});
+
+	}
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

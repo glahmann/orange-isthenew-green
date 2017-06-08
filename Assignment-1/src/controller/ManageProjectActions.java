@@ -15,6 +15,7 @@ import model.Market;
 import model.Project;
 import model.User;
 import view.BillPane;
+import view.CartPane;
 import view.CreateProject;
 import view.CustomOptionFrame;
 import view.Gui;
@@ -100,11 +101,14 @@ public final class ManageProjectActions extends AbstractAction{
 			case "UPDATE CART":
 			    final Market market = ProjectMarket.getInstance().getMarket();
 			    final ArrayList<Item> selected = market.getSelected();
-			    final Cart cart = new Cart(selected);
 			    final Project projectUp = myUser.getCurrentResidence().getCurrentProject();
 			    for (Item i: selected) {
 			        projectUp.addItem(i);
 			    }
+			    break;
+			case "VIEW CART":
+			    CartPane.getInstance().buildItemList(myUser.getCurrentResidence().getCurrentProject().getItems());
+			    CustomOptionFrame.getInstance().displayPanel("Cart");
 			    break;
             
 		}
