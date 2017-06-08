@@ -1,8 +1,6 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
@@ -130,11 +128,16 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 
 	@Override
 	public void update(Observable theObservable, Object theObject) {
-		if (theObject instanceof ArrayList) {
-			myContentPanelHolder.remove(myContentPanel);
-			buildContentPanel();
-			updatePanel(theObject);
-			
+		//Checks if the object is an arraylist of strings
+        //This deals with the user updating an arraylist of doubles
+        if (theObject instanceof ArrayList) {
+            if(((ArrayList) theObject).size() > 0) {
+                if (((ArrayList) theObject).get(0) instanceof String) {
+                    myContentPanelHolder.remove(myContentPanel);
+                    buildContentPanel();
+                    updatePanel(theObject);
+                }
+            }
 		}
 	}
 	

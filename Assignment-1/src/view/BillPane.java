@@ -130,7 +130,7 @@ public class BillPane extends JPanel {
     	return Integer.parseInt(myStartYear.getText());
     }
     
-    public final double getEValue() {
+    public final double getEnergyUsage() {
     	return Double.parseDouble(myEnergyUsage.getText());
     }
 }

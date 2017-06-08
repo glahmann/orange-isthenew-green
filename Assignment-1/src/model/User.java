@@ -187,8 +187,24 @@ final public class User extends Observable {
 	
 	public final void updateInfo() {
 		setChanged();
+
+        //For residence screen
 		notifyObservers(resInfo());
+
+        updateBillInfo();
+
+        updateItemInfo();
 	}
+
+    private final void updateBillInfo() {
+        setChanged();
+        notifyObservers(billInfo());
+    }
+
+    private final void updateItemInfo() {
+        setChanged();
+        notifyObservers(itemInfo());
+    }
 	
     /**
      * {@inheritDoc}
@@ -233,7 +249,11 @@ final public class User extends Observable {
         
         return Objects.hash(myName, myEmail, myResidences);
     }
-    
+
+    /**
+     * Gets readable info from all residences.
+     * @return residence info
+     */
 	private final ArrayList<String> resInfo() {
 		final ArrayList<String> list = new ArrayList<>();
 		
@@ -245,18 +265,38 @@ final public class User extends Observable {
 		return list;
 	}
 
-	private final ArrayList<Double> billInfo() {
-        final ArrayList<Double> billList = new ArrayList<>();
+    /**
+     * Gets readable bill info.
+     * @return bill info
+     */
+	private ArrayList<Double> billInfo() {
+        ArrayList<Double> billList = new ArrayList<>();
 
         for (Residence currentRes: myResidences) {
             for (Bill currentBill: currentRes.getBills()) {
                 billList.add((double) currentBill.getBeginMonth());
                 billList.add((double) currentBill.getBeginYear());
                 billList.add(currentBill.getAmount());
-
+                billList.add(currentBill.getEValue());
             }
         }
 
         return billList;
+    }
+
+    /**
+     * Gets readable item info.
+     * @return item info.
+     */
+    private ArrayList<Item> itemInfo() {
+        ArrayList<Item> items = new ArrayList<>();
+
+        for (Residence currentRes: myResidences) {
+            for (Project currentProject: currentRes.getProjects()) {
+                items.addAll(currentProject.getItems());
+            }
+        }
+
+        return items;
     }
 }

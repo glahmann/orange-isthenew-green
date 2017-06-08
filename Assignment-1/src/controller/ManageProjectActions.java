@@ -92,7 +92,7 @@ public final class ManageProjectActions extends AbstractAction{
 						BillPane.getInstance().getStarYear(),
 						BillPane.getInstance().getEndMonth(),
 						BillPane.getInstance().getEndYear(),
-						BillPane.getInstance().getEValue());
+						BillPane.getInstance().getEnergyUsage());
 				myUser.getCurrentResidence().addBill(bill);
 				break;
 			case "UPDATE CART":
