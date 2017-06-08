@@ -41,6 +41,11 @@ public final class ManageResidenceActions extends AbstractAction{
 		myUser = theUser;
 	}
 	
+	/**
+	 * Performs an action based on which button was pressed.
+	 * 
+	 * @author Donald Muffler
+	 */
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
 		
@@ -70,7 +75,7 @@ public final class ManageResidenceActions extends AbstractAction{
 				CustomOptionFrame.getInstance().displayPanel("Create Residence");
 				break;
 			case "Create": // for create residence pane.
-				final Residence res = new Residence(CreateResidenceScreen.getInstance().getResNameField().getText(),
+				final Residence res = new Residence(CreateResidenceScreen.getInstance().getResName(),
 						(HousingType) CreateResidenceScreen.getInstance().getResSelection().getSelectedItem());
 				res.addObserver(ManageProjectScreen.getInstance());
 				myUser.addResidence(res);

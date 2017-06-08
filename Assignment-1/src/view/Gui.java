@@ -1,6 +1,5 @@
 package view;
 
-
 import controller.JSONSupport;
 import model.User;
 

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import java.awt.Color;
@@ -8,7 +5,6 @@ import java.awt.Color;
 import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,6 +19,11 @@ import net.miginfocom.swing.MigLayout;
  */
 public class CreateProject extends JPanel {
 	
+	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = 5501475586821287960L;
+
 	/**
 	 * Size for text fields.
 	 */
@@ -100,7 +101,7 @@ public class CreateProject extends JPanel {
      * Getter for project name field.
      * @return the text field of the entered project name
      */
-	public final JTextField getProjectNameField() {
-		return myProjectNameBox;
+	public final String getProjectName() {
+		return myProjectNameBox.getText();
 	}
 }

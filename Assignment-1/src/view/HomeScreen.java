@@ -12,8 +12,6 @@ import java.awt.GridLayout;
 
 import javax.swing.border.TitledBorder;
 
-import controller.HomeActions;
-
 import javax.swing.UIManager;
 
 /**

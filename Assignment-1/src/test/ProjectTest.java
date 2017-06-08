@@ -164,8 +164,6 @@ public class ProjectTest {
     	list1.add(item2);
     	final Project otherProject = new Project(NAME,SAVINGS,COST, list1);
     	
-    	assertTrue(myProject.hashCode() == otherProject.hashCode());
-    	
+    	assertTrue(myProject.hashCode() == otherProject.hashCode());	
     }
-    
 }

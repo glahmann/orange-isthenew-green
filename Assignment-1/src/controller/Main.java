@@ -40,10 +40,9 @@ public final class Main {
             @Override
             public void run() {
             	// login and setup pane,
-            	User user = new User();
-            	final MenuActions menuAction = new MenuActions(user);
-            	LoginPane.getInstance().setAction(menuAction);
-            	SetupPane.getInstance().setAction(menuAction);
+            	final LoginActions loginAction = new LoginActions();
+            	LoginPane.getInstance().setAction(loginAction);
+            	SetupPane.getInstance().setAction(loginAction);
             	CustomOptionFrame.getInstance().addPanel(SetupPane.getInstance(), "Setup");
             	CustomOptionFrame.getInstance().addPanel(LoginPane.getInstance(), "Login");
             	CustomOptionFrame.getInstance().displayPanel("Login");
@@ -110,6 +109,5 @@ public final class Main {
 
         //Set close operation for GUI, so it writes to JSON
         Gui.getInstance().setCloseOperation(user);
-        
     }
 }

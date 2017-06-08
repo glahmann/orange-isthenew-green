@@ -26,24 +26,55 @@ import java.util.ArrayList;
  */
 public class CartPane extends JPanel{
 
+	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = -2485671318578007289L;
+
+	/**
+	 * Singleton for the cart.
+	 */
 	private static CartPane myCart = null;
 
+	/**
+	 * Item summary.
+	 */
 	private JTextArea myItemSummaryArea;
 
+	/**
+	 * Confirm button.
+	 */
 	private JButton myConfirmButton;
 
+	/**
+	 * Remove button.
+	 */
 	private JButton myRemoveButton;
 
+	/**
+	 * Cancel button.
+	 */
 	private JButton myCancelButton;
 
+	/**
+	 * Cart title label.
+	 */
 	private JLabel myCartTitleLabel;
 
+	/**
+	 * Item list.
+	 */
 	private JList<String> myItemList;
 
+	/**
+	 * Item scroll pane.
+	 */
 	private JScrollPane myItemScrollPane;
 
+	/**
+	 * Item array.
+	 */
 	private ArrayList<Item> myItemArray;
-
 
 	/**
 	 * Create the panel.
@@ -161,6 +192,5 @@ public class CartPane extends JPanel{
 				}
 			}
 		});
-
 	}
 }

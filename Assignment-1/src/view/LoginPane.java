@@ -19,6 +19,11 @@ import net.miginfocom.swing.MigLayout;
 public class LoginPane extends JPanel{
 	
 	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = 7579908892110274745L;
+
+	/**
 	 * Starting login pane for singleton use.
 	 */
 	private static LoginPane myLoginPane = null;
@@ -76,8 +81,8 @@ public class LoginPane extends JPanel{
     /**
      * @return text field for the email
      */
-	public final JTextField getEmailField() {
-		return myEmailField;
+	public final String getEmail() {
+		return myEmailField.getText();
 	}
 
     /**

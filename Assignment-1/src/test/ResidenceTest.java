@@ -222,7 +222,6 @@ public class ResidenceTest {
     	proList.add(project);
     	billList.add(bill);
     	final Residence otherHouse = new Residence(NAME, HousingType.APARTMENT, PROBILL, billList, proList);
-
     	
     	assertTrue(myHouse.hashCode() == otherHouse.hashCode());
 	}
