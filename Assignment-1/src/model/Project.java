@@ -122,6 +122,7 @@ final public class Project {
 	public final void removeItem(final Item theItem) {
 		if(myItems.contains(theItem)) {
 			myItems.remove(theItem);
+			myCost -= theItem.getCost();
 		}
 	}
 	
