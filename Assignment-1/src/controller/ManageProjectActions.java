@@ -48,7 +48,7 @@ public final class ManageProjectActions extends AbstractAction{
 	}
 	
 	/**
-	 * 
+	 * Performs an action based on which button was pressed.
 	 * 
 	 * @author Donald Muffler
 	 * @author Garrett Lahmann
@@ -84,7 +84,7 @@ public final class ManageProjectActions extends AbstractAction{
 				CustomOptionFrame.getInstance().displayPanel("Create Project");
 				break;
 			case "Create": // for create project pane.
-				final Project pro = new Project(CreateProject.getInstance().getProjectNameField().getText());
+				final Project pro = new Project(CreateProject.getInstance().getProjectName());
 				myUser.getCurrentResidence().addProject(pro);
 				myUser.getCurrentResidence().setCurrentProject(pro.getName());
                 CustomOptionFrame.getInstance().dispose();

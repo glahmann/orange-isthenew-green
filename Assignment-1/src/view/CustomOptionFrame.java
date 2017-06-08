@@ -14,6 +14,14 @@ import javax.swing.JPanel;
  */
 public final class CustomOptionFrame extends JFrame {
 
+	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = 1741636894831569745L;
+
+	/**
+	 * Singleton for the custom option frame.
+	 */
 	private static CustomOptionFrame myCustomFrame = null;
 	
 	/**
@@ -22,14 +30,14 @@ public final class CustomOptionFrame extends JFrame {
 	private static JPanel myPanelHolder;
 	
 	/** 
-	  * ToolKit. 
-	  */
-	 private static final Toolkit KIT = Toolkit.getDefaultToolkit();
+	 * ToolKit. 
+	 */
+	private static final Toolkit KIT = Toolkit.getDefaultToolkit();
 	 
-	 /** 
-	  * Dimensions of the screen.
-	  */
-	 private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
+	/** 
+	 * Dimensions of the screen.
+	 */
+	private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
 	
 	/**
 	 * Constructs a custom frame.
@@ -39,6 +47,10 @@ public final class CustomOptionFrame extends JFrame {
 		add(myPanelHolder);
 	}
 	
+	/**
+	 * Getter for the custom option frame singleton.
+	 * @return custom option frame singleton.
+	 */
 	public static final CustomOptionFrame getInstance() {
 		if (myCustomFrame == null) {
 			myCustomFrame = new CustomOptionFrame();

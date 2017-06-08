@@ -29,24 +29,55 @@ import java.util.Observer;
 
 public class CartPane extends JPanel implements Observer{
 
+	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = -2485671318578007289L;
+
+	/**
+	 * Singleton for the cart.
+	 */
 	private static CartPane myCart = null;
 
+	/**
+	 * Item summary.
+	 */
 	private JTextArea myItemSummaryArea;
 
+	/**
+	 * Confirm button.
+	 */
 	private JButton myConfirmButton;
 
+	/**
+	 * Remove button.
+	 */
 	private JButton myRemoveButton;
 
+	/**
+	 * Cancel button.
+	 */
 	private JButton myCancelButton;
 
+	/**
+	 * Cart title label.
+	 */
 	private JLabel myCartTitleLabel;
 
+	/**
+	 * Item list.
+	 */
 	private JList<String> myItemList;
 
+	/**
+	 * Item scroll pane.
+	 */
 	private JScrollPane myItemScrollPane;
 
+	/**
+	 * Item array.
+	 */
 	private ArrayList<Item> myItemArray;
-
 
 	/**
 	 * Create the panel.
@@ -116,6 +147,7 @@ public class CartPane extends JPanel implements Observer{
 		myItemList.clearSelection();
 		myRemoveButton.setEnabled(false);
 	}
+	
 	/**
 	 * Update JTextArea with summary of selected item
 	 * @param index of item in cart list
@@ -130,6 +162,7 @@ public class CartPane extends JPanel implements Observer{
 			myItemSummaryArea.setText(summary);
 		}
 	}
+	
 	/**
 	 * Get Index values of items user has selected for removal
 	 * @return Array of indices
@@ -137,6 +170,7 @@ public class CartPane extends JPanel implements Observer{
 	public final int getSelectedItemIndex(){
 		return myItemList.getSelectedIndex();
 	}
+	
 	/**
 	 * Add actionListeners to buttons
 	 * @param Cart controller passed from Main
@@ -146,6 +180,7 @@ public class CartPane extends JPanel implements Observer{
 		myConfirmButton.addActionListener(theAction);
 		myCancelButton.addActionListener(theAction);
 	}
+	
 	/**
 	 * Add ListSelectionListener to list of items
 	 */
@@ -165,7 +200,6 @@ public class CartPane extends JPanel implements Observer{
 				}
 			}
 		});
-
 	}
 
 	@Override
@@ -174,3 +208,4 @@ public class CartPane extends JPanel implements Observer{
 
 	}
 }
+

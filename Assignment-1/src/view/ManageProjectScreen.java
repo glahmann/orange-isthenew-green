@@ -98,6 +98,9 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 	 */
 	private SpringLayout mySpringLayout;
 	
+	/**
+	 * Add bill button.
+	 */
 	private JButton myBillButton;
 	
 	
@@ -112,6 +115,10 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 		buildBottomPanel();
 	}
 	
+	/**
+	 * Sets the action for this panel's buttons.
+	 * @param theAction the action.
+	 */
 	public final void setAcion(final Action theAction) {
 		myBillButton.addActionListener(theAction);
 		myDeleteButton.addActionListener(theAction);
@@ -131,6 +138,9 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 		return myProjectScreen;
 	}
 
+	/**
+	 * Updates the manage project screen.
+	 */
 	@Override
 	public void update(Observable theObservable, Object theObject) {
 		if (theObject instanceof ArrayList) {
@@ -153,6 +163,10 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 		topPanel.add(myBackButton, "cell 0 0");
 	}
 	
+	/**
+	 * Map that contains the project name and box associated with it.
+	 * @return clone of the projects map with JCheckboxes.
+	 */
 	public final HashMap<String, JCheckBox> checkSelected() {
 		return (HashMap<String, JCheckBox>) myCheckBoxes.clone();
 	}
@@ -234,7 +248,10 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 		myContentPanelHolder.add(bottomPanel, BorderLayout.SOUTH);
 	}
 	
-	
+	/**
+	 * Updates the panel with project information.
+	 * @param theObject the list or projects.
+	 */
 	private final void updatePanel(Object theObject) {
 		ArrayList<String> projectInfo = (ArrayList<String>) theObject;
 		myCheckBoxes = new HashMap<String, JCheckBox>();

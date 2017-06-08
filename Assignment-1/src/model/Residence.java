@@ -14,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * with this residence.
  * 
  * @author Donald Muffler
+ * @author Yaro Salo
  * @version 20170516
  */
 @JsonPropertyOrder({"Residence Name", "Residence Type", "Projected Bill", "Bills", "Projects"})
@@ -45,6 +46,9 @@ final public class Residence extends Observable {
 	 */
 	private final ArrayList<Project> myProjects;
 	
+	/**
+	 * Current project open.
+	 */
 	private Project myCurrentProject;
 
 	/**
@@ -141,6 +145,7 @@ final public class Residence extends Observable {
 	/**
 	 * Adds a project to this residence.
 	 * @param theProject the project to be added.
+	 * @author Donald Muffler
 	 */
 	public final void addProject(final Project theProject) {
 		myProjects.add(theProject);
@@ -207,6 +212,11 @@ final public class Residence extends Observable {
 		}
 	}
 	
+	/**
+	 * Sets the current project.
+	 * @param theProjectName the current project to be set.
+	 * @author Donald Muffler
+	 */
 	public final void setCurrentProject(final String theProjectName) {
 		for (Project currentPro: myProjects) {
 			if (theProjectName.equals(currentPro.getName())) {
@@ -215,6 +225,10 @@ final public class Residence extends Observable {
 		}
 	}
 	
+	/**
+	 * Getter for the current project,
+	 * @return the curret project.
+	 */
 	public final Project getCurrentProject() {
 		return myCurrentProject;
 	}

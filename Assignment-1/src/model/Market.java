@@ -182,6 +182,5 @@ public class Market {
                 entry.getValue().setSelectedIndex(0);
             }
         }
-    }
-    
+    }   
 }

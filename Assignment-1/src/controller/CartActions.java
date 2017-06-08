@@ -25,19 +25,27 @@ public class CartActions extends AbstractAction{
 	/**Serial ID*/
 	private static final long serialVersionUID = 2594837122483831137L;
 
+	/**
+	 * The user.
+	 */
 	private final User myUser;
+
 
 	/**Cart gui*/
 	private final CartPane myCartPanel;
 
-	/**Cart controller constructor*/
+	/**
+	 * Constructs the action.
+	 * @param theUser the user.
+	 */
 	public CartActions(final User theUser)  {
 		myUser = theUser;
 		myCartPanel = CartPane.getInstance();
 	}
 
 	/**
-	 * Actions of cart buttons
+	 * Performs an action based on which button was pressed.
+	 * @param  theEvent The action event.
 	 */
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
@@ -65,5 +73,4 @@ public class CartActions extends AbstractAction{
 			CustomOptionFrame.getInstance().dispose();
 		}
 	}
-
 }
