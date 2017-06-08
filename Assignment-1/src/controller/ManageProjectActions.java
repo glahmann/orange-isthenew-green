@@ -57,11 +57,14 @@ public final class ManageProjectActions extends AbstractAction{
 	public void actionPerformed(final ActionEvent theEvent) {
 		
 		final String whichButton = theEvent.getActionCommand();
-		
 		switch(whichButton) {
 			case "Back":
 				myUser.updateInfo();
 				Gui.getInstance().displayPanel("Manage Residences");
+				break;
+			case "Back To Projects":
+				myUser.getCurrentResidence().updateInfo();
+				Gui.getInstance().displayPanel("Manage Projects");
 				break;
 			case "Delete Project":
 			case "Open Project":
