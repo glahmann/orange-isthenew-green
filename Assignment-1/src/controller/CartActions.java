@@ -60,7 +60,6 @@ public class CartActions extends AbstractAction{
 			ArrayList<Item> projItems = project.getItems();
 			int removalIndex = myCartPanel.getSelectedItemIndex();
 			System.out.println(removalIndex);
-			//System.out.println("Remove " + projItems.get(removalIndex) + "-> " + project.getItems().size());
 			if(removalIndex >= 0){
 				project.removeItem(projItems.get(removalIndex));
 				myCartPanel.buildItemList(project.getItems());
@@ -69,6 +68,7 @@ public class CartActions extends AbstractAction{
 			}
 			break;
 		case "OK":
+		    myUser.getCurrentResidence().updateInfo();
 			Gui.getInstance().displayPanel("Manage Projects");
 			CustomOptionFrame.getInstance().dispose();
 		}

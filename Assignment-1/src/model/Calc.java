@@ -35,10 +35,6 @@ final public class Calc {
 	 * Calculates the savings of a project.
 	 * @author Garrett Lahmann
 	 * @param theListOfItems the list of items of the project.
-	 * TODO add parameter replacedItems, an arraylist of same size as current param
-	 * TODO make output percentage based? 
-	 * TODO make function of time used
-	 * TODO make function of product longevity
 	 * @return the energy savings in Watts.
 	 */
 	public static final double calculate(ArrayList<Item> theListOfItems) {
