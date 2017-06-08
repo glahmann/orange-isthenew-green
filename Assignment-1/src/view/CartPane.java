@@ -18,13 +18,16 @@ import model.Item;
 import java.awt.Font;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Cart of items in current project
  * @author Isaac Seemann
  * @version 6/1/17
  */
-public class CartPane extends JPanel{
+
+public class CartPane extends JPanel implements Observer{
 
 	private static CartPane myCart = null;
 
@@ -59,6 +62,7 @@ public class CartPane extends JPanel{
 		myItemScrollPane = new JScrollPane(myItemList);
 		buildCart();
 		setListListener();
+
 	}
 
 	/**
@@ -161,6 +165,12 @@ public class CartPane extends JPanel{
 				}
 			}
 		});
+
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		// TODO Auto-generated method stub
 
 	}
 }

@@ -27,20 +27,21 @@ public class CartActions extends AbstractAction{
 
 	private final User myUser;
 
+	/**Cart gui*/
 	private final CartPane myCartPanel;
 
+	/**Cart controller constructor*/
 	public CartActions(final User theUser)  {
 		myUser = theUser;
 		myCartPanel = CartPane.getInstance();
 	}
 
 	/**
-	 * 
+	 * Actions of cart buttons
 	 */
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
 		final String whichButton = theEvent.getActionCommand();
-		
 		final Project project = myUser.getCurrentResidence().getCurrentProject();
 		switch(whichButton) {
 
