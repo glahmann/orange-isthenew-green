@@ -113,4 +113,12 @@ final public class SetupPane extends JPanel {
 	public final String getEmail() {
 		return myEmailField.getText();
 	}
+	
+	/**
+	 * Populates the email field.
+	 * @param theString the email to populate.
+	 */
+	public final void populateEmailField(final String theString) {
+		myEmailField.setText(theString);
+	}
 }

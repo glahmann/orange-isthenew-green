@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
@@ -37,19 +38,40 @@ public class LoginActions extends AbstractAction {
 		
 		final String whichButton = theEvent.getActionCommand();
 		
+		final ArrayList<String> emailSuffixes = new ArrayList<String>();
+		emailSuffixes.add(".com");
+		emailSuffixes.add(".edu");
+		emailSuffixes.add(".gov");
+		emailSuffixes.add(".org");
+		
 		switch(whichButton) {
 			case "New User?":
 				CustomOptionFrame.getInstance().displayPanel("Setup");
 				break;
 			case "OK":
-				final User newUser = new User(SetupPane.getInstance().getName(), SetupPane.getInstance().getEmail());
-				Main.start(newUser);
-				CustomOptionFrame.getInstance().dispose();
-				Gui.getInstance().displayPanel("Home");
+				String email = SetupPane.getInstance().getEmail();
+				
+				boolean goodSuffix = false;
+				// checks to see if a good suffix was used for email.
+				for (int i = 0; i < emailSuffixes.size(); i++) {
+					if (email.length() > 5 && email.substring(email.length() - 4).equals(emailSuffixes.get(i))) {
+						goodSuffix = true;
+					}
+				}
+				// checks to see if the email is in correct format (correct suffix, contains @, and a character before @).
+				if (!email.contains("@") || !goodSuffix) { // email is incorrect format.
+					CustomOptionFrame.getInstance().dispose();
+					CustomOptionFrame.getInstance().displayPanel("Setup Pane");
+				} else { // email is in correct format.
+					final User newUser = new User(SetupPane.getInstance().getName(), SetupPane.getInstance().getEmail());
+					CustomOptionFrame.getInstance().dispose();
+					Main.start(newUser);
+				}
 				break;
 			case "Login":
 					CustomOptionFrame.getInstance().dispose();
 					String fileName = LoginPane.getInstance().getEmail();
+					
 				    final File file = new File(fileName + ".json");
 				    if (file.exists()) {
 						final User existingUser = JSONSupport.readJSON(file);
@@ -57,13 +79,15 @@ public class LoginActions extends AbstractAction {
 							residence.addObserver(ManageProjectScreen.getInstance());
 						}
 						Main.start(existingUser);
-				    } else {
-                        // If user doesn't exist, an error dialogue will now show, instead of the project just aborting
-				    	JOptionPane.showMessageDialog(null, "Error: Email not found");
-				    	// Safety feature! :D
-						System.exit(0);
+				    } else if (fileName.length() == 0) { // user enters in blank email.
+						fileName = "Guest";
+				    	final User guestUser = new User(fileName, fileName);
+				    	Main.start(guestUser);
+				    } else { // login does not exist. call setup pane and pre-populate email field.
+				    	JOptionPane.showMessageDialog(null, "Error: Email not found", "Email Does Not Exist!", JOptionPane.ERROR_MESSAGE);
+				    	SetupPane.getInstance().populateEmailField(LoginPane.getInstance().getEmail());
+				    	CustomOptionFrame.getInstance().displayPanel("Setup");
 				    }
-				Gui.getInstance().displayPanel("Home");
 				break;
 		}
 	}
