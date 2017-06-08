@@ -9,6 +9,7 @@ import javax.swing.JCheckBox;
 
 
 import model.Bill;
+import model.Calc;
 import model.Cart;
 import model.Item;
 import model.Market;
@@ -109,8 +110,10 @@ public final class ManageProjectActions extends AbstractAction{
 			    final ArrayList<Item> selected = market.getSelected();
 			    final Cart cart = new Cart(selected);
 			    final Project projectUp = myUser.getCurrentResidence().getCurrentProject();
+			    projectUp.addToSavings(Calc.calculate(new ArrayList<Item>(selected)));
 			    for (Item i: selected) {
 			        projectUp.addItem(i);
+			        projectUp.addToCost(i.getCost());
 			    }
 			    market.resetDropDowns(); 
 			    break;

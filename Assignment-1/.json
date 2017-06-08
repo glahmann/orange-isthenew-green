@@ -2,54 +2,55 @@
   "User Name" : "",
   "User Email" : "",
   "Residences" : [ {
-    "Residence Name" : "sdfsdf",
-    "Residence Type" : "APARTMENT",
+    "Residence Name" : "lolo",
+    "Residence Type" : "HOUSE",
     "Projected Bill" : 0.0,
     "Bills" : [ ],
     "Projects" : [ {
-      "Project Name" : "dsfsdf",
+      "Project Name" : "dfsf",
       "Savings" : 0.0,
       "Cost" : 0.0,
       "Items" : [ {
-        "Item Name" : "60W Equivalent Soft White LED",
-        "Item Cost" : 1.97,
-        "Item Type" : "lighting",
-        "Item Energy Value" : 9.0
-      }, {
-        "Item Name" : "60W Equivalent Soft White LED",
-        "Item Cost" : 1.97,
-        "Item Type" : "lighting",
-        "Item Energy Value" : 9.0
-      }, {
-        "Item Name" : "Whirlpool Dishwasher, Energy Star",
-        "Item Cost" : 397.0,
+        "Item Name" : "Hopper Basement Window 31.75 in x 15.75 in",
+        "Item Cost" : 55.52,
         "Item Type" : "appliances",
-        "Item Energy Value" : 700.0
+        "Item Energy Value" : 3.5
       }, {
-        "Item Name" : "Whirlpool Dishwasher, Energy Star",
-        "Item Cost" : 397.0,
+        "Item Name" : "Hopper Basement Window 31.75 in x 15.75 in",
+        "Item Cost" : 55.52,
         "Item Type" : "appliances",
-        "Item Energy Value" : 700.0
+        "Item Energy Value" : 3.5
       }, {
-        "Item Name" : "60W Equivalent Soft White LED",
-        "Item Cost" : 1.97,
-        "Item Type" : "lighting",
-        "Item Energy Value" : 9.0
-      }, {
-        "Item Name" : "60W Equivalent Soft White LED",
-        "Item Cost" : 1.97,
-        "Item Type" : "lighting",
-        "Item Energy Value" : 9.0
-      }, {
-        "Item Name" : "Whirlpool Dishwasher, Energy Star",
-        "Item Cost" : 397.0,
+        "Item Name" : "Hopper Basement Window 31.75 in x 15.75 in",
+        "Item Cost" : 55.52,
         "Item Type" : "appliances",
-        "Item Energy Value" : 700.0
-      }, {
+        "Item Energy Value" : 3.5
+      } ]
+    } ]
+  }, {
+    "Residence Name" : "hello",
+    "Residence Type" : "HOUSE",
+    "Projected Bill" : 0.0,
+    "Bills" : [ ],
+    "Projects" : [ {
+      "Project Name" : "dfsdf",
+      "Savings" : 0.0,
+      "Cost" : 23.9,
+      "Items" : [ {
         "Item Name" : "Whirlpool Dishwasher, Energy Star",
-        "Item Cost" : 397.0,
+        "Item Cost" : 397.8,
         "Item Type" : "appliances",
-        "Item Energy Value" : 700.0
+        "Item Energy Value" : 1050.0
+      }, {
+        "Item Name" : "Blow-in Insulation Bag 19 lbs",
+        "Item Cost" : 11.95,
+        "Item Type" : "insulation",
+        "Item Energy Value" : 3.9
+      }, {
+        "Item Name" : "Blow-in Insulation Bag 19 lbs",
+        "Item Cost" : 11.95,
+        "Item Type" : "insulation",
+        "Item Energy Value" : 3.9
       } ]
     } ]
   } ]
