@@ -38,9 +38,6 @@ public class Item {
 	 */
 	private String myType;
 	
-	// TODO add lifespan
-	
-	
 	/**
 	 * Constructs the item.
 	 * @param theName the item's name.
