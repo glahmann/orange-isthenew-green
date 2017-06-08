@@ -65,10 +65,10 @@ public class CreateResidenceScreen extends JPanel{
 	}
 	
 	private final void buildPanel() {
-		final JPanel panelHolder = new JPanel(new MigLayout(new LC().align("center", "center")));
+		setLayout(new MigLayout(new LC().align("center", "center")));
 		final JPanel innerPanel = new JPanel(new GridLayout(0, 1));
 		final JPanel namePanel = new JPanel(new MigLayout());
-		panelHolder.add(innerPanel);
+		add(innerPanel);
 		
 		innerPanel.add(namePanel);
 		myResNameBox = new JTextField(20);
@@ -87,7 +87,5 @@ public class CreateResidenceScreen extends JPanel{
 		buttonPanel.add(myCancelButton);
 		buttonPanel.add(myCreateButton);
 		innerPanel.add(buttonPanel);
-		
-		add(panelHolder);
 	}
 }
