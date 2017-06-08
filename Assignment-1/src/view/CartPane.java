@@ -6,8 +6,6 @@ import javax.swing.JScrollPane;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
-import java.awt.Dimension;
-
 import javax.swing.JButton;
 import javax.swing.Action;
 import javax.swing.JList;
@@ -21,8 +19,6 @@ import model.Item;
 import java.awt.Font;
 import javax.swing.JTextArea;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * Cart of items in current project
@@ -30,7 +26,7 @@ import java.util.Observer;
  * @version 6/1/17
  */
 
-public class CartPane extends JPanel implements Observer{
+public class CartPane extends JPanel{
 
 	/**
 	 * Serial ID.
@@ -124,15 +120,16 @@ public class CartPane extends JPanel implements Observer{
 		//Cart pane layout
 		setLayout(new MigLayout(new LC().align("center", "center")));
     	
+		myCartTitleLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		
 		myItemSummaryArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		myItemSummaryArea.setEditable(false);
-
-		myCartTitleLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		add(myCartTitleLabel, "flowy,cell 1 0,growx");
 
 		myConfirmButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		myRemoveButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		myCancelButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+		
+		add(myCartTitleLabel, "flowy,cell 1 0,growx");
 		add(myItemScrollPane, "cell 0 1,grow,span 1 2");
 		add(mySummaryScrollPane, "cell 1 1,grow,span 2 2");
 		add(myCancelButton, "cell 0 3");
@@ -204,7 +201,7 @@ public class CartPane extends JPanel implements Observer{
 						myRemoveButton.setEnabled(false);
 					}
 					else{
-						System.out.println(myItemList.getSelectedIndex());
+						//System.out.println(myItemList.getSelectedIndex());
 						myRemoveButton.setEnabled(true);
 						displayItemSummary(myItemList.getSelectedIndex());
 					}	
@@ -213,10 +210,5 @@ public class CartPane extends JPanel implements Observer{
 		});
 	}
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-
-	}
 }
 
