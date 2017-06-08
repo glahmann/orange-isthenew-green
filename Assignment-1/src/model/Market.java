@@ -127,16 +127,17 @@ public class Market {
     }
     
     /**
+     * Adds a name/quantity selector pair to a map.
      * 
-     * @param theName
-     * @param theCounter
+     * @param theName The item name.
+     * @param theCounter The item quantity selector.
      */
     public void addItemPair(final String theName, final JComboBox<Integer> theCounter) {
         myMap.put(theName, theCounter);
     }
     
     /**
-     * Gets the selected items that the user wants to add to their cart.
+     * Gets the selected items that the user wants, from the database, to add to their cart.
      * 
      * @return a list of the selected items.
      */

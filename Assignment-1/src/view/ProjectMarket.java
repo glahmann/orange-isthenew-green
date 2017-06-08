@@ -10,6 +10,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
+ * GUI class to display the project market.
+ * 
  * @author Zira Cook
  * @author Garrett Lahmann
  * @version 6/5/17
@@ -69,7 +71,7 @@ final public class ProjectMarket extends JPanel {
     }
 
     /**
-     * Getter for the market.
+     * Getter for the Singleton market GUI instance.
      * @return the market.
      */
     public final static ProjectMarket getInstance() {
@@ -80,7 +82,7 @@ final public class ProjectMarket extends JPanel {
     }
     
     /**
-     * 
+     * Gets the current market model.
      * 
      * @author Garrett Lahmann
      * @return the market model.
@@ -90,8 +92,10 @@ final public class ProjectMarket extends JPanel {
     }
     
     /**
+     * Adds action listeners to all update and view cart buttons on market GUI.
      * 
-     * @param theAction
+     * @author Garrett Lahmann
+     * @param theAction An action listener.
      */
     public final void setAction(final Action theAction) {
         for (JButton btn: myUpdateButtons) {
@@ -134,12 +138,12 @@ final public class ProjectMarket extends JPanel {
     }
 
     /**
-     * Builds the cards for each tab
+     * Builds the cards for each tab.
      * 
      * @author Zira Cook
      * @author Garrett Lahmann
-     * @param theTitle the title of the tab
-     * @return the finished tab
+     * @param theTitle The title of the tab.
+     * @return The finished tab.
      */
     private final JPanel buildCards(final String theTitle) {
         JPanel thePanel = new JPanel();
@@ -155,9 +159,9 @@ final public class ProjectMarket extends JPanel {
         thePanel.add(topPanel);
 
         // Get copy of item list by type
-        // TODO Simplify market to only hold one type at time, then query for new types and item selection?
         ArrayList<Item> items = myMarketModel.getItems(theTitle);
         
+        // Add items to panels for display
         for(Item itm: items) { 
             JPanel thisPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, HORIZONTAL_GAP , 0));
             JComboBox<Integer> quantities = new JComboBox<>(QUANTITY_DROP_DOWN);
@@ -198,12 +202,12 @@ final public class ProjectMarket extends JPanel {
      * Sets up a label.
      * 
      * @author Zira Cook
-     * @param currentLabel the label to set
-     * @param parentPanel the panel the label will be added to
-     * @param style the font style
-     * @param fontSize the font size
+     * @param currentLabel The label to set.
+     * @param parentPanel The panel the label will be added to.
+     * @param style The font style.
+     * @param fontSize The font size.
      */
-    private void setLabelLook(JLabel currentLabel, JPanel parentPanel, int style, int fontSize) { //TODO take in dimension
+    private void setLabelLook(JLabel currentLabel, JPanel parentPanel, int style, int fontSize) {
         currentLabel.setFont(new Font("Times New Roman", style, fontSize));
 
         if (!currentLabel.getText().equals("Quantity")) {
