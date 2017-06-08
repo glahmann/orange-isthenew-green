@@ -54,7 +54,8 @@ public final class HomeActions extends AbstractAction {
 //				// TODO: Add to user.
 //				break;
 			case "Statistics":
-			    Gui.getInstance().displayPanel("Calculator");
+			    myUser.updateInfo();
+				Gui.getInstance().displayPanel("Calculator");
 				break;
 			case "Manage Residences":
 				myUser.updateInfo();

@@ -29,7 +29,7 @@ final public class Bill {
 	/** End year of the bill. */
 	private final int myEndYear;
 	
-	/** EValue per kWh. **/
+	/** The total kWh used. **/
 	private final double myEValue;
 
 	/**

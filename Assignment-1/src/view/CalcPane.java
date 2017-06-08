@@ -14,6 +14,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import model.Calc;
+import model.Item;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
@@ -21,6 +23,10 @@ import javax.swing.SwingUtilities;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.geom.Arc2D;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,12 +36,17 @@ import javax.swing.JPanel;
  * @author Garrett Lahmann
  * @version 31 May 2017
  */
-public class CalcPane extends JPanel {
+public class CalcPane extends JPanel implements Observer {
 
     /**
-     * 
+     * Default font size.
      */
     private static final int FONT_SIZE = 20;
+
+    /**
+     * Average cost per kilowatt hour.
+     */
+    private static final double POWER_COST = 0.11;
     
     /**
      * 
@@ -47,11 +58,31 @@ public class CalcPane extends JPanel {
      */
     private double myEnergyUsed;
 
+    /**
+     * The cost of the bill.
+     */
     private double myBillCost;
 
+    /**
+     * The month for the bill.
+     */
+    private int myMonth;
+
+    /**
+     * The year for the bill.
+     */
+    private int myYear;
+
+    /**
+     * Estimated saved watts.
+     */
     private double myProjectedEnergySavings;
 
+    /**
+     * Estimated saved money.
+     */
     private double myProjectedBillSavings;
+
 
     /**
      * Constructor for the calc pane
@@ -59,7 +90,7 @@ public class CalcPane extends JPanel {
     private CalcPane() {
         setBackground(java.awt.Color.ORANGE);
         setLayout(new MigLayout(new LC().align("center", "center")));
-        buildCalc();
+        //buildCalc();
     }
     
     /**
@@ -78,19 +109,22 @@ public class CalcPane extends JPanel {
      * Builds the display for the calc pane.
      */
     private final void buildCalc() {
+        //Clear the panel for use
+        removeAll();
+
         final JFXPanel fxPanel = new JFXPanel();
         final JPanel infoPanel = new JPanel(new GridLayout(4, 1));
         
-        final JLabel prevEnergy = new JLabel("  Energy Used:  868 kWh");
+        final JLabel prevEnergy = new JLabel(" " + myMonth + "/" + myYear + "  Energy Used: " + myEnergyUsed + " kWh");
         prevEnergy.setMinimumSize(new Dimension(400, 100));
         prevEnergy.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
-        final JLabel prevBill = new JLabel("  Bill:  $95.48");
+        final JLabel prevBill = new JLabel(" " + myMonth + "/" + myYear +"  Bill:  $" + myBillCost);
         prevBill.setMinimumSize(new Dimension(400, 100));
         prevBill.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
-        final JLabel projEnergy = new JLabel("  Projected Energy Saved:  54kWh");
+        final JLabel projEnergy = new JLabel("  Projected Energy Saved: " + myProjectedEnergySavings + " kWh");
         projEnergy.setMinimumSize(new Dimension(400, 100));
         projEnergy.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
-        final JLabel projSave = new JLabel("  Projected Savings:  $6.02");
+        final JLabel projSave = new JLabel("  Projected Savings:  $" + myProjectedBillSavings);
         projSave.setMinimumSize(new Dimension(400, 100));
         projSave.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
         
@@ -183,4 +217,69 @@ public class CalcPane extends JPanel {
     }
 
 
+    @Override
+    public void update(Observable theObservable, Object theObject) {
+        //Checks for an arraylist of doubles
+        if (theObject instanceof ArrayList) {
+            if (((ArrayList) theObject).size() > 0) {
+                if (((ArrayList) theObject).get(0) instanceof Double) {
+                    updateValues(theObject);
+                    buildCalc();
+                } else if (((ArrayList) theObject).get(0) instanceof Item) {
+                    System.out.println("In the update");
+                    calculateSavings(theObject);
+                    buildCalc();
+                }
+
+            }
+        }
+    }
+
+    private void calculateSavings(Object theObject) {
+        System.out.println(theObject.toString());
+
+        myProjectedEnergySavings = Calc.calculate((ArrayList<Item>)theObject);
+
+        myProjectedBillSavings = myProjectedEnergySavings * POWER_COST;
+
+        System.out.println(myProjectedEnergySavings + " " + myProjectedBillSavings);
+    }
+
+    private final void updateValues(Object theObject) {
+        ArrayList<Double> bills = (ArrayList<Double>) theObject;
+        int recentMonth = Integer.MIN_VALUE, recentYear = Integer.MIN_VALUE;
+        int currentMonth, currentYear;
+
+        double recentAmmount = 0, recentUsage = 0;
+        double currentAmmount = 0, currentUsage = 0;
+
+        for (int i = 0; i < bills.size(); i += 4) {
+            //Gets all values for current bill
+            currentMonth =  bills.get(i).intValue();
+            currentYear = bills.get(i + 1).intValue();
+            currentAmmount = bills.get(i + 2);
+            currentUsage = bills.get(i + 3);
+
+            //Finds the most recent bill
+            if (currentYear > recentYear) {
+                recentYear = currentYear;
+                recentMonth = currentMonth;
+                recentAmmount = currentAmmount;
+                recentUsage = currentUsage;
+
+            } else if (currentYear == recentYear) {
+                if (currentMonth > recentMonth) {
+                    recentYear = currentYear;
+                    recentMonth = currentMonth;
+                    recentAmmount = currentAmmount;
+                    recentUsage = currentUsage;
+                }
+            }
+        }
+
+        myBillCost = recentAmmount;
+        myEnergyUsed = recentUsage;
+        myYear = recentYear;
+        myMonth = recentMonth;
+    }
 }

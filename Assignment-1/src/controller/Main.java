@@ -106,6 +106,7 @@ public final class Main {
     			
     	// add observers.
     	user.addObserver(ManageResidenceScreen.getInstance());
+		user.addObserver(CalcPane.getInstance());
 
         //Set close operation for GUI, so it writes to JSON
         Gui.getInstance().setCloseOperation(user);
