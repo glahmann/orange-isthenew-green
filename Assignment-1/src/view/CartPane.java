@@ -2,8 +2,11 @@ package view;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.JButton;
 import javax.swing.Action;
@@ -73,6 +76,11 @@ public class CartPane extends JPanel implements Observer{
 	 * Item scroll pane.
 	 */
 	private JScrollPane myItemScrollPane;
+	
+	/**
+	 * Item scroll pane.
+	 */
+	private JScrollPane mySummaryScrollPane;
 
 	/**
 	 * Item array.
@@ -91,6 +99,7 @@ public class CartPane extends JPanel implements Observer{
 		myItemList = new JList<>();
 		myCartTitleLabel = new JLabel("Project Items");
 		myItemScrollPane = new JScrollPane(myItemList);
+		mySummaryScrollPane = new JScrollPane(myItemSummaryArea);
 		buildCart();
 		setListListener();
 
@@ -112,19 +121,20 @@ public class CartPane extends JPanel implements Observer{
 	 */
 	private final void buildCart() {
 		this.setBackground(Color.GREEN);
-		myItemScrollPane.setPreferredSize(getPreferredSize());
-		myItemSummaryArea.setFont(new Font("Monospaced", Font.PLAIN, 18));
+		//Cart pane layout
+		setLayout(new MigLayout(new LC().align("center", "center")));
+    	
+		myItemSummaryArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
+		myItemSummaryArea.setEditable(false);
 
-		setLayout(new MigLayout("", "[150px][150px][150px]", "[75px][75px][75px][75px]"));
-
-		myCartTitleLabel.setFont(new Font("Times New Roman", Font.PLAIN, 30));
+		myCartTitleLabel.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		add(myCartTitleLabel, "flowy,cell 1 0,growx");
 
 		myConfirmButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		myRemoveButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
 		myCancelButton.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-		add(myItemScrollPane, "cell 0 1,grow,span 2 2");
-		add(myItemSummaryArea, "cell 2 1,grow,spany 2");
+		add(myItemScrollPane, "cell 0 1,grow,span 1 2");
+		add(mySummaryScrollPane, "cell 1 1,grow,span 2 2");
 		add(myCancelButton, "cell 0 3");
 		add(myRemoveButton, "cell 2 3");
 		add(myConfirmButton, "cell 1 3");	
@@ -160,6 +170,7 @@ public class CartPane extends JPanel implements Observer{
 			Item displayItem = myItemArray.get(theItemIndex);
 			String summary = displayItem.toString();
 			myItemSummaryArea.setText(summary);
+			
 		}
 	}
 	
