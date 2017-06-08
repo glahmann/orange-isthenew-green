@@ -59,7 +59,6 @@ public class CartActions extends AbstractAction{
 		case "Remove":
 			ArrayList<Item> projItems = project.getItems();
 			int removalIndex = myCartPanel.getSelectedItemIndex();
-			System.out.println(removalIndex);
 			if(removalIndex >= 0){
 				project.removeItem(projItems.get(removalIndex));
 				myCartPanel.buildItemList(project.getItems());
