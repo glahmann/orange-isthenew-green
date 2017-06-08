@@ -43,9 +43,14 @@ final public class ProjectMarket extends JTabbedPane {
     private static ProjectMarket myMarket = null;
     
     /**
-     * ArrayList to update.
+     * ArrayList of update buttons.
      */
     private final ArrayList<JButton> myUpdateButtons;
+    
+    /**
+     * List of view cart buttons.
+     */
+    private final ArrayList<JButton> myViewButtons;
     
     /**
      * Market for the display.
@@ -58,6 +63,7 @@ final public class ProjectMarket extends JTabbedPane {
     private ProjectMarket() {
         myMarketModel = new Market();
         myUpdateButtons = new ArrayList<JButton>();
+        myViewButtons = new ArrayList<JButton>();
         buildMarket();
     }
 
@@ -74,6 +80,7 @@ final public class ProjectMarket extends JTabbedPane {
     
     /**
      * 
+     * 
      * @author Garrett Lahmann
      * @return the market model.
      */
@@ -82,14 +89,16 @@ final public class ProjectMarket extends JTabbedPane {
     }
     
     /**
-     * TODO figure out if this is added before buttons are created..
+     * 
      * @param theAction
      */
     public final void setAction(final Action theAction) {
         for (JButton btn: myUpdateButtons) {
             btn.addActionListener(theAction);
         }
-        
+        for (JButton btn: myViewButtons) {
+            btn.addActionListener(theAction);
+        }
     }
 
     /**
@@ -152,18 +161,25 @@ final public class ProjectMarket extends JTabbedPane {
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         
         JButton updateButton = new JButton("UPDATE CART");
+        JButton viewButton = new JButton("VIEW CART");
+        viewButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         updateButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
+        viewButton.setPreferredSize(new Dimension(350, 100));
         updateButton.setPreferredSize(new Dimension(350, 100));
-        myUpdateButtons.add(updateButton);
         
+        myUpdateButtons.add(updateButton);
+        myViewButtons.add(viewButton);
         bottomPanel.add(updateButton);
+        bottomPanel.add(viewButton);
         thePanel.add(bottomPanel);
 
         return thePanel;
     }
 
     /**
-     * Sets up a label
+     * Sets up a label.
+     * 
+     * @author Zira Cook
      * @param currentLabel the label to set
      * @param parentPanel the panel the label will be added to
      * @param style the font style

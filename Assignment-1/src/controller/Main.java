@@ -102,7 +102,7 @@ public final class Main {
     	CustomOptionFrame.getInstance().addPanel(CreateProject.getInstance(), "Create Project");
     	CustomOptionFrame.getInstance().addPanel(CreateResidenceScreen.getInstance(), "Create Residence");
     	CustomOptionFrame.getInstance().addPanel(BillPane.getInstance(), "Bill Pane");
-    	CustomOptionFrame.getInstance().addPanel(CartPane.getInstance(), "Cart Pane");
+    	CustomOptionFrame.getInstance().addPanel(CartPane.getInstance(), "Cart");
     			
     	// add observers.
     	user.addObserver(ManageResidenceScreen.getInstance());
