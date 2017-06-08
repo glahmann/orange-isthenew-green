@@ -47,6 +47,9 @@ public final class ManageProjectActions extends AbstractAction{
 		myUser = theUser;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
 		
