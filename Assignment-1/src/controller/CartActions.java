@@ -1,13 +1,16 @@
 package controller;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
 
+import model.Item;
 import model.Project;
 import model.User;
 import view.CartPane;
 import view.CustomOptionFrame;
+import view.Gui;
 
 /**
  * Action controller for cart pane and cart model.
@@ -28,7 +31,7 @@ public class CartActions extends AbstractAction{
 
 	public CartActions(final User theUser)  {
 		myUser = theUser;
-		myCartPanel = new CartPane();
+		myCartPanel = CartPane.getInstance();
 	}
 
 	/**
@@ -38,17 +41,27 @@ public class CartActions extends AbstractAction{
 	public void actionPerformed(final ActionEvent theEvent) {
 		final String whichButton = theEvent.getActionCommand();
 		
+		final Project project = myUser.getCurrentResidence().getCurrentProject();
 		switch(whichButton) {
-		    case "Complete":
-		        final Project project = myUser.getCurrentResidence().getCurrentProject();
-		        break;
-			case "Cancel":
-				CustomOptionFrame.getInstance().dispose();
-				break;
-			case "Remove":
-				
-				break;
-				
+
+		case "Cancel":
+			CustomOptionFrame.getInstance().dispose();
+			break;
+		case "Remove":
+			ArrayList<Item> projItems = project.getItems();
+			int removalIndex = myCartPanel.getSelectedItemIndex();
+			System.out.println(removalIndex);
+			//System.out.println("Remove " + projItems.get(removalIndex) + "-> " + project.getItems().size());
+			if(removalIndex >= 0){
+				project.removeItem(projItems.get(removalIndex));
+				myCartPanel.buildItemList(project.getItems());
+				myCartPanel.displayItemSummary(-1);
+				myCartPanel.repaint();
+			}
+			break;
+		case "OK":
+			Gui.getInstance().displayPanel("Manage Projects");
+			CustomOptionFrame.getInstance().dispose();
 		}
 	}
 

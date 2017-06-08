@@ -148,7 +148,7 @@ public class Item {
      */
     @Override
     public String toString(){
-    	return myName + " " + myType + " " + String.valueOf(myEValue) + "Watts $" +
+    	return myName + "\nType: " + myType + "\nEnergy: " + String.valueOf(myEValue) + " Watts\nCost: $" +
     			String.valueOf(myCost);
     }
 }
