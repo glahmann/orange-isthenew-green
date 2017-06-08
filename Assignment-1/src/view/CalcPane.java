@@ -24,6 +24,7 @@ import javax.swing.SwingUtilities;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.geom.Arc2D;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -47,6 +48,8 @@ public class CalcPane extends JPanel implements Observer {
      * Average cost per kilowatt hour.
      */
     private static final double POWER_COST = 0.11;
+
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".##");
     
     /**
      * 
@@ -90,7 +93,9 @@ public class CalcPane extends JPanel implements Observer {
     private CalcPane() {
         setBackground(java.awt.Color.ORANGE);
         setLayout(new MigLayout(new LC().align("center", "center")));
-        //buildCalc();
+
+        myProjectedBillSavings = 0.0;
+        myProjectedEnergySavings = 0.0;
     }
     
     /**
@@ -121,10 +126,10 @@ public class CalcPane extends JPanel implements Observer {
         final JLabel prevBill = new JLabel(" " + myMonth + "/" + myYear +"  Bill:  $" + myBillCost);
         prevBill.setMinimumSize(new Dimension(400, 100));
         prevBill.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
-        final JLabel projEnergy = new JLabel("  Projected Energy Saved: " + myProjectedEnergySavings + " kWh");
+        final JLabel projEnergy = new JLabel("  Projected Energy Saved: " + DECIMAL_FORMAT.format(myProjectedEnergySavings) + " kWh");
         projEnergy.setMinimumSize(new Dimension(400, 100));
         projEnergy.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
-        final JLabel projSave = new JLabel("  Projected Savings:  $" + myProjectedBillSavings);
+        final JLabel projSave = new JLabel("  Projected Savings:  $" + DECIMAL_FORMAT.format(myProjectedBillSavings));
         projSave.setMinimumSize(new Dimension(400, 100));
         projSave.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
         
@@ -224,25 +229,19 @@ public class CalcPane extends JPanel implements Observer {
             if (((ArrayList) theObject).size() > 0) {
                 if (((ArrayList) theObject).get(0) instanceof Double) {
                     updateValues(theObject);
-                    buildCalc();
                 } else if (((ArrayList) theObject).get(0) instanceof Item) {
-                    System.out.println("In the update");
                     calculateSavings(theObject);
-                    buildCalc();
                 }
-
             }
         }
+
+        buildCalc();
     }
 
     private void calculateSavings(Object theObject) {
-        System.out.println(theObject.toString());
-
         myProjectedEnergySavings = Calc.calculate((ArrayList<Item>)theObject);
 
         myProjectedBillSavings = myProjectedEnergySavings * POWER_COST;
-
-        System.out.println(myProjectedEnergySavings + " " + myProjectedBillSavings);
     }
 
     private final void updateValues(Object theObject) {

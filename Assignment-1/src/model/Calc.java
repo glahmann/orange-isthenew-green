@@ -49,24 +49,33 @@ final public class Calc {
 	        current = itr.next();
 	        eValue = current.getEValue();
 	        type = current.getType();
+
 	        switch (type) { // TODO this is temporary
-	            case "appliance":
-	                prev = 1300.0; //power used in Watts
+	            case "appliances":
+                    prev = 1300.0; //power used in Watts
 	                if (eValue < prev) {
-                        savings += (prev - eValue);
+                        savings += (prev - eValue) / 12;
                     }
 	                break;
 	            case "insulation":
 	                // 12% energy savings according to energy star
+                    prev = 7.0;
+                    if (eValue < prev) {
+                        savings += (prev - eValue) / 12;
+                    }
+
 	                break;
-	            case "light": 
-	                prev = 60.0;
+	            case "lighting":
+	                prev = 15.0;
 	                if (eValue < prev) {
-	                    savings += (prev - eValue);
+	                    savings += (prev - eValue) / 12;
 	                }
 	                break;
-	            case "window":
-                    // 
+	            case "windows":
+                    prev = 4.0;
+					if (eValue < prev) {
+                        savings += (prev - eValue) / 12;
+                    }
                     break;
 	        }
 	            
