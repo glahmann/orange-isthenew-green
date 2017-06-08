@@ -48,9 +48,15 @@ public class CalcPane extends JPanel implements Observer {
     private static final double POWER_COST = 0.11;
 
     /**
-     * 
+     * Formats output decimal values.
      */
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".##");
+    
+    /**
+     * Months for graphical display.
+     */
+    private static final String[] MONTHS = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul",
+                                            "Aug", "Sep", "Oct", "Nov", "Dec"};
     
     /**
      * Instance of this class for Singletons.
@@ -88,6 +94,16 @@ public class CalcPane extends JPanel implements Observer {
     private double myProjectedBillSavings;
     
     /**
+     * List of previous monthly energy use.
+     */
+    private int[] myPrevUse;
+    
+    /**
+     * List of monthly projected energy use.
+     */
+    private int[] myProjUse;
+    
+    /**
      * The javaFX panel for the chart.
      */
     private final JFXPanel myFxPanel;
@@ -102,6 +118,8 @@ public class CalcPane extends JPanel implements Observer {
         buildTopPanel();
         
         myFxPanel = new JFXPanel();
+        myPrevUse = new int[]{1000, 1029, 992, 975, 911, 868, 851, 791, 850, 902, 923, 930};
+        myProjUse = new int[12];
         myProjectedBillSavings = 0.0;
         myProjectedEnergySavings = 0.0;
     }
@@ -173,9 +191,11 @@ public class CalcPane extends JPanel implements Observer {
         infoPanel.add(prevBill);
         infoPanel.add(projEnergy);
         infoPanel.add(projSave);
+
         centerPanel.add(myFxPanel);
         centerPanel.add(infoPanel);
         add(centerPanel);
+
         runJfx();
     }
 
@@ -197,7 +217,7 @@ public class CalcPane extends JPanel implements Observer {
      * 
      * @return scene A line chart on a javafx scene.
      */
-    private static Scene createScene() {
+    private Scene createScene() {
         final CategoryAxis xAxis = new CategoryAxis();
         final NumberAxis yAxis = new NumberAxis();
         xAxis.setLabel("Month");
@@ -226,33 +246,16 @@ public class CalcPane extends JPanel implements Observer {
         
         XYChart.Series series2016 = new XYChart.Series();
         series2016.setName("2016");
-        series2016.getData().add(new XYChart.Data("Jan", 1000));
-        series2016.getData().add(new XYChart.Data("Feb", 1029));
-        series2016.getData().add(new XYChart.Data("Mar", 992));
-        series2016.getData().add(new XYChart.Data("Apr", 975));
-        series2016.getData().add(new XYChart.Data("May", 911));
-        series2016.getData().add(new XYChart.Data("Jun", 868));
-        series2016.getData().add(new XYChart.Data("Jul", 851));
-        series2016.getData().add(new XYChart.Data("Aug", 791));
-        series2016.getData().add(new XYChart.Data("Sep", 850));
-        series2016.getData().add(new XYChart.Data("Oct", 902));
-        series2016.getData().add(new XYChart.Data("Nov", 923));
-        series2016.getData().add(new XYChart.Data("Dec", 930));
+        for (int i = 0; i < 12; i++) {
+            series2016.getData().add(new XYChart.Data(MONTHS[i], myPrevUse[i]));
+        }
+
         
         XYChart.Series seriesFuture = new XYChart.Series();
         seriesFuture.setName("2017 Projected");
-        seriesFuture.getData().add(new XYChart.Data("Jan", 973));
-        seriesFuture.getData().add(new XYChart.Data("Feb", 1009));
-        seriesFuture.getData().add(new XYChart.Data("Mar", 978));
-        seriesFuture.getData().add(new XYChart.Data("Apr", 960));
-        seriesFuture.getData().add(new XYChart.Data("May", 899));
-        seriesFuture.getData().add(new XYChart.Data("Jun", 851));
-        seriesFuture.getData().add(new XYChart.Data("Jul", 840));
-        seriesFuture.getData().add(new XYChart.Data("Aug", 780));
-        seriesFuture.getData().add(new XYChart.Data("Sep", 838));
-        seriesFuture.getData().add(new XYChart.Data("Oct", 890));
-        seriesFuture.getData().add(new XYChart.Data("Nov", 907));
-        seriesFuture.getData().add(new XYChart.Data("Dec", 915));
+        for (int i = 0; i < 12; i++) {
+            seriesFuture.getData().add(new XYChart.Data(MONTHS[i], myProjUse[i]));
+        }
 
         Scene  scene  =  new  Scene(lineChart,800,600);
         lineChart.getData().addAll(series2015, series2016, seriesFuture);
@@ -276,7 +279,7 @@ public class CalcPane extends JPanel implements Observer {
                 }
             }
         }
-        runJfx(); // Creates a new chart thread. Not sure what happens to old threads.
+        runJfx();
         buildCalc();
     }
 
@@ -288,6 +291,9 @@ public class CalcPane extends JPanel implements Observer {
         myProjectedEnergySavings = Calc.calculate((ArrayList<Item>)theObject);
 
         myProjectedBillSavings = myProjectedEnergySavings * POWER_COST;
+        for (int i = 0; i < 12; i++) {
+            myProjUse[i] = (int) (myPrevUse[i] - myProjectedEnergySavings);
+        }
     }
 
     /**
@@ -325,6 +331,8 @@ public class CalcPane extends JPanel implements Observer {
                 }
             }
         }
+        
+        
 
         myBillCost = recentAmmount;
         myEnergyUsed = recentUsage;
