@@ -36,6 +36,10 @@ final public class Project {
 	 */
 	private final ArrayList<Item> myItems;
 
+	/**
+	 * Constructs the project.
+	 * @param theName name of the project.
+	 */
 	public Project(final String theName) {
 		myName = theName;
 		mySavings = 0;

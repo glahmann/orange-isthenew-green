@@ -8,27 +8,57 @@ import javax.swing.*;
 /**
  * Enter energy bill pane.
  * @author Zira Cook
+ * @author Donald Muffler
  * @version 5/21/2017
  */
 public class BillPane extends JPanel {
 
+	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * Singleton for BillPane.
+	 */
 	private static BillPane myBillPane = null;
 	
     /** Size of email text field. */
     private static final int TEXT_FIELD_SIZE = 11;
     
+    /**
+     * Bill cost.
+     */
     private final JTextField myBillCost;
     
+    /**
+     * Bill start month.
+     */
     private final JTextField myStartMonth;
     
+    /**
+     * Bill end month.
+     */
     private final JTextField myEndMonth;
     
+    /**
+     * Bill start year.
+     */
     private final JTextField myStartYear;
     
+    /**
+     * Bill end year.
+     */
     private final JTextField myEndYear;
     
+    /**
+     * Energy usage.
+     */
     private final JTextField myEnergyUsage;
     
+    /**
+     * Add bill button.
+     */
     private final JButton myAddButton;
 
     /**
@@ -130,6 +160,10 @@ public class BillPane extends JPanel {
     	return Integer.parseInt(myStartYear.getText());
     }
     
+    /**
+     * Getter for the energy usage.
+     * @return energy usage.
+     */
     public final double getEnergyUsage() {
     	return Double.parseDouble(myEnergyUsage.getText());
     }

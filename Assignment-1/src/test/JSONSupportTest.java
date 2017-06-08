@@ -77,6 +77,11 @@ final public class JSONSupportTest {
 		assertTrue("JSON process failed", myUser.equals(testUser));	
 	} 
 	
+	/**
+	 * Cleans up any file created for testing.
+	 * @throws IOException if the file does not exist.
+	 * @author Donald Muffler
+	 */
 	@After
 	public void cleanup() throws IOException {
 		Path path = Paths.get("test.json");

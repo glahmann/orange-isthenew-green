@@ -1,6 +1,3 @@
-/**
- * 
- */
 package view;
 
 import javafx.application.Platform;

@@ -30,6 +30,9 @@ final public class UserTest {
     /** Residence Object for tests. */
     private Residence myHouse;
 
+    /**
+     * Setup for each test.
+     */
     @Before
     public void setUp() {
     	 

@@ -1,46 +1,5 @@
 {
   "User Name" : "",
   "User Email" : "",
-  "Residences" : [ {
-    "Residence Name" : "sdfsdf",
-    "Residence Type" : "APARTMENT",
-    "Projected Bill" : 0.0,
-    "Bills" : [ ],
-    "Projects" : [ {
-      "Project Name" : "dsfsdf",
-      "Savings" : 0.0,
-      "Cost" : 0.0,
-      "Items" : [ {
-        "Item Name" : "60W Equivalent Soft White LED",
-        "Item Cost" : 1.97,
-        "Item Type" : "lighting",
-        "Item Energy Value" : 9.0
-      }, {
-        "Item Name" : "60W Equivalent Soft White LED",
-        "Item Cost" : 1.97,
-        "Item Type" : "lighting",
-        "Item Energy Value" : 9.0
-      }, {
-        "Item Name" : "Whirlpool Dishwasher, Energy Star",
-        "Item Cost" : 397.0,
-        "Item Type" : "appliances",
-        "Item Energy Value" : 700.0
-      }, {
-        "Item Name" : "Whirlpool Dishwasher, Energy Star",
-        "Item Cost" : 397.0,
-        "Item Type" : "appliances",
-        "Item Energy Value" : 700.0
-      }, {
-        "Item Name" : "60W Equivalent Soft White LED",
-        "Item Cost" : 1.97,
-        "Item Type" : "lighting",
-        "Item Energy Value" : 9.0
-      }, {
-        "Item Name" : "60W Equivalent Soft White LED",
-        "Item Cost" : 1.97,
-        "Item Type" : "lighting",
-        "Item Energy Value" : 9.0
-      } ]
-    } ]
-  } ]
+  "Residences" : [ ]
 }

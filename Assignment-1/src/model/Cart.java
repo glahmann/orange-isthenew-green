@@ -78,10 +78,6 @@ public class Cart {
 			}
 			//totalEValue += item.getEValue();
 		}
-		theProject.addToCost(myTotal);	
-				
+		theProject.addToCost(myTotal);				
 	}
-	
-	
-
 }

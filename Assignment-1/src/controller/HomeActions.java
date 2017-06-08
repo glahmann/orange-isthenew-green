@@ -31,10 +31,15 @@ public final class HomeActions extends AbstractAction {
 	}
 	
 	/**
-	 * Serializable.
+	 * Serial ID.
 	 */
 	private static final long serialVersionUID = -255517639779622036L;
 
+	/**
+	 * Performs an action based on which button was pressed.
+	 * 
+	 * @author Donald Muffler
+	 */
 	@Override
 	public void actionPerformed(final ActionEvent theEvent) {
 		

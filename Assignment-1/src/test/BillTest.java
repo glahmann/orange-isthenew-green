@@ -84,5 +84,4 @@ public class BillTest {
         Bill testBill = new Bill(AMOUNT, BEGIN_MONTH, BEGIN_YEAR, END_MONTH, END_YEAR, EVALUE);
         assertEquals("Hashcodes not equal", myBill.hashCode(), testBill.hashCode());
     }
-
 }

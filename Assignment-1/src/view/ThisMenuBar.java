@@ -15,6 +15,11 @@ import javax.swing.JMenuItem;
 public final class ThisMenuBar extends JMenuBar {
 	
 	/**
+	 * Serial ID.
+	 */
+	private static final long serialVersionUID = 2349500176859494038L;
+
+	/**
 	 * Action set for the menu items.
 	 */
 	private final Action myMenuAction;
@@ -43,7 +48,6 @@ public final class ThisMenuBar extends JMenuBar {
 		final JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic('F');
 		
-		fileMenu.add(populateMenu("Setup..."));
 		fileMenu.add(populateMenu("Home"));
 		fileMenu.add(populateMenu("About..."));
 

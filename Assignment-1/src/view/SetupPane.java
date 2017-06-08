@@ -71,6 +71,10 @@ final public class SetupPane extends JPanel {
 		add(myOKButton, c);
 	}
 	
+	/**
+	 * Getter for the setup pane singleton.
+	 * @return setup pane singleton.
+	 */
 	public static final SetupPane getInstance() {
 		if (mySetupPane == null) {
 			mySetupPane = new SetupPane();
@@ -96,8 +100,8 @@ final public class SetupPane extends JPanel {
 	 * Getter for user name.
 	 * @return user name.
 	 */
-	public final JTextField getNameField() {
-		return myNameField;
+	public final String getName() {
+		return myNameField.getText();
 	}
 	
 	/**
@@ -106,7 +110,7 @@ final public class SetupPane extends JPanel {
 	 * Getter for user email.
 	 * @return user email.
 	 */
-	public final JTextField getEmailField() {
-		return myEmailField;
+	public final String getEmail() {
+		return myEmailField.getText();
 	}
 }

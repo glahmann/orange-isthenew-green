@@ -108,6 +108,10 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 		buildBottomPanel();
 	}
 	
+	/**
+	 * Sets the action for this panel's buttons.
+	 * @param theAction
+	 */
 	public final void setAcion(final Action theAction) {
 		myDeleteButton.addActionListener(theAction);
 		myChooseButton.addActionListener(theAction);
@@ -126,6 +130,9 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 		return myResidenceScreen;
 	}
 
+	/**
+	 * Updates the panel with the residence information.
+	 */
 	@Override
 	public void update(Observable theObservable, Object theObject) {
 		//Checks if the object is an arraylist of strings
@@ -232,7 +239,10 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 		myContentPanelHolder.add(bottomPanel, BorderLayout.SOUTH);
 	}
 	
-	
+	/**
+	 * Updates the residence panel with user residences.
+	 * @param theObject the list of residences.
+	 */
 	private final void updatePanel(Object theObject) {
 		ArrayList<String> resInfo = (ArrayList<String>) theObject;
 		myCheckBoxes = new HashMap<String, JCheckBox>();

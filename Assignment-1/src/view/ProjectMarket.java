@@ -214,5 +214,4 @@ final public class ProjectMarket extends JPanel {
 
         parentPanel.add(currentLabel);
     }
-
 }

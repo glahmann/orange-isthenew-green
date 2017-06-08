@@ -1,7 +1,7 @@
 package model;
 
 /**
- * Enum class for types of housing for easy comparing.
+ * Enum class for types of housing.
  * 
  * @author Donald Muffler
  * @version 20170517
