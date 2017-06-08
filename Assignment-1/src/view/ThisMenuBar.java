@@ -56,11 +56,8 @@ public final class ThisMenuBar extends JMenuBar {
 
         //Displays the users name as a disabled item
         JMenuItem userDisplayName;
-		if(myUserName != null && !myUserName.equals("")) {
-            userDisplayName = new JMenuItem(myUserName);
-        } else {
-            userDisplayName = new JMenuItem("Default");
-        }
+
+        userDisplayName = new JMenuItem(myUserName);
 
         userMenu.add(userDisplayName);
         userDisplayName.setEnabled(false);

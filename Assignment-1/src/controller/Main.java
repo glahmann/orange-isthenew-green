@@ -109,5 +109,8 @@ public final class Main {
 
         //Set close operation for GUI, so it writes to JSON
         Gui.getInstance().setCloseOperation(user);
+        
+        // displays the homescreen.
+		Gui.getInstance().displayPanel("Home");	
     }
 }
