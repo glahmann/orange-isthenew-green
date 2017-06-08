@@ -16,11 +16,8 @@ import model.Item;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
-import javax.swing.SwingUtilities;
-
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.geom.Arc2D;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -32,7 +29,7 @@ import javax.swing.JPanel;
 /**
  * 
  * @author Garrett Lahmann
- * @version 31 May 2017
+ * @version 8 June 2017
  */
 public class CalcPane extends JPanel implements Observer {
 
@@ -46,10 +43,13 @@ public class CalcPane extends JPanel implements Observer {
      */
     private static final double POWER_COST = 0.11;
 
+    /**
+     * 
+     */
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".##");
     
     /**
-     * 
+     * Instance of this class for Singletons.
      */
     private static CalcPane myCalcPane = null;
 
@@ -82,6 +82,11 @@ public class CalcPane extends JPanel implements Observer {
      * Estimated saved money.
      */
     private double myProjectedBillSavings;
+    
+    /**
+     * The javaFX panel for the chart.
+     */
+    private final JFXPanel myFxPanel;
 
 
     /**
@@ -91,6 +96,7 @@ public class CalcPane extends JPanel implements Observer {
         setBackground(java.awt.Color.ORANGE);
         setLayout(new MigLayout(new LC().align("center", "center")));
 
+        myFxPanel = new JFXPanel();
         myProjectedBillSavings = 0.0;
         myProjectedEnergySavings = 0.0;
     }
@@ -113,8 +119,7 @@ public class CalcPane extends JPanel implements Observer {
     private final void buildCalc() {
         //Clear the panel for use
         removeAll();
-
-        final JFXPanel fxPanel = new JFXPanel();
+ 
         final JPanel infoPanel = new JPanel(new GridLayout(4, 1));
         
         final JLabel prevEnergy = new JLabel(" " + myMonth + "/" + myYear + "  Energy Used: " + myEnergyUsed + " kWh");
@@ -134,25 +139,26 @@ public class CalcPane extends JPanel implements Observer {
         infoPanel.add(prevBill);
         infoPanel.add(projEnergy);
         infoPanel.add(projSave);
-        add(fxPanel);
+        add(myFxPanel);
         add(infoPanel);
-
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                initFX(fxPanel);
-            }
-       });
-    }
-
-    private static void initFX(JFXPanel fxPanel) {
-        // This method is invoked on the JavaFX thread
-        Scene scene = createScene();
-        fxPanel.setScene(scene);
     }
 
     /**
-     * Builds a line chart contain
+     * Runs an embedded javafx panel.
+     */
+    private void runJfx() {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Scene scene = createScene();
+                myFxPanel.setScene(scene);
+            }
+        });
+    }
+
+    /**
+     * Builds a line chart containing energy usage data.
+     * 
      * @return scene A line chart on a javafx scene.
      */
     private static Scene createScene() {
@@ -219,6 +225,9 @@ public class CalcPane extends JPanel implements Observer {
     }
 
 
+    /**
+     * Update method for observer.
+     */
     @Override
     public void update(Observable theObservable, Object theObject) {
         //Checks for an arraylist of doubles
@@ -231,16 +240,24 @@ public class CalcPane extends JPanel implements Observer {
                 }
             }
         }
-
+        runJfx(); // Creates a new chart thread. Not sure what happens to old threads.
         buildCalc();
     }
 
+    /**
+     * 
+     * @param theObject
+     */
     private void calculateSavings(Object theObject) {
         myProjectedEnergySavings = Calc.calculate((ArrayList<Item>)theObject);
 
         myProjectedBillSavings = myProjectedEnergySavings * POWER_COST;
     }
 
+    /**
+     * 
+     * @param theObject
+     */
     private final void updateValues(Object theObject) {
         ArrayList<Double> bills = (ArrayList<Double>) theObject;
         int recentMonth = Integer.MIN_VALUE, recentYear = Integer.MIN_VALUE;

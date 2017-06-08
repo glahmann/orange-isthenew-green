@@ -194,7 +194,7 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 		mySpringLayout.putConstraint(SpringLayout.WEST, myTypeTitle, 400, SpringLayout.EAST, myNameTitle);
 		myContentPanel.add(myTypeTitle);
 		
-		myProjectsTitle = new JLabel("Savings");
+		myProjectsTitle = new JLabel("Estimated Monthly Savings");
 		myProjectsTitle.setFont(new Font("Times New Roman", Font.BOLD, FONT_SIZE));
 		mySpringLayout.putConstraint(SpringLayout.NORTH, myProjectsTitle, 0, SpringLayout.NORTH, myNameTitle);
 		mySpringLayout.putConstraint(SpringLayout.WEST, myProjectsTitle, 400, SpringLayout.EAST, myTypeTitle);
