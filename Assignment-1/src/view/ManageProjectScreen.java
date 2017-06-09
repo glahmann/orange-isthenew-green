@@ -2,6 +2,7 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -237,15 +238,26 @@ public final class ManageProjectScreen extends JScrollPane implements Observer {
 		final JPanel bottomPanel = new JPanel();
 		bottomPanel.setBackground(Color.ORANGE);
 
-		myDeleteButton = new JButton("Delete Project");
-		myOpenButton = new JButton("Open Project");
-		myCreateButton = new JButton("Create Project");
-		myBillButton = new JButton("Add Energy Bill");
-		bottomPanel.add(myBillButton);
-		bottomPanel.add(myDeleteButton);
-		bottomPanel.add(myOpenButton);
-		bottomPanel.add(myCreateButton);
+		myDeleteButton = createButton(bottomPanel, "Delete Project");		
+		myOpenButton = createButton(bottomPanel, "Open Project");
+		myCreateButton = createButton(bottomPanel, "Create Project");
+		myBillButton = createButton(bottomPanel, "Add Energy Bill");
+
 		myContentPanelHolder.add(bottomPanel, BorderLayout.SOUTH);
+	}
+	
+	/**
+	 * Creates and resizes the button.
+	 * @param thePanel the panel the button is added to.
+	 * @param theName name of the button.
+	 * @return the button.
+	 */
+	private final JButton createButton(final JPanel thePanel, final String theName) {
+		final JButton button = new JButton(theName);
+		button.setPreferredSize(new Dimension(200, 50));
+		button.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		thePanel.add(button);
+		return button;
 	}
 	
 	/**

@@ -24,7 +24,6 @@ import net.miginfocom.swing.MigLayout;
  * @version 20170524
  */
 public final class ManageResidenceScreen extends JScrollPane implements Observer {
-	// TODO: add an updatePanel method and observer which calls updatePanel.
 
 	/**
 	 * Serial ID.
@@ -230,13 +229,25 @@ public final class ManageResidenceScreen extends JScrollPane implements Observer
 		final JPanel bottomPanel = new JPanel();
 		bottomPanel.setBackground(Color.ORANGE);
 
-		myDeleteButton = new JButton("Delete Residence");
-		myChooseButton = new JButton("Choose Residence");
-		myCreateButton = new JButton("Create Residence");
-		bottomPanel.add(myDeleteButton);
-		bottomPanel.add(myChooseButton);
-		bottomPanel.add(myCreateButton);
+		myDeleteButton = createButton(bottomPanel, "Delete Residence");
+		myChooseButton = createButton(bottomPanel,"Choose Residence");
+		myCreateButton = createButton(bottomPanel,"Create Residence");
+		
 		myContentPanelHolder.add(bottomPanel, BorderLayout.SOUTH);
+	}
+	
+	/**
+	 * Creates and resizes the button.
+	 * @param thePanel the panel the button is added to.
+	 * @param theName name of the button.
+	 * @return the button.
+	 */
+	private final JButton createButton(final JPanel thePanel, final String theName) {
+		final JButton button = new JButton(theName);
+		button.setPreferredSize(new Dimension(200, 50));
+		button.setFont(new Font("Times New Roman", Font.BOLD, 15));
+		thePanel.add(button);
+		return button;
 	}
 	
 	/**
