@@ -281,12 +281,16 @@ final public class Residence extends Observable {
         return Objects.hash(myName, myProjectedBill, myBills, myProjects,myType);
     }
     
+    /**
+     * 
+     * @return
+     */
 	private final ArrayList<String> projectInfo() {
 		final ArrayList<String> list = new ArrayList<String>();
 		for (Project currentPro: myProjects) {
 			list.add(currentPro.getName());
 			list.add(String.valueOf(currentPro.getItems().size()));
-			list.add(String.valueOf(currentPro.getSavings()));
+			list.add(String.valueOf("$" + currentPro.getSavings()));
 		}
 		return list;
 	}
