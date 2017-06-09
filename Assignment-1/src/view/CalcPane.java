@@ -16,13 +16,17 @@ import model.Item;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -110,9 +114,10 @@ public class CalcPane extends JPanel implements Observer {
      * Constructor for the calc pane
      */
     private CalcPane() {
-        setBackground(java.awt.Color.ORANGE);
-        setLayout(new MigLayout(new LC().align("center", "center")));
-
+        setLayout(new BorderLayout());
+        
+        buildTopPanel();
+        
         myFxPanel = new JFXPanel();
         myPrevUse = new int[]{1000, 1029, 992, 975, 911, 868, 851, 791, 850, 902, 923, 930};
         myProjUse = new int[12];
@@ -131,13 +136,42 @@ public class CalcPane extends JPanel implements Observer {
         }
         return myCalcPane;
     }
+    
+	/**
+	 * Builds the top panel with the back button.
+	 */
+	private final void buildTopPanel() {
+		final JPanel topPanel = new JPanel();
+		final JButton backButton = new JButton("Back");
+		topPanel.setBackground(java.awt.Color.ORANGE);
+		topPanel.setLayout(new MigLayout("", "[]", "[]"));
+		
+		topPanel.add(backButton, "cell 0 0");
+		add(topPanel, BorderLayout.NORTH);
+		
+		/**
+		 * Inner class for handling the back button action.
+		 */
+		class BackAction implements ActionListener {
+
+			/**
+			 * Action listener for the back button.
+			 */
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Gui.getInstance().displayPanel("Home");
+			}
+		}
+		backButton.addActionListener(new BackAction());
+	}
 
     /**
      * Builds the display for the calc pane.
      */
     private final void buildCalc() {
-        //Clear the panel for use
-        removeAll();
+        
+        final JPanel centerPanel = new JPanel(new MigLayout(new LC().align("center", "center")));
+        centerPanel.setBackground(java.awt.Color.ORANGE);
  
         final JPanel infoPanel = new JPanel(new GridLayout(4, 1));
         
@@ -158,9 +192,11 @@ public class CalcPane extends JPanel implements Observer {
         infoPanel.add(prevBill);
         infoPanel.add(projEnergy);
         infoPanel.add(projSave);
-        add(myFxPanel);
-        add(infoPanel);
-        
+
+        centerPanel.add(myFxPanel);
+        centerPanel.add(infoPanel);
+        add(centerPanel);
+
         runJfx();
     }
 
