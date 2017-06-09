@@ -54,6 +54,7 @@ public class CreateProject extends JPanel {
 	 */
 	private CreateProject() {
 		//Setup for new project screen
+	    setBackground(Color.ORANGE);
 		setLayout(new MigLayout(new LC().align("center", "center")));
 		final JPanel topPanel = new JPanel(new MigLayout());
 		topPanel.add(new JLabel("Project Name: "));

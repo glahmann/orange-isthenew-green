@@ -116,7 +116,7 @@ public class CartPane extends JPanel{
 	 * Add GUI components to the cart JPanel.
 	 */
 	private final void buildCart() {
-		this.setBackground(Color.GREEN);
+		this.setBackground(Color.ORANGE);
 		//Cart pane layout
 		setLayout(new MigLayout(new LC().align("center", "center")));
     	

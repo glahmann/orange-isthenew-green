@@ -171,14 +171,14 @@ public class CalcPane extends JPanel implements Observer {
     private final void buildCalc() {
         
         final JPanel centerPanel = new JPanel(new MigLayout(new LC().align("center", "center")));
-        centerPanel.setBackground(java.awt.Color.ORANGE);
+        centerPanel.setBackground(java.awt.Color.GREEN);
  
         final JPanel infoPanel = new JPanel(new GridLayout(4, 1));
         
-        final JLabel prevEnergy = new JLabel(" " + myMonth + "/" + myYear + "  Energy Used: " + myEnergyUsed + " kWh");
+        final JLabel prevEnergy = new JLabel("  " + myMonth + "/" + myYear + "  Energy Used: " + myEnergyUsed + " kWh");
         prevEnergy.setMinimumSize(new Dimension(400, 100));
         prevEnergy.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
-        final JLabel prevBill = new JLabel(" " + myMonth + "/" + myYear +"  Bill:  $" + myBillCost);
+        final JLabel prevBill = new JLabel("  " + myMonth + "/" + myYear +"  Bill:  $" + myBillCost);
         prevBill.setMinimumSize(new Dimension(400, 100));
         prevBill.setFont(new java.awt.Font("Times New Roman", java.awt.Font.PLAIN, FONT_SIZE));
         final JLabel projEnergy = new JLabel("  Projected Energy Saved: " + DECIMAL_FORMAT.format(myProjectedEnergySavings) + " kWh");

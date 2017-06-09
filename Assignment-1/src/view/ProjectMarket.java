@@ -64,6 +64,7 @@ final public class ProjectMarket extends JPanel {
      * Constructor for the project market
      */
     private ProjectMarket() {
+        setBackground(Color.GREEN);
         myMarketModel = new Market();
         myUpdateButtons = new ArrayList<JButton>();
         myViewButtons = new ArrayList<JButton>();
@@ -132,6 +133,7 @@ final public class ProjectMarket extends JPanel {
      */
     private final void buildTopPanel() {
     	final JPanel topPanel = new JPanel(new MigLayout("", "[]", "[]"));
+    	topPanel.setBackground(Color.ORANGE);
 		myBackButton = new JButton("Back To Projects");
 		topPanel.add(myBackButton, "cell 0 0");
 		add(topPanel, BorderLayout.NORTH);
@@ -148,8 +150,10 @@ final public class ProjectMarket extends JPanel {
     private final JPanel buildCards(final String theTitle) {
         JPanel thePanel = new JPanel();
         thePanel.setLayout(new GridLayout(7, 1));
+        thePanel.setBackground(Color.GREEN);
 
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, HORIZONTAL_GAP, 10));
+        topPanel.setBackground(Color.GREEN);
 
         JLabel[] topLabels = {new JLabel("Quantity"), new JLabel("Item Name"), new JLabel("Price")};
 
@@ -164,6 +168,7 @@ final public class ProjectMarket extends JPanel {
         // Add items to panels for display
         for(Item itm: items) { 
             JPanel thisPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, HORIZONTAL_GAP , 0));
+            thisPanel.setBackground(Color.GREEN);
             JComboBox<Integer> quantities = new JComboBox<>(QUANTITY_DROP_DOWN);
             quantities.setFont(new Font("Times New Roman", Font.PLAIN, FONT_SIZE));
 
@@ -181,6 +186,7 @@ final public class ProjectMarket extends JPanel {
         }
 
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        bottomPanel.setBackground(Color.GREEN);
         
         JButton updateButton = new JButton("ADD TO PROJECT");
         JButton viewButton = new JButton("VIEW PROJECT ITEMS");

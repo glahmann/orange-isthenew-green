@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.Action;
@@ -58,6 +59,7 @@ public class CreateResidenceScreen extends JPanel{
 	 * Constructs residence singleton.
 	 */
 	private CreateResidenceScreen() {
+	    setBackground(Color.ORANGE);
 		buildPanel();
 	}
 

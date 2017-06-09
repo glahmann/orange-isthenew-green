@@ -3,7 +3,11 @@ package controller;
  * Starts the GUI application. 
  */
 
+import java.awt.Color;
 import java.awt.EventQueue;
+
+import javax.swing.UIManager;
+
 import model.User;
 import view.*;
 
@@ -41,6 +45,9 @@ public final class Main {
             public void run() {
             	// login and setup pane,
             	final LoginActions loginAction = new LoginActions();
+//            	UIManager UI=new UIManager();
+            	UIManager.put("OptionPane.background", Color.ORANGE);
+            	UIManager.put("Panel.background",Color.ORANGE);
             	LoginPane.getInstance().setAction(loginAction);
             	SetupPane.getInstance().setAction(loginAction);
             	CustomOptionFrame.getInstance().addPanel(SetupPane.getInstance(), "Setup");

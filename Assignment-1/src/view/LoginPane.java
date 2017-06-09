@@ -52,6 +52,7 @@ public class LoginPane extends JPanel{
 	 * Constructs the login pane.
 	 */
 	private LoginPane() {
+	    setBackground(Color.ORANGE);
 		myEmailField = new JTextField(TEXT_FIELD_SIZE);
 		myLoginButton = new JButton("Login");
 		myNewUserButton = new JButton("New User?");

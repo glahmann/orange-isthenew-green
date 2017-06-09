@@ -3,6 +3,8 @@ package view;
 import net.miginfocom.layout.LC;
 import net.miginfocom.swing.MigLayout;
 
+import java.awt.Color;
+
 import javax.swing.*;
 
 /**
@@ -65,6 +67,7 @@ public class BillPane extends JPanel {
      * Constructor for the bill pane.
      */
     private BillPane() {
+        setBackground(Color.ORANGE);
     	setLayout(new MigLayout(new LC().align("center", "center")));
     	final JPanel topPanel = new JPanel(new MigLayout(new LC().wrapAfter(1)));
     	
