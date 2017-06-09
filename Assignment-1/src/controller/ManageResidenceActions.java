@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 
 import model.HousingType;
 import model.Residence;
@@ -75,14 +76,26 @@ public final class ManageResidenceActions extends AbstractAction{
 				CustomOptionFrame.getInstance().displayPanel("Create Residence");
 				break;
 			case "Create": // for create residence pane.
-				final Residence res = new Residence(CreateResidenceScreen.getInstance().getResName(),
-						(HousingType) CreateResidenceScreen.getInstance().getResSelection().getSelectedItem());
-				res.addObserver(ManageProjectScreen.getInstance());
-				myUser.addResidence(res);
-				myUser.setCurrentResidence(res.getName());
-				myUser.getCurrentResidence().updateInfo();;
-				CustomOptionFrame.getInstance().dispose();
-				Gui.getInstance().displayPanel("Manage Projects");
+				boolean similarRes = false;
+				for (Residence currentRes: myUser.getResidences()) {
+					if (CreateResidenceScreen.getInstance().getResName().equals(currentRes.getName())) {
+						similarRes = true;
+					}
+				}
+				if (similarRes) {
+			    	JOptionPane.showMessageDialog(null,"Residence " + CreateResidenceScreen.getInstance().getResName() 
+			    			+ " already exists!", "Unable to Create Residence", JOptionPane.ERROR_MESSAGE);
+					CustomOptionFrame.getInstance().displayPanel("Create Residence");
+				} else {
+					final Residence res = new Residence(CreateResidenceScreen.getInstance().getResName(),
+							(HousingType) CreateResidenceScreen.getInstance().getResSelection().getSelectedItem());
+					res.addObserver(ManageProjectScreen.getInstance());
+					myUser.addResidence(res);
+					myUser.setCurrentResidence(res.getName());
+					myUser.getCurrentResidence().updateInfo();;
+					CustomOptionFrame.getInstance().dispose();
+					Gui.getInstance().displayPanel("Manage Projects");
+				}
 				break;
 			case "Cancel": // for create residence pane.
 				CustomOptionFrame.getInstance().dispose();

@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import javax.swing.AbstractAction;
 import javax.swing.JCheckBox;
-
+import javax.swing.JOptionPane;
 
 import model.Bill;
 import model.Calc;
@@ -17,6 +17,7 @@ import model.User;
 import view.BillPane;
 import view.CartPane;
 import view.CreateProject;
+import view.CreateResidenceScreen;
 import view.CustomOptionFrame;
 import view.Gui;
 import view.ManageProjectScreen;
@@ -84,11 +85,23 @@ public final class ManageProjectActions extends AbstractAction{
 				CustomOptionFrame.getInstance().displayPanel("Create Project");
 				break;
 			case "Create": // for create project pane.
-				final Project pro = new Project(CreateProject.getInstance().getProjectName());
-				myUser.getCurrentResidence().addProject(pro);
-				myUser.getCurrentResidence().setCurrentProject(pro.getName());
-                CustomOptionFrame.getInstance().dispose();
-				Gui.getInstance().displayPanel("Market");
+				boolean similarPro = false;
+				for (Project currentPro: myUser.getCurrentResidence().getProjects()) {
+					if (currentPro.getName().equals(CreateProject.getInstance().getProjectName())) {
+						similarPro = true;
+					}
+				}
+				if (similarPro) {
+			    	JOptionPane.showMessageDialog(null,"Project " + CreateProject.getInstance().getProjectName() 
+			    			+ " already exists!", "Unable to Create Project", JOptionPane.ERROR_MESSAGE);
+					CustomOptionFrame.getInstance().displayPanel("Create Project");
+				} else {
+					final Project pro = new Project(CreateProject.getInstance().getProjectName());
+					myUser.getCurrentResidence().addProject(pro);
+					myUser.getCurrentResidence().setCurrentProject(pro.getName());
+	                CustomOptionFrame.getInstance().dispose();
+					Gui.getInstance().displayPanel("Market");	
+				}
 				break;
 			case "Enter an Energy Bill?":
 			case "Add Energy Bill" :

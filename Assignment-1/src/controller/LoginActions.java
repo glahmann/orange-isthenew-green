@@ -10,7 +10,6 @@ import javax.swing.JOptionPane;
 import model.Residence;
 import model.User;
 import view.CustomOptionFrame;
-import view.Gui;
 import view.LoginPane;
 import view.ManageProjectScreen;
 import view.SetupPane;
