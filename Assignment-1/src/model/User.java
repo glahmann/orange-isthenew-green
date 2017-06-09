@@ -16,8 +16,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 /**
  * Represents a user that has a name and an email.
  * 
- * @author Yaro Salo
- * @author Donald Muffler
+ * @author Yaro Salo (Json, hash, equals, and remove by res)
+ * @author Donald Muffler (Creation of class and basic methods i.e. getters and such, removal by string)
  * @version April 12, 2017
  */
 @JsonPropertyOrder({"User Name", "User Email", "Residences"})

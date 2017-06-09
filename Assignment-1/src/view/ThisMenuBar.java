@@ -70,6 +70,7 @@ public final class ThisMenuBar extends JMenuBar {
 	 * Creates a button and sets an action.
 	 * @param theName name of the button.
 	 * @return the button.
+	 * @author Donald Muffler
 	 */
 	private final JMenuItem populateMenu(final String theName) {
 		final JMenuItem item = new JMenuItem(theName);

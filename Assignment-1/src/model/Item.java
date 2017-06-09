@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 /**
  * An item to be included in projects.
  * 
- * @author Donald Muffler
+ * @author Donald Muffler (Created class and did basic methods i.e. getters and constructor excluding Json.)
  * @author Garrett Lahmann
- * @author Yaro Salo
+ * @author Yaro Salo (Json, hash, equals)
  * @version 20170517
  */
 @JsonPropertyOrder({"Item Name", "Item Cost"})

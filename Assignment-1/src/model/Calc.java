@@ -7,7 +7,6 @@ import java.util.Iterator;
 /**
  * Class that calculates savings.
  * 
- * @author Donald Muffler
  * @author Garrett Lahmann
  * @version 20170531
  */

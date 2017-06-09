@@ -35,6 +35,7 @@ final public class Gui extends JFrame {
 	
 	/**
 	 * Constructor for Gui.
+	 * @author Donald Muffler
 	 */
 	private Gui() {
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -48,6 +49,7 @@ final public class Gui extends JFrame {
 	/**
 	 * Getter for the gui.
 	 * @return the gui.
+	 * @author Donald Muffler
 	 */
 	public final static Gui getInstance() {
 		if (myGui == null) {
@@ -81,6 +83,7 @@ final public class Gui extends JFrame {
     /**
 	 * Displays the sleceted panel in the panel holder.
 	 * @param thePanelTag the panel tag.
+	 * @author Donald Muffler
 	 */
 	public final void displayPanel(final String thePanelTag) {
 		CardLayout layout = (CardLayout) myPanelHolder.getLayout();
@@ -93,6 +96,7 @@ final public class Gui extends JFrame {
 	 * Adds a panel to the holder with a tag as a reference.
 	 * @param theComponent the panel.
 	 * @param thePanelTag the reference.
+	 * @author Donald Muffler
 	 */
 	public final void addPanel(final JComponent theComponent, final String thePanelTag) {
 		myPanelHolder.add(theComponent, thePanelTag);
@@ -101,6 +105,7 @@ final public class Gui extends JFrame {
 	/**
 	 * Sets the frame's menu bar.
 	 * @param theMenuBar the menu bar.
+	 * @author Donald Muffler
 	 */
 	public final void setMenu(final JMenuBar theMenuBar) {
 		setJMenuBar(theMenuBar);

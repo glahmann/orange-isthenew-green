@@ -74,6 +74,7 @@ final public class SetupPane extends JPanel {
 	/**
 	 * Getter for the setup pane singleton.
 	 * @return setup pane singleton.
+	 * @author Donald Muffler
 	 */
 	public static final SetupPane getInstance() {
 		if (mySetupPane == null) {
@@ -117,6 +118,7 @@ final public class SetupPane extends JPanel {
 	/**
 	 * Populates the email field.
 	 * @param theString the email to populate.
+	 * @author Donald Muffler
 	 */
 	public final void populateEmailField(final String theString) {
 		myEmailField.setText(theString);

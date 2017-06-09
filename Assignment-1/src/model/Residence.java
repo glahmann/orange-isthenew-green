@@ -14,8 +14,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
  * Class to contain User house information and projects associated
  * with this residence.
  * 
- * @author Donald Muffler
- * @author Yaro Salo
+ * @author Donald Muffler (Creation and basic methods, remove project by string.)
+ * @author Yaro Salo (Json, has, equals, changes to removal.)
  * @version 20170516
  */
 @JsonPropertyOrder({"Residence Name", "Residence Type", "Projected Bill", "Bills", "Projects"})
@@ -288,8 +288,9 @@ final public class Residence extends Observable {
     }
     
     /**
-     * 
-     * @return
+     * Returns the project info.
+     * @return project info.
+     * @author Donald Muffler.
      */
 	private final ArrayList<String> projectInfo() {
 		final ArrayList<String> list = new ArrayList<String>();

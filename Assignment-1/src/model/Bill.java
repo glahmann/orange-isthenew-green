@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
  * @author Donald Muffler
+ * @author Yaro Salo (Json, hash, equals)
  * @version 20170516
  */
 @JsonPropertyOrder({"Bill Ammount", "Start Month", 

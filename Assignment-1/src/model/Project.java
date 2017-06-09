@@ -10,7 +10,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 /**
  * Stores items for the user.
  * 
- * @author Donald Muffler
+ * @author Donald Muffler (Creation of class and basic functions i.e. getters, constructor excluding any Json.)
+ * @author Yaro Salo (Json, equals, hash, changes to getter and removal)
  * @version 20170517
  */
 @JsonPropertyOrder({"Project Name", "Savings", "Cost", "Items"})

@@ -9,8 +9,8 @@ import javax.swing.*;
 
 /**
  * Enter energy bill pane.
- * @author Zira Cook
- * @author Donald Muffler
+ * @author Zira Cook (Initial creation)
+ * @author Donald Muffler (Update into Singleton and changed fields around)
  * @version 5/21/2017
  */
 public class BillPane extends JPanel {
@@ -64,6 +64,8 @@ public class BillPane extends JPanel {
     private final JButton myAddButton;
 
     /**
+     * @author Zira Cook
+     * @author Donald Muffler
      * Constructor for the bill pane.
      */
     private BillPane() {
@@ -111,6 +113,7 @@ public class BillPane extends JPanel {
     /**
      * Gets an instance of the pane
      * @return a singleton
+     * @author Donald Muffler
      */
     public final static BillPane getInstance() {
     	if (myBillPane == null) {
@@ -119,6 +122,11 @@ public class BillPane extends JPanel {
     	return myBillPane;
     }
     
+    /**
+     * Sets the actions for this panel's buttons.
+     * @param theAction the action to set.
+     * @author Donald Muffler
+     */
     public final void setActions(final Action theAction) {
     	myAddButton.addActionListener(theAction);
     }
@@ -126,6 +134,7 @@ public class BillPane extends JPanel {
     /**
      * Getter for bill amount.
      * @return bill amount.
+     * @author Donald Muffler
      */
     public final double getBillCost() {
     	return Double.parseDouble(myBillCost.getText());
@@ -134,6 +143,7 @@ public class BillPane extends JPanel {
     /**
      * Getter for start month.
      * @return start month.
+     * @author Donald Muffler
      */
     public final int getStartMonth() {
     	return Integer.parseInt(myStartMonth.getText());
@@ -142,6 +152,7 @@ public class BillPane extends JPanel {
     /**
      * Getter for end month.
      * @return end month.
+     * @author Donald Muffler
      */
     public final int getEndMonth() {
     	return Integer.parseInt(myEndMonth.getText());
@@ -150,6 +161,7 @@ public class BillPane extends JPanel {
     /**
      * Getter for end year.
      * @return end year.
+     * @author Donald Muffler
      */
     public final int getEndYear() {
     	return Integer.parseInt(myEndYear.getText());
@@ -158,6 +170,7 @@ public class BillPane extends JPanel {
     /**
      * Getter for start year.
      * @return start year.
+     * @author Donald Muffler
      */
     public final int getStarYear() {
     	return Integer.parseInt(myStartYear.getText());
@@ -166,6 +179,7 @@ public class BillPane extends JPanel {
     /**
      * Getter for the energy usage.
      * @return energy usage.
+     * @author Donald Muffler
      */
     public final double getEnergyUsage() {
     	return Double.parseDouble(myEnergyUsage.getText());

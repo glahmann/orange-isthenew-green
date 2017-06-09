@@ -27,7 +27,6 @@ import net.miginfocom.swing.MigLayout;
  * @version 20170524
  */
 public final class ManageProjectScreen extends JScrollPane implements Observer {
-	// TODO: add an updatePanel method and observer which calls updatePanel.
 
 	/**
 	 * Serial ID.
