@@ -11,6 +11,29 @@ import javax.swing.UIManager;
 import model.User;
 import view.*;
 
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ * MigLayout was Used in a series of the diaplaying panels.
+ * 
+ * WindowBuilder was also tried to create some panels,
+ * but the code was bulky and unorganized.
+ * 
+ * Most panels were created manually.
+ * 
+ * Json was used for file import export.
+ * 
+ * SQLite was used as our database.
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
 /**
  * Start the GUI application.
  * 
