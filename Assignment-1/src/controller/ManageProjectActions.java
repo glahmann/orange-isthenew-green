@@ -107,20 +107,20 @@ public final class ManageProjectActions extends AbstractAction{
 						BillPane.getInstance().getEnergyUsage());
 				myUser.getCurrentResidence().addBill(bill);
 				break;
-			case "UPDATE CART":
+			case "ADD TO PROJECT":
 			    final Market market = ProjectMarket.getInstance().getMarket();
 			    final ArrayList<Item> selected = market.getSelected();
 			    final Project projectUp = myUser.getCurrentResidence().getCurrentProject();
-			    projectUp.addToSavings(Calc.calculate(new ArrayList<Item>(selected)));
+			    projectUp.addToSavings(Calc.calculate(new ArrayList<Item>(selected)) * 1.1);
 			    for (Item i: selected) {
 			        projectUp.addItem(i);
 			        projectUp.addToCost(i.getCost());
 			    }
 			    market.resetDropDowns(); 
 			    break;
-			case "VIEW CART":
+			case "VIEW PROJECT ITEMS":
 			    CartPane.getInstance().buildItemList(myUser.getCurrentResidence().getCurrentProject().getItems());
-			    CustomOptionFrame.getInstance().displayPanel("Cart");
+			    CustomOptionFrame.getInstance().displayPanel("Inventory");
 			    break;
             
 		}

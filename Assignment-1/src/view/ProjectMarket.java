@@ -182,8 +182,8 @@ final public class ProjectMarket extends JPanel {
 
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         
-        JButton updateButton = new JButton("UPDATE CART");
-        JButton viewButton = new JButton("VIEW CART");
+        JButton updateButton = new JButton("ADD TO PROJECT");
+        JButton viewButton = new JButton("VIEW PROJECT ITEMS");
         viewButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         updateButton.setFont(new Font("Times New Roman", Font.BOLD, 20));
         viewButton.setPreferredSize(new Dimension(350, 100));

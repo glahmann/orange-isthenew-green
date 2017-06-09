@@ -42,8 +42,8 @@ final public class Project {
 	 */
 	public Project(final String theName) {
 		myName = theName;
-		mySavings = 0;
-		myCost = 0;
+		mySavings = 0.0;
+		myCost = 0.0;
 		myItems = new ArrayList<Item>();
 	}
 	

@@ -27,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
+ * Displays a panel with energy use and savings statistics.
  * 
  * @author Garrett Lahmann
  * @version 8 June 2017
@@ -248,21 +249,23 @@ public class CalcPane extends JPanel implements Observer {
     }
 
     /**
+     * Updates the energy and cost savings.
      * 
-     * @param theObject
+     * @param theObject A list of Items.
      */
     private void calculateSavings(Object theObject) {
         myProjectedEnergySavings = Calc.calculate((ArrayList<Item>)theObject);
 
-        myProjectedBillSavings = myProjectedEnergySavings * POWER_COST;
+        myProjectedBillSavings = myProjectedEnergySavings * POWER_COST * 10;
         for (int i = 0; i < 12; i++) {
             myProjUse[i] = (int) (myPrevUse[i] - myProjectedEnergySavings);
         }
     }
 
     /**
+     * Updates values on the statistics page when an event is observed.
      * 
-     * @param theObject
+     * @param theObject An observable object.
      */
     private final void updateValues(Object theObject) {
         ArrayList<Double> bills = (ArrayList<Double>) theObject;
@@ -295,8 +298,6 @@ public class CalcPane extends JPanel implements Observer {
                 }
             }
         }
-        
-        
 
         myBillCost = recentAmmount;
         myEnergyUsed = recentUsage;
