@@ -194,10 +194,9 @@ public class CalcPane extends JPanel implements Observer {
         infoPanel.add(projSave);
 
         centerPanel.add(myFxPanel);
-        centerPanel.add(infoPanel);
-        add(centerPanel);
-
         runJfx();
+        centerPanel.add(infoPanel);
+        add(centerPanel); 
     }
 
     /**

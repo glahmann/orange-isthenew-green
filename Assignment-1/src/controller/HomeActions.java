@@ -48,7 +48,7 @@ public final class HomeActions extends AbstractAction {
 		switch(whichButton) {
 			case "Statistics":
 			    myUser.updateInfo();
-				Gui.getInstance().displayPanel("Calculator");
+				Gui.getInstance().displayPanel("Statistics");
 				break;
 			case "Manage Residences":
 				myUser.updateInfo();
