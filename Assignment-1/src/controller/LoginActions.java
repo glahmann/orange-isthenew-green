@@ -60,7 +60,7 @@ public class LoginActions extends AbstractAction {
 				}
 				// checks to see if the email is in correct format (correct suffix, contains @, and a character before @).
 				if (!email.contains("@") || !goodSuffix) { // email is incorrect format.
-					CustomOptionFrame.getInstance().dispose();
+			    	JOptionPane.showMessageDialog(null, "Enter a correct email.", "Incorrect Email Format!", JOptionPane.ERROR_MESSAGE);
 					CustomOptionFrame.getInstance().displayPanel("Setup Pane");
 				} else { // email is in correct format.
 					final User newUser = new User(SetupPane.getInstance().getName(), SetupPane.getInstance().getEmail());
