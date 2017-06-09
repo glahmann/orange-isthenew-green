@@ -1,5 +1,6 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Observable;
@@ -21,6 +22,11 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonIgnoreProperties({"currentProject"})
 final public class Residence extends Observable {
 	
+    /**
+     * Formats output decimal values.
+     */
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(".##");
+    
 	/**
 	 * Name of the residence.
 	 */
@@ -290,7 +296,7 @@ final public class Residence extends Observable {
 		for (Project currentPro: myProjects) {
 			list.add(currentPro.getName());
 			list.add(String.valueOf(currentPro.getItems().size()));
-			list.add(String.valueOf("$" + currentPro.getSavings()));
+			list.add(String.valueOf("$" + DECIMAL_FORMAT.format(currentPro.getSavings())));
 		}
 		return list;
 	}
